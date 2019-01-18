@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `trades` (
   `expire_date` date NOT NULL,
   `strike_price` float NOT NULL,
   `executed_price` float NOT NULL,
-  `order_type2` enum('Buy Open','Sell Close','Sell Open','Buy Close') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `strike_price2` float NOT NULL,
+  `order_type2` enum('Buy Open','Sell Close','Sell Open','Buy Close') CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `strike_price2` float,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
