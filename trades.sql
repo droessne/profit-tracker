@@ -12,5 +12,7 @@ CREATE TABLE IF NOT EXISTS `trades` (
   `order_type2` enum('Buy Open','Sell Close','Sell Open','Buy Close') CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `strike_price2` float,
   `com_fee` float,
+  `platform` enum('Alpha-9','Money Calendar Pro') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Entry_ID` int(11)
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
