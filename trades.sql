@@ -11,5 +11,6 @@ CREATE TABLE IF NOT EXISTS `trades` (
   `executed_price` float NOT NULL,
   `order_type2` enum('Buy Open','Sell Close','Sell Open','Buy Close') CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `strike_price2` float,
+  `com_fee` float,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
