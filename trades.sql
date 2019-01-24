@@ -14,6 +14,6 @@ CREATE TABLE IF NOT EXISTS `trades` (
   `com_fee` float,
   `total` float,
   `platform` enum('Alpha-9','Money Calendar Pro') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `mate_id` int(11),
+  `mate_id` varchar(50),
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
