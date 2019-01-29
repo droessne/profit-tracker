@@ -8,7 +8,7 @@
 <td><label for="platform">Platform:</label></td>
 <td><select id="platform" name="platform">
 <?php
-  include 'include/defaults.cfg.php';
+  require_once("include/defaults.cfg.php");
   foreach ($platforms as &$p) {
     echo '<option value="'.$p.'">'.$p.'</option>';
   }
