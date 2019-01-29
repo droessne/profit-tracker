@@ -7,8 +7,12 @@
 <tr>
 <td><label for="platform">Platform:</label></td>
 <td><select id="platform" name="platform">
-  <option value="Alpha-9">Alpha-9</option>
-  <option value="Money Calendar Pro">Money Calendar Pro</option>
+<?php
+  include 'include/defaults.cfg.php';
+  foreach ($platforms as &$p) {
+    echo '<option value="'.$p.'">'.$p.'</option>';
+  }
+?>
 </select></td>
 </tr>
 <tr>
