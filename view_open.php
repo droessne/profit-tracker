@@ -24,7 +24,7 @@ function viewByPlatform($platform){
         <th><span style='font-size:.8em'>Action</span></th>
         </tr>";
   if (!$dbconnection->connect_errno) {
-    $sql = "SELECT * FROM trades WHERE type='Entry' AND platform='".$platform."';";
+    $sql = "SELECT * FROM trades WHERE type='Entry' AND platform='".$platform."' ORDER BY executed_date;";
     $results = $dbconnection->query($sql);
     while($obj = $results->fetch_object()){
       $new_qty = $obj->qty;
