@@ -26,8 +26,12 @@ function viewByPlatform($platform){
   if (!$dbconnection->connect_errno) {
     $sql = "SELECT * FROM trades WHERE type='Entry' AND platform='".$platform."' ORDER BY executed_date;";
     $results = $dbconnection->query($sql);
+    $plat_total = 0;
+    $plat_com = 0;
     while($obj = $results->fetch_object()){
       $new_qty = $obj->qty;
+      $plat_total = ($plat_total + $obj->total);
+      $plat_com = ($plat_com + $obj->com_fee);
       $skip = False;
       if ( $obj->mate_id != '' ) { 
         if (\strpos($obj->mate_id, '-') !== false) {
@@ -97,6 +101,10 @@ function viewByPlatform($platform){
     $results->close();
     unset($obj);
   }
+  echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
+  echo "<td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $plat_com)."</span></td>";
+  echo "<td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $plat_total)."</span></td>";
+  echo "<td></td></tr>";
   echo "</table>";
 }
 
