@@ -30,8 +30,6 @@ function viewByPlatform($platform){
     $plat_com = 0;
     while($obj = $results->fetch_object()){
       $new_qty = $obj->qty;
-      $plat_total = ($plat_total + $obj->total);
-      $plat_com = ($plat_com + $obj->com_fee);
       $skip = False;
       if ( $obj->mate_id != '' ) { 
         if (\strpos($obj->mate_id, '-') !== false) {
@@ -71,6 +69,8 @@ function viewByPlatform($platform){
         }
       } 
       if ( $skip != True ){
+        $plat_total = ($plat_total + $obj->total);
+        $plat_com = ($plat_com + $obj->com_fee);
         echo "<tr>
               <td align='center'><span style='font-size:.8em'>$obj->executed_date</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->type</span></td>
