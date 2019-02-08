@@ -35,9 +35,17 @@ if ($dbconnection->connect_error) {
       $total = ((((floatval($qty) * 100) * floatval($executed_price))) + $com_fee);
     }
   } elseif ('Call Spread' == $trade_strategy) {
-    $total = ((((floatval($qty) * 100) * floatval($executed_price)) * -1) + $com_fee);
+    if ('Exit' == $type) {
+      $total = ((((floatval($qty) * 100) * floatval($executed_price))) + $com_fee);
+    } else {
+      $total = ((((floatval($qty) * 100) * floatval($executed_price)) * -1) + $com_fee);
+    }
   } elseif ('Put Spread' == $trade_strategy) {
-    $total1 = ((((floatval($qty) * 100) * floatval($executed_price)) * -1) + $com_fee);
+     if ('Exit' == $type) {
+      $total = ((((floatval($qty) * 100) * floatval($executed_price)) * -1) + $com_fee);
+    } else {
+      $total = ((((floatval($qty) * 100) * floatval($executed_price))) + $com_fee);
+    }
   }
 
   if ($trade_strategy == 'Call'){
