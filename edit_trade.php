@@ -22,7 +22,7 @@ if ($dbconnection->connect_error) {
           <td><select id="platform" name="platform">';
     foreach ($platforms as &$p) {
       echo '<option value="'.$p.'"';
-      if ($platform == $p){ 
+      if ($obj->platform == $p){ 
         echo ' selected="selected"';
       }
       echo '>'.$p.'</option>';
