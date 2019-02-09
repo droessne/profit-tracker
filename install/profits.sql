@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS `profits` (
   `date` date NOT NULL,
   `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `amount` float,
-  `platform` enum('Alpha-9','Money Calendar Pro') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `platform` enum('Alpha-9','Money Calendar Pro','Fast Fortune Club','Straight Line Profits','10 Minute Millionaire') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `entry_id` int(11),
   `exit_id` varchar(50),
   PRIMARY KEY (`ID`)
