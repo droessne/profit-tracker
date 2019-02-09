@@ -18,18 +18,15 @@ if ($dbconnection->connect_error) {
     echo '<form action="edit_trade_db.php" method="post">';
     echo '<table><tr>
           <td><label for="platform">Platform:</label></td>
-          <td><select id="platform" name="platform">
-            <option value="Alpha-9"';
-    if ($obj->platform == 'Alpha-9'){
-      echo 'selected="selected"';
-    } 
-                              echo '>Alpha-9</option>
-            <option value="Money Calendar Pro"';
-    if ($obj->platform == 'Money Calendar Pro'){
-      echo 'selected="selected"';
+          <td><select id="platform" name="platform">;
+    foreach ($platforms as &$p) {
+      echo '<option value="'.$p.'"';
+      if ($platform == $p){ 
+        echo ' selected="selected"';
+      }
+      echo '>'.$p.'</option>';
     }
-                                         echo '>Money Calendar Pro</option>
-          </select></td></tr>'; 
+    echo '</select></td></tr>';
     echo '<tr><td><label for="type">Type:</label></td>
           <td><select id="type" name="type">
             <option value="Entry"';
