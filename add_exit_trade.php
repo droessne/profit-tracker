@@ -1,6 +1,7 @@
 <?php
 
 require_once("include/database.cfg.php");
+require_once("include/defaults.cfg.php");
 
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $id = $_POST['ID'];
@@ -33,20 +34,17 @@ echo '
   <form action="add_exit_trade_db.php" method="post">
   <table>
   <tr>
+  
   <td><label for="platform">Platform:</label></td>
-  <td><select id="platform" name="platform" >
-  <option value="Alpha-9"';
-  if ($platform == 'Alpha-9'){ 
+  <td><select id="platform" name="platform">';
+foreach ($platforms as &$p) {
+  echo '<option value="'.$p.'"';
+  if ($platform == $p){ 
     echo ' selected';
   }
-echo '>Alpha-9</option>
-  <option value="Money Calendar Pro"';
-  if ($platform == 'Money Calendar Pro'){ 
-    echo ' selected';
-  }
-echo '>Money Calendar Pro</option>
-  </select></td></tr>
-  ';
+  echo '>'.$p.'</option>';
+}
+echo '</select></td></tr>';
 echo '
   <tr>
   <td><label for="type">Execution Date:</label></td>
