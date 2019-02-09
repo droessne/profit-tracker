@@ -5,6 +5,7 @@
 
 <?php
 require_once("include/database.cfg.php");
+require_once("include/defaults.cfg.php");
 
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -18,7 +19,7 @@ if ($dbconnection->connect_error) {
     echo '<form action="edit_trade_db.php" method="post">';
     echo '<table><tr>
           <td><label for="platform">Platform:</label></td>
-          <td><select id="platform" name="platform">;
+          <td><select id="platform" name="platform">';
     foreach ($platforms as &$p) {
       echo '<option value="'.$p.'"';
       if ($platform == $p){ 
