@@ -108,9 +108,10 @@ function viewByPlatform($platform){
   echo "</table>";
 }
 
-viewByPlatform('Alpha-9');
-
-viewByPlatform('Money Calendar Pro');
+require_once("include/defaults.cfg.php");
+foreach ($platforms as &$p) {
+    viewByPlatform($p);
+}
 
 ?>
 
