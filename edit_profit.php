@@ -5,6 +5,7 @@
 
 <?php
 require_once("include/database.cfg.php");
+require_once("include/defaults.cfg.php");
 
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
