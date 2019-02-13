@@ -25,6 +25,11 @@ require_once("include/defaults.cfg.php");
     while($obj_2 = $results_2->fetch_object()){
       $base_balance = $obj_2->balance;
     }
+    $sql_3 = "SELECT SUM(amount) AS balance FROM trades WHERE type='Entry' AND mate_id='0' ORDER BY executed_date;";
+    $results_3 = $dbconnection->query($sql_3);
+    while($obj_3 = $results_3->fetch_object()){
+      $trade_balance = $obj_3->balance;
+    }
     $taxes = ($total_balance * .25);
     $donate = ($total_balance * .10);
     $left_over = ($total_balance * .65);
@@ -32,6 +37,8 @@ require_once("include/defaults.cfg.php");
     echo "<th>".money_format('%(#10n', $total_balance)."</th></tr>";
     echo "<table border=1><tr><th>Base Amount</th>";
     echo "<th>".money_format('%(#10n', $base_balance)."</th></tr>";
+    echo "<table border=1><tr><th>Currrent Trade Amount</th>";
+    echo "<th>".money_format('%(#10n', $trade_balance)."</th></tr>";
     echo "<tr><td><span style='font-size:.8em'>Amount for Taxes</span></td>";
     echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $taxes)."</span></td></tr>";
     echo "<tr><td><span style='font-size:.8em'>Amount to Doante</span></td>";
