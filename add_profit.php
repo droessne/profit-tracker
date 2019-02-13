@@ -13,6 +13,7 @@
     echo '<option value="'.$p.'">'.$p.'</option>';
   }
 ?>
+<option value="Deposit">Deposit</option>
 </select></td>
 </tr>
 </table>
