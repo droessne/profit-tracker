@@ -34,7 +34,7 @@ require_once("include/defaults.cfg.php");
     $taxes = ($total_balance * .25);
     $donate = ($total_balance * .10);
     $left_over = ($total_balance * .65);
-    echo "<table border=1><tr><th>Total Profits</th>";
+    echo "<center><table border=1><tr><th>Total Profits</th>";
     echo "<th>".money_format('%(#10n', $total_balance)."</th></tr>";
     echo "<tr><td>Base Amount</td>";
     echo "<td>".money_format('%(#10n', $base_balance)."</td></tr>";
@@ -124,7 +124,7 @@ require_once("include/defaults.cfg.php");
     $results->close();
     unset($obj);
   }
-  echo "</table>";
+  echo "</table></center>";
 ?>
 
 
