@@ -27,6 +27,11 @@ if ($dbconnection->connect_error) {
       }
       echo '>'.$p.'</option>';
     }
+    echo '<option value="Deposit"';
+    if ($obj->platform == 'Deposit'){ 
+      echo ' selected="selected"';
+    }
+    echo '>Deposit</option>';
     echo '</select></td></tr></table>';
     echo '<table border=1><tr>
           <th>Date</th>
