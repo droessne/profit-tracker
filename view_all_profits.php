@@ -30,17 +30,17 @@ require_once("include/defaults.cfg.php");
     while($obj_3 = $results_3->fetch_object()){
       $trade_balance = $obj_3->balance;
     }
-    $available_amt = ($base_balance - $trade_balance);
+    $available_amt = ($base_balance + $trade_balance);
     $taxes = ($total_balance * .25);
     $donate = ($total_balance * .10);
     $left_over = ($total_balance * .65);
     echo "<table border=1><tr><th>Total Profits</th>";
     echo "<th>".money_format('%(#10n', $total_balance)."</th></tr>";
-    echo "<table border=1><tr><td>Base Amount</td>";
+    echo "<tr><td>Base Amount</td>";
     echo "<td>".money_format('%(#10n', $base_balance)."</td></tr>";
-    echo "<table border=1><tr><td>Currrent Trade Amount</td>";
+    echo "<tr><td>Currrent Trade Amount</td>";
     echo "<td>".money_format('%(#10n', $trade_balance)."</td></tr>";
-    echo "<table border=1><tr><td>Available Amount</td>";
+    echo "<tr><td>Available Amount</td>";
     echo "<td>".money_format('%(#10n', $available_amt)."</td></tr>";
     echo "<tr><td><span style='font-size:.8em'>Amount for Taxes</span></td>";
     echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $taxes)."</span></td></tr>";
