@@ -25,7 +25,7 @@ require_once("include/defaults.cfg.php");
     while($obj_2 = $results_2->fetch_object()){
       $base_balance = $obj_2->balance;
     }
-    $sql_3 = "SELECT SUM(amount) AS balance FROM trades WHERE type='Entry' AND mate_id='0' ORDER BY executed_date;";
+    $sql_3 = "SELECT SUM(total) AS balance FROM trades WHERE type='Entry' AND mate_id='0' ORDER BY executed_date;";
     $results_3 = $dbconnection->query($sql_3);
     while($obj_3 = $results_3->fetch_object()){
       $trade_balance = $obj_3->balance;
