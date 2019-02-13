@@ -21,7 +21,7 @@ require_once("include/defaults.cfg.php");
       $total_balance = $obj_1->balance;
     }
     $sql_2 = "SELECT SUM(amount) AS balance FROM profits WHERE platform = 'Deposit';";
-    $results_2 = $dbconnection->query($sql_1);
+    $results_2 = $dbconnection->query($sql_2);
     while($obj_2 = $results_2->fetch_object()){
       $base_balance = $obj_2->balance;
     }
