@@ -20,19 +20,10 @@ function viewByPlatform($platform){
     while($obj_1 = $results_1->fetch_object()){
       $total_balance = $obj_1->balance;
     }
-    $taxes = ($total_balance * .25);
-    $donate = ($total_balance * .10);
-    $left_over = ($total_balance * .65);
-    echo "<table border=1><tr><th>Total ".$platform." Profits</th>";
+    echo "<center><table border=1><tr><th>Total ".$platform." Profits</th>";
     echo "<th>".money_format('%(#10n', $total_balance)."</th></tr>";
-    echo "<tr><td><span style='font-size:.8em'>Amount for Taxes</span></td>";
-    echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $taxes)."</span></td></tr>";
-    echo "<tr><td><span style='font-size:.8em'>Amount to Doante</span></td>";
-    echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $donate)."</span></td></tr>";
-    echo "<tr><td><span style='font-size:.8em'>Amount Left Over</span></td>";
-    echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $left_over)."</span></td></tr>";
     echo "</table><BR>";
-    echo "<table border=1>";
+    echo "<table border=1 width=80%>";
     echo "<tr>
           <th><span style='font-size:.8em'>Date</span></th>
           <th><span style='font-size:.8em'>Description</span></th>
@@ -70,7 +61,7 @@ function viewByPlatform($platform){
     $results->close();
     unset($obj);
   }
-  echo "</table>";
+  echo "</table></center>";
 }
 
 require_once("include/defaults.cfg.php");
