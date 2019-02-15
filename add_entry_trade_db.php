@@ -24,7 +24,7 @@ if ($dbconnection->connect_error) {
   if ('Call' == $trade_strategy) {
     $total = ((((floatval($qty) * 100) * floatval($executed_price)) * -1) + $com_fee);
   } elseif ('Put' == $trade_strategy) {
-    $total = (((floatval($qty) * 100) * floatval($executed_price)) + $com_fee);
+    $total = ((((floatval($qty) * 100) * floatval($executed_price)) * -1) + $com_fee);
   } elseif ('Call Spread' == $trade_strategy) {
     $total = ((((floatval($qty) * 100) * floatval($executed_price)) * -1) + $com_fee);
   } elseif ('Put Spread' == $trade_strategy) {
