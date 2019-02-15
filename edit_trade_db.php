@@ -30,9 +30,9 @@ if ($dbconnection->connect_error) {
     }
   } elseif ('Put' == $trade_strategy) {
     if ('Exit' == $type) {
-      $total = ((((floatval($qty) * 100) * floatval($executed_price)) * -1) + $com_fee);
-    } else {
       $total = ((((floatval($qty) * 100) * floatval($executed_price))) + $com_fee);
+    } else {
+      $total = ((((floatval($qty) * 100) * floatval($executed_price)) * -1) + $com_fee);
     }
   } elseif ('Call Spread' == $trade_strategy) {
     if ('Exit' == $type) {
