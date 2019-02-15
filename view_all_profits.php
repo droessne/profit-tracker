@@ -35,7 +35,7 @@ require_once("include/defaults.cfg.php");
     while($obj_3 = $results_3->fetch_object()){
       $trade_balance = $obj_3->balance;
     }
-    $available_amt = ($base_balance + $trade_balance + $total_balance - $used_balance);
+    $available_amt = ($base_balance + $trade_balance + $total_balance + $used_balance);
     $taxes = ($total_balance * .25);
     $donate = ($total_balance * .10);
     $left_over = ($total_balance * .65);
@@ -64,7 +64,7 @@ require_once("include/defaults.cfg.php");
           <th><span style='font-size:.8em'>Balance</span></th>
           <th><span style='font-size:.8em'>Actions</span></th>
           </tr>";
-    $sql = "SELECT * FROM profits WHERE platform != 'Deposit' ORDER BY date DESC;";
+    $sql = "SELECT * FROM profits WHERE platform != 'Deposit' AND platform != 'Withdrawal' ORDER BY date DESC;";
     $results = $dbconnection->query($sql);
     $count = 0;
     $last_amount = 0;
