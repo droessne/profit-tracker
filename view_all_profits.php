@@ -15,7 +15,7 @@ require_once("include/defaults.cfg.php");
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1>All Profits</h1>";
   if (!$dbconnection->connect_errno) {
-    $sql_1 = "SELECT SUM(amount) AS balance FROM profits WHERE platform != 'Deposit';";
+    $sql_1 = "SELECT SUM(amount) AS balance FROM profits WHERE platform != 'Deposit' AND platform != 'Withdrawal';";
     $results_1 = $dbconnection->query($sql_1);
     while($obj_1 = $results_1->fetch_object()){
       $total_balance = $obj_1->balance;
@@ -25,12 +25,17 @@ require_once("include/defaults.cfg.php");
     while($obj_2 = $results_2->fetch_object()){
       $base_balance = $obj_2->balance;
     }
+    $sql_4 = "SELECT SUM(amount) AS balance FROM profits WHERE platform = 'Withdrawal';";
+    $results_4 = $dbconnection->query($sql_4);
+    while($obj_4 = $results_4->fetch_object()){
+      $used_balance = $obj_4->balance;
+    }
     $sql_3 = "SELECT SUM(total) AS balance FROM trades WHERE type='Entry' AND mate_id IS NULL ORDER BY executed_date;";
     $results_3 = $dbconnection->query($sql_3);
     while($obj_3 = $results_3->fetch_object()){
       $trade_balance = $obj_3->balance;
     }
-    $available_amt = ($base_balance + $trade_balance);
+    $available_amt = ($base_balance + $trade_balance + $total_balance - $used_balance);
     $taxes = ($total_balance * .25);
     $donate = ($total_balance * .10);
     $left_over = ($total_balance * .65);
@@ -40,6 +45,8 @@ require_once("include/defaults.cfg.php");
     echo "<td>".money_format('%(#10n', $base_balance)."</td></tr>";
     echo "<tr><td>Trade Amount</td>";
     echo "<td>".money_format('%(#10n', $trade_balance)."</td></tr>";
+    echo "<tr><td>Used Amount</td>";
+    echo "<td>".money_format('%(#10n', $used_balance)."</td></tr>";
     echo "<tr><td>Available Amount</td>";
     echo "<td>".money_format('%(#10n', $available_amt)."</td></tr>";
     echo "<tr><td><span style='font-size:.8em'>Amount for Taxes</span></td>";
@@ -102,6 +109,43 @@ require_once("include/defaults.cfg.php");
     while($obj = $results->fetch_object()){
       if ( $count == 0 ) {
         $balance = $base_balance;
+      } else {
+        $balance = ($balance - $last_amount);
+      }
+      echo "<tr>
+            <td align='center'><span style='font-size:.8em'>$obj->date</span></td>
+            <td align='center'><span style='font-size:.8em'>$obj->description</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->amount)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $balance)."</span></td>
+            <td align='center'><table><tr>
+                <td><form method='POST' action='edit_profit.php'>
+                <input type='hidden' name='ID' value='$obj->ID'>
+                <button type='submit'>Edit</button></form></td>
+                <td valign='bottom'><form method='POST' action='delete_profit.php'>
+                <input type='hidden' name='ID' value='$obj->ID'>
+                <button type='submit'>Del</button></form></td></tr></table></td>
+            </tr>";
+      $last_amount = $obj->amount;
+      $count++;
+    }
+    $results->close();
+    unset($obj);
+    echo "<table border=1 width=80%>";
+    echo "<tr>
+          <th><span style='font-size:.8em'>Date</span></th>
+          <th><span style='font-size:.8em'>Description</span></th>
+          <th><span style='font-size:.8em'>Amount</span></th>
+          <th><span style='font-size:.8em'>Balance</span></th>
+          <th><span style='font-size:.8em'>Actions</span></th>
+          </tr>";
+    $sql = "SELECT * FROM profits WHERE platform = 'Withdrawal' ORDER BY date DESC;";
+    $results = $dbconnection->query($sql);
+    $count = 0;
+    $last_amount = 0;
+    $balance = 0;
+    while($obj = $results->fetch_object()){
+      if ( $count == 0 ) {
+        $balance = $used_balance;
       } else {
         $balance = ($balance - $last_amount);
       }
