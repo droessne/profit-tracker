@@ -75,7 +75,7 @@ body {font-family: Arial;}
 </div>
 
 <div id="view_closed" class="tabcontent">
-  <iframe id="view_closed2" src="view_closed.php" class="content"></iframe>
+  <iframe id="view_closed2" src="view_closed_form.php" class="content"></iframe>
 </div>
 
 <div id="add_profit" class="tabcontent">
