@@ -3,11 +3,27 @@
 require_once("include/database.cfg.php");
 
 function viewByPlatform($platform){
+  if ($_POST['time_frame'] = 'ytd'){
+    $year = date("Y");
+    $sql_add = " AND executed_date BETWEEN '".$year."-01-01' AND '".$year."-12-31'";
+  } elseif ($_POST['time_frame'] = 'last_month') {
+    $previous_month = strtotime("-1 month +1 day");
+    $start_date = date("Y-m-d",$previous_month);
+    $end_date = date("Y-m-d");
+    $sql_add = " AND executed_date BETWEEN '".$start_date."' AND '".$end_date."'";
+  } elseif ($_POST['time_frame'] = 'last_week') {
+    $previous_week = strtotime("-1 week +1 day");
+    $start_date = date("Y-m-d",$previous_week);
+    $end_date = date("Y-m-d");
+    $sql_add = " AND executed_date BETWEEN '".$start_date."' AND '".$end_date."'";
+  } else {
+    $sql_add = '';
+  }
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1> ".$platform." Closed Trades</h1>";
   if (!$dbconnection->connect_errno) {
-    $sql = "SELECT * FROM trades WHERE type='Entry' AND mate_id IS NOT NULL AND platform='".$platform."';";
+    $sql = "SELECT * FROM trades WHERE type='Entry' AND mate_id IS NOT NULL AND platform='".$platform."'".$sql_add.";";
     $results = $dbconnection->query($sql);
     while($obj = $results->fetch_object()){
       $trade_total = $obj->total;
@@ -89,10 +105,11 @@ function viewByPlatform($platform){
   }
 }
 
-require_once("include/defaults.cfg.php");
-foreach ($platforms as &$p) {
-    viewByPlatform($p);
-}
+#require_once("include/defaults.cfg.php");
+#foreach ($platforms as &$p) {
+#    viewByPlatform($p);
+#}
+viewByPlatform($_POST['platform']);
 
 ?>
 
