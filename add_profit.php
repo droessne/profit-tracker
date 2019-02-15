@@ -14,6 +14,7 @@
   }
 ?>
 <option value="Deposit">Deposit</option>
+<option value="Withdrawal">Withdrawal</option>
 </select></td>
 </tr>
 </table>
