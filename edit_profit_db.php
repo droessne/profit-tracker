@@ -19,7 +19,7 @@ if ($dbconnection->connect_error) {
 
   if ($results_2) {
     echo "Trade Corrected.";
-    header("Location: {$_SERVER['HTTP_REFERER']}");
+    header("Location: {$_POST['referer']}");
     die();    
   } else {
     echo "Sorry, editing this trade failed. Please try again";
