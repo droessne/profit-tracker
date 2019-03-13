@@ -63,7 +63,7 @@ if ($dbconnection->connect_error) {
      
     if ($results_4) {
       echo "Entry Trade updated.\n";
-      header("Location: view_open.php");
+      header("Location: {$_POST['referer']}");
       die();
     } else {
       echo "Sorry, updating the entry trade failed. Please try again";
