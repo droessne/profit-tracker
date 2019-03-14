@@ -7,7 +7,6 @@
 require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
 
-$referer = $_SERVER['HTTP_REFERER'];
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 if ($dbconnection->connect_error) {
@@ -52,10 +51,9 @@ if ($dbconnection->connect_error) {
     echo '<td><input type="text" name="entry_id" value="'.$obj->entry_id.'" size="10"></td>';
     echo '<td><input type="text" name="exit_id" value="'.$obj->exit_id.'" size="10"></td></tr></tr></table>';
     echo '<input type="hidden" name="ID" value="'.$id.'">';
-    echo '<input type="hidden" name="referer" value="'.$referer.'">';
+    echo '<input type="hidden" name="referer" value="'.$_SERVER['HTTP_REFERER'].'">';
     echo '<input type="submit" /></form>';
     echo '';
-
 
 
   }
