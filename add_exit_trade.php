@@ -5,13 +5,14 @@ require_once("include/defaults.cfg.php");
 
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $id = $_POST['ID'];
+date_default_timezone_set("America/New_York");
 
 if (!$dbconnection->connect_errno) {
   $sql = "SELECT * FROM trades WHERE ID='$id';";
   #echo $sql;
   $results = $dbconnection->query($sql);
   while($obj = $results->fetch_object()){
-    $executed_date = $obj->executed_date;
+    $executed_date = date("Y-m-d");
     $type = 'Exit';
     $symbol = $obj->symbol;
     $trade_strategy = $obj->trade_strategy;
@@ -136,6 +137,8 @@ echo '>Buy Close</option>
 <td></td>
 <td></td>
 <td><input type="text" name="strike_price2" value="'.$strike_price2.'" size="10" ></td>
-<td></td><td><input type="hidden" name="ID" value="'.$id.'"></td></tr></table>
+<td></td><td><input type="hidden" name="ID" value="'.$id.'">
+<input type="hidden" name="referer" value="'.$_SERVER['HTTP_REFERER'].'">
+</td></tr></table>
 <input type="submit" /></form></body></html>';
 ?>
