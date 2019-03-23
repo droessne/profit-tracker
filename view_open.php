@@ -72,7 +72,7 @@ function viewByPlatform($platform){
       if ( $skip != True ){
         $plat_total = ($plat_total + $obj->total);
         $plat_com = ($plat_com + $obj->com_fee);
-        if ($obj->trade_strategy = 'Put Spread'){
+        if ($obj->trade_strategy == 'Put Spread'){
             # Put Spread 80% Profit target
             $tar_total = (($obj->total * .2)/100);
         } elseif (strpos($obj->symbol, '*') !== false) {
@@ -82,6 +82,7 @@ function viewByPlatform($platform){
             # 100% Profit Target
             $tar_total = (($obj->total * 2)/100);
         }
+        $tar_total = abs($tar_total);
         echo "<tr>
               <td align='center'><span style='font-size:.8em'>$obj->executed_date</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->type</span></td>
