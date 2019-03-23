@@ -92,7 +92,7 @@ echo "<table border=1><tr>
       <th>Profits</th>
       <th>Profit %</th></tr>";
       
-for ($i = $cur_month; $i <= 12; $i++) {
+for ($i = ($cur_month+1); $i <= 12; $i++) {
     $monthNum  = $i;
     $dateObj   = DateTime::createFromFormat('!m', $monthNum);
     $monthName = $dateObj->format('F');
