@@ -22,7 +22,9 @@ echo "<table border=1><tr>
       <th>Base Amount</th>
       <th>Profits</th>
       <th>Used</th>
-      <th>Profit %</th></tr>";
+      <th>Profit %</th>
+      <th>Target Profit</th>
+      <th>Target Profit %</th></tr>";
 
 $new_base_amt = 0;
 $total_profits = 0;
@@ -56,12 +58,17 @@ for ($i = 1; $i <= $cur_month; $i++) {
     $profit_amt = ($full_amt - $used_amt - $base_amt);
     $percent = (($profit_amt/$new_base_amt));
     $percent = sprintf("%.2f%%", $percent * 100);
+    $tar_percent = .5;
+    $tar_profit_amt = ($new_base_amt * $tar_percent);
+    $tar_percent = sprintf("%.2f%%", $tar_percent * 100);
     echo "<tr>
           <td align='center'><span style='font-size:.8em'>".$monthName."</span></td>
           <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $new_base_amt)."</span></td>
           <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $profit_amt)."</span></td>
           <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $used_amt)."</span></td>
           <td align='center'><span style='font-size:.8em'>".$percent."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $tar_profit_amt)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".$tar_percent."</span></td>
           </tr>";
     $new_base_amt = ($new_base_amt+($profit_amt+$used_amt));
     $total_profits = ($total_profits + $profit_amt);
