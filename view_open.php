@@ -74,13 +74,13 @@ function viewByPlatform($platform){
         $plat_com = ($plat_com + $obj->com_fee);
         if ($obj->trade_strategy == 'Put Spread'){
             # Put Spread 80% Profit target
-            $tar_total = ((($obj->executed_price * 100) * .2)/100);
+            $tar_total = (((($obj->executed_price * 100) + (abs($obj->com_fee)/$new_qty)) * .2)/100);
         } elseif (strpos($obj->symbol, '*') !== false) {
             # 50% Profit Target
-            $tar_total = ((($obj->executed_price * 100) * 1.5)/100);
+            $tar_total = (((($obj->executed_price * 100) + (abs($obj->com_fee)/$new_qty)) * 1.5)/100);
         } else {
             # 100% Profit Target
-            $tar_total = ((($obj->executed_price * 100) * 2)/100);
+            $tar_total = (((($obj->executed_price * 100) + (abs($obj->com_fee)/$new_qty)) * 2)/100);
         }
         $tar_total = abs($tar_total);
         echo "<tr>
