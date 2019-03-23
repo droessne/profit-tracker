@@ -12,7 +12,7 @@ require_once("include/database.cfg.php");
 setlocale(LC_MONETARY, 'en_US');
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-echo "<h1> Monthly Profits</h1>";
+echo "<h1> ".$cur_year." Monthly Profits</h1>";
 
 $cur_month = date("n");
 $cur_year = date("Y");
@@ -83,7 +83,7 @@ echo "<tr>
           </tr>";
 echo "</table>";
 
-echo "<h2> Projected Profits <\h2>";
+echo "<h2> ".$cur_year." Projected Profits </h2>";
 
 
 echo "<table border=1><tr>
@@ -99,7 +99,7 @@ for ($i = $cur_month; $i <= 12; $i++) {
 
     $proj_percent = .5;
     $profit_amt = ($new_base_amt * $proj_percent);
-    $proj_percent = sprintf("%.2f%%", $percent * 100);
+    $proj_percent = sprintf("%.2f%%", $proj_percent * 100);
 
     echo "<tr>
           <td align='center'><span style='font-size:.8em'>".$monthName."</span></td>
