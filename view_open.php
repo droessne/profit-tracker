@@ -16,12 +16,13 @@ function viewByPlatform($platform){
         <th><span style='font-size:.8em'>Qty</span></th>
         <th><span style='font-size:.8em'>Expiration Date</span></th>
         <th><span style='font-size:.8em'>Strike Price</span></th>
-        <th><span style='font-size:.8em'>Executed Price</span></th>
         <th><span style='font-size:.8em'>Order Type 2</span></th>
         <th><span style='font-size:.8em'>Strike price 2</span></th>
+        <th><span style='font-size:.8em'>Executed Price</span></th>
         <th><span style='font-size:.8em'>Commission Fee</span></th>
         <th><span style='font-size:.8em'>Total</span></th>
         <th><span style='font-size:.8em'>Action</span></th>
+        <th><span style='font-size:.8em'>Sell Target</span></th>
         </tr>";
   if (!$dbconnection->connect_errno) {
     $sql = "SELECT * FROM trades WHERE type='Entry' AND platform='".$platform."' ORDER BY executed_date;";
@@ -71,6 +72,16 @@ function viewByPlatform($platform){
       if ( $skip != True ){
         $plat_total = ($plat_total + $obj->total);
         $plat_com = ($plat_com + $obj->com_fee);
+        if ($obj->trade_strategy = 'Put Spread'){
+            # Put Spread 80% Profit target
+            $tar_total = (($obj->total * .2)/100);
+        } elseif (strpos($obj->symbol, '*') !== false) {
+            # 50% Profit Target
+            $tar_total = (($obj->total * 1.5)/100);
+        } else {
+            # 100% Profit Target
+            $tar_total = (($obj->total * 2)/100);
+        }
         echo "<tr>
               <td align='center'><span style='font-size:.8em'>$obj->executed_date</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->type</span></td>
@@ -80,9 +91,9 @@ function viewByPlatform($platform){
               <td align='center'><span style='font-size:.8em'>$new_qty</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->expire_date</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->strike_price)."</span></td>
-              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->executed_price)."</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->order_type2</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->strike_price2)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->executed_price)."</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->com_fee)."</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->total)."</span></td>
               <td align='center'><table><tr>
@@ -95,6 +106,7 @@ function viewByPlatform($platform){
                   <td valign='bottom'><form method='POST' action='delete_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
                   <button type='submit'>Del</button></form></td></tr></table></td>
+              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $tar_total)."</span></td>
               </tr>";
       }
     }
