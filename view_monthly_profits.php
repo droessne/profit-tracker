@@ -23,12 +23,12 @@ echo "<table border=1><tr>
       <th>Profits</th>
       <th>Used</th>
       <th>Profit %</th>
-      <th>Target Profit</th>
-      <th>Target Profit %</th></tr>";
+      <th>Target Profit</th></tr>";
 
 $new_base_amt = 0;
 $total_profits = 0;
 $total_used = 0;
+$togo_amt = 0;
 for ($i = 1; $i <= $cur_month; $i++) {
   if (!$dbconnection->connect_errno) {
     $sql_1 = "SELECT SUM(amount) AS base_amt FROM profits where platform='Deposit' AND MONTH(date) = ".$i." AND YEAR(date) = ".$cur_year.";";
@@ -68,8 +68,8 @@ for ($i = 1; $i <= $cur_month; $i++) {
           <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $used_amt)."</span></td>
           <td align='center'><span style='font-size:.8em'>".$percent."</span></td>
           <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $tar_profit_amt)."</span></td>
-          <td align='center'><span style='font-size:.8em'>".$tar_percent."</span></td>
           </tr>";
+    $togo_amt = ($profit_amt-$tar_profit_amt);
     $new_base_amt = ($new_base_amt+($profit_amt+$used_amt));
     $total_profits = ($total_profits + $profit_amt);
     $total_used = ($total_used + $used_amt);
@@ -81,12 +81,15 @@ for ($i = 1; $i <= $cur_month; $i++) {
     unset($obj_3);
   }
 }
+
 echo "<tr>
           <td align='center'><span style='font-size:.8em'>TOTALS</span></td>
           <td align='center'><span style='font-size:.8em'> --- </span></td>
           <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $total_profits)."</span></td>
           <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $total_used)."</span></td>
           <td align='center'><span style='font-size:.8em'> --- </span></td>
+          <td align='center'><span style='font-size:.8em'>".$togo_amt."</span></td>
+
           </tr>";
 echo "</table>";
 
