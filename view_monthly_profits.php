@@ -25,7 +25,8 @@ echo "<table border=1><tr>
       <th>Profit %</th></tr>";
 
 $new_base_amt = 0;
-
+$total_profits = 0;
+$total_used = 0;
 for ($i = 1; $i <= $cur_month; $i++) {
   if (!$dbconnection->connect_errno) {
     $sql_1 = "SELECT SUM(amount) AS base_amt FROM profits where platform='Deposit' AND MONTH(date) = ".$i." AND YEAR(date) = ".$cur_year.";";
@@ -63,6 +64,8 @@ for ($i = 1; $i <= $cur_month; $i++) {
           <td align='center'><span style='font-size:.8em'>".$percent."</span></td>
           </tr>";
     $new_base_amt = ($new_base_amt+($profit_amt+$used_amt));
+    $total_profits = ($total_profits + $profit_amt);
+    $total_used = ($total_used + $used_amt);
     $results_1->close();
     $results_2->close();
     $results_3->close();
@@ -71,7 +74,50 @@ for ($i = 1; $i <= $cur_month; $i++) {
     unset($obj_3);
   }
 }
+echo "<tr>
+          <td align='center'><span style='font-size:.8em'>TOTALS</span></td>
+          <td align='center'><span style='font-size:.8em'> --- </span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $total_profits)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $total_used)."</span></td>
+          <td align='center'><span style='font-size:.8em'> --- </span></td>
+          </tr>";
 echo "</table>";
+
+echo "<h2> Projected Profits <\h2>";
+
+
+echo "<table border=1><tr>
+      <th>Month</th>
+      <th>Base Amount</th>
+      <th>Profits</th>
+      <th>Profit %</th></tr>";
+      
+for ($i = $cur_month; $i <= 12; $i++) {
+    $monthNum  = $i;
+    $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+    $monthName = $dateObj->format('F');
+
+    $proj_percent = .5;
+    $profit_amt = ($new_base_amt * $proj_percent);
+    $proj_percent = sprintf("%.2f%%", $percent * 100);
+
+    echo "<tr>
+          <td align='center'><span style='font-size:.8em'>".$monthName."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $new_base_amt)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $profit_amt)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".$proj_percent."</span></td>
+          </tr>";
+    $new_base_amt = ($new_base_amt+($profit_amt/2));
+    $total_profits = ($total_profits + $profit_amt);
+}
+echo "<tr>
+          <td align='center'><span style='font-size:.8em'>TOTALS</span></td>
+          <td align='center'><span style='font-size:.8em'> --- </span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $total_profits)."</span></td>
+          <td align='center'><span style='font-size:.8em'> --- </span></td>
+          </tr>";
+echo "</table>";
+
 
 ?>
 
