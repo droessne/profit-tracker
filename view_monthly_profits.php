@@ -88,7 +88,7 @@ echo "<tr>
           <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $total_profits)."</span></td>
           <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $total_used)."</span></td>
           <td align='center'><span style='font-size:.8em'> --- </span></td>
-          <td align='center'><span style='font-size:.8em'>".$togo_amt."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $togo_amt)."</span></td>
 
           </tr>";
 echo "</table>";
