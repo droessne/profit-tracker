@@ -12,10 +12,10 @@ require_once("include/database.cfg.php");
 setlocale(LC_MONETARY, 'en_US');
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-echo "<h1> ".$cur_year." Monthly Profits</h1>";
-
 $cur_month = date("n");
 $cur_year = date("Y");
+
+echo "<h1> ".$cur_year." Monthly Profits</h1>";
 
 echo "<table border=1><tr>
       <th>Month</th>
@@ -83,7 +83,7 @@ echo "<tr>
           </tr>";
 echo "</table>";
 
-echo "<h2> ".$cur_year." Projected Profits </h2>";
+echo "<h2> Projected Profits </h2>";
 
 
 echo "<table border=1><tr>
