@@ -90,8 +90,8 @@ if ($dbconnection->connect_error) {
       $results = $dbconnection->query($sql);
       if ($results) {
         echo "Profit added.";
-#        header("Location: {$_SERVER['HTTP_REFERER']}");
-#        die();
+        header("Location: {$_POST['referer']}");
+        die();
       } else {
         echo "Sorry, editing this profit failed. Please try again";
       }
