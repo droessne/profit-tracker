@@ -86,13 +86,14 @@ if ($dbconnection->connect_error) {
       $platform = $platform;
       $exit_id = $id;
       $sql = "UPDATE profits SET date='".$date."', description='".$date."', amount='".$date."', platform='".$date."', entry_id='".$date."', exit_id='".$date."';";
+      echo $sql;
       $results = $dbconnection->query($sql);
       if ($results) {
         echo "Profit added.";
 #        header("Location: {$_SERVER['HTTP_REFERER']}");
 #        die();
       } else {
-        echo "Sorry, adding this profit failed. Please try again";
+        echo "Sorry, editing this profit failed. Please try again";
       }
     }
   } else {
