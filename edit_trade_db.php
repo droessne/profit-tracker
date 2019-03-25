@@ -61,8 +61,39 @@ if ($dbconnection->connect_error) {
 
   if ($results_2) {
     echo "Trade Corrected.";
-    header("Location: {$_POST['referer']}");
-    die();    
+    #header("Location: {$_POST['referer']}");
+    #die();   
+    if ($type == 'Exit'){
+      $sql_5 = "SELECT * FROM trades WHERE type = 'Entry' AND CONTAINS(mate_id, '$id');";
+      $results_5 = $dbconnection->query($sql_5);
+      while($obj = $results_5->fetch_object()){
+        $entry_amt = $obj->total;
+        $entry_id = $obj->ID;
+      }
+      $sql_6 = "SELECT * FROM profits WHERE CONTAINS(exit_id, '$id');";
+      $results_6 = $dbconnection->query($sql_6);
+      while($obj = $results_6->fetch_object()){
+        $profit_id = $obj->ID;
+      }
+      $date = $executed_date;
+      if ($strike_price2 == ''){
+        $description = $symbol.' '.$trade_strategy.' '.$expire_date.' '.$strike_price;
+      } else {
+        $description = $symbol.' '.$trade_strategy.' '.$expire_date.' '.$strike_price.' - '.$strike_price2;
+      }
+      $amount = ($total + $entry_amt);
+      $platform = $platform;
+      $exit_id = $id;
+      $sql = "UPDATE profits SET date='".$date."', description='".$date."', amount='".$date."', platform='".$date."', entry_id='".$date."', exit_id='".$date."';";
+      $results = $dbconnection->query($sql);
+      if ($results) {
+        echo "Profit added.";
+#        header("Location: {$_SERVER['HTTP_REFERER']}");
+#        die();
+      } else {
+        echo "Sorry, adding this profit failed. Please try again";
+      }
+    }
   } else {
     echo "Sorry, editing this trade failed. Please try again";
   }
