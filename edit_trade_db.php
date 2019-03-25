@@ -89,7 +89,7 @@ if ($dbconnection->connect_error) {
       echo $sql;
       $results = $dbconnection->query($sql);
       if ($results) {
-        echo "Profit added.";
+        echo "Profit updated.";
         header("Location: {$_POST['referer']}");
         die();
       } else {
