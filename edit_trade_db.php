@@ -85,7 +85,7 @@ if ($dbconnection->connect_error) {
       $amount = ($total + $entry_amt);
       $platform = $platform;
       $exit_id = $id;
-      $sql = "UPDATE profits SET date='".$date."', description='".$date."', amount='".$date."', platform='".$date."', entry_id='".$date."', exit_id='".$date."';";
+      $sql = "UPDATE profits SET date='".$date."', description='".$description."', amount='".$amount."', platform='".$platform."', entry_id='".$entry_id."', exit_id='".$exit_id."';";
       echo $sql;
       $results = $dbconnection->query($sql);
       if ($results) {
