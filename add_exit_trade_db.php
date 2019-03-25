@@ -33,7 +33,7 @@ if ($dbconnection->connect_error) {
   }
 
   if ($trade_strategy == 'Call'){
-    $sql = "INSERT INTO trades (executed_date, type, symbol, trade_strategy, order_type, qty, expire_date, strike_price, executed_price, com_fee, total, platform, mate_id) VALUES('" . $executed_date . "', '" . $type . "', '" . $symbol . "', '" . $trade_strategy . "', '" . $order_type . "', '" . $qty . "', '" . $expire_date . "', '" . $strike_price . "', '" . $executed_price . "', '" . $com_fee . "', '" . $total . "', '" . $platform . "', '" . $id . "');"; 
+    $sql = "INSERT INTO trades (executed_date, type, symbol, trade_strategy, order_type, qty, expire_date, strike_price, executed_price, com_fee, total, platform, mate_id) VALUES('" . $executed_date . "', '" . $type . "', '" . $symbol . "', '" . $trade_strategy . "', '" . $order_type . "', '" . $qty . "', '" . $expire_date . "', '" . $strike_price . "', '" . $executed_price . "', '" . $com_fee . "', '" . $total . "', '" . $platform . "', '" . $id . "');";
   } elseif ($trade_strategy == 'Put'){
     $sql = "INSERT INTO trades (executed_date, type, symbol, trade_strategy, order_type, qty, expire_date, strike_price, executed_price, com_fee, total, platform, mate_id) VALUES('" . $executed_date . "', '" . $type . "', '" . $symbol . "', '" . $trade_strategy . "', '" . $order_type . "', '" . $qty . "', '" . $expire_date . "', '" . $strike_price . "', '" . $executed_price . "', '" . $com_fee . "', '" . $total . "', '" . $platform . "', '" . $id . "');";
   } else {
@@ -56,15 +56,38 @@ if ($dbconnection->connect_error) {
         $exit_id = $exit_id.'-'.$obj->ID;
       }
     }
-    #echo $exit_id;
-    $sql_4 = "UPDATE trades SET mate_id = '".$exit_id."' WHERE ID = '".$id."';"; 
+#echo $exit_id;
+    $sql_4 = "UPDATE trades SET mate_id = '".$exit_id."' WHERE ID = '".$id."';";
     #echo $sql_4;
     $results_4 = $dbconnection->query($sql_4);
-     
+
     if ($results_4) {
       echo "Entry Trade updated.\n";
-      header("Location: {$_POST['referer']}");
-      die();
+
+      $sql_5 = "SELECT * FROM trades WHERE ID='$id';";
+      $results_5 = $dbconnection->query($sql_5);
+      while($obj = $results_5->fetch_object()){
+        $entry_amt = $obj->total;
+      }
+      $date = $executed_date;
+      if ($strike_price2 == ''){
+        $description = $symbol.' '.$trade_strategy.' '.$expire_date.' '.$strike_price;
+      } else {
+        $description = $symbol.' '.$trade_strategy.' '.$expire_date.' '.$strike_price.' - '.$strike_price2;
+      }
+      $amount = ($total + $entry_amt);
+      $platform = $platform;
+      $entry_id = $id;
+      $exit_id = $exit_id;
+      $sql = "INSERT INTO profits (date, description, amount, platform, entry_id, exit_id) VALUES('".$date."', '".$description."', '".$amount."', '".$platform."', '".$entry_id."', '".$exit_id."');";
+      $results = $dbconnection->query($sql);
+      if ($results) {
+        echo "Profit added.";
+#        #header("Location: {$_SERVER['HTTP_REFERER']}");
+#        #die();
+      } else {
+        echo "Sorry, adding this profit failed. Please try again";
+      }
     } else {
       echo "Sorry, updating the entry trade failed. Please try again";
     }
