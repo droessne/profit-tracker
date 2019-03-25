@@ -56,7 +56,7 @@ if ($dbconnection->connect_error) {
     $sql = "UPDATE trades SET executed_date = '".$executed_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."', strike_price2 = '".$strike_price2."', order_type2 = '".$order_type2."' WHERE ID = '".$id."';";
     echo "FINSIH ME!";
   }
-  echo $sql;
+  #echo $sql;
   $results_2 = $dbconnection->query($sql);
 
   if ($results_2) {
@@ -64,13 +64,14 @@ if ($dbconnection->connect_error) {
     #header("Location: {$_POST['referer']}");
     #die();   
     if ($type == 'Exit'){
-      $sql_5 = "SELECT * FROM trades WHERE type = 'Entry' AND CONTAINS(mate_id, '$id');";
+      echo "helo";
+      $sql_5 = " SELECT * FROM trades WHERE type = 'Entry' AND mate_id like '%$id%';";
       $results_5 = $dbconnection->query($sql_5);
       while($obj = $results_5->fetch_object()){
         $entry_amt = $obj->total;
         $entry_id = $obj->ID;
       }
-      $sql_6 = "SELECT * FROM profits WHERE CONTAINS(exit_id, '$id');";
+      $sql_6 = "select * From profits where exit_id Like '%$id%';";
       $results_6 = $dbconnection->query($sql_6);
       while($obj = $results_6->fetch_object()){
         $profit_id = $obj->ID;
