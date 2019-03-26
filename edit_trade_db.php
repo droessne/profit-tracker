@@ -78,9 +78,9 @@ if ($dbconnection->connect_error) {
       }
       $date = $executed_date;
       if ($strike_price2 == ''){
-        $description = $symbol.' '.$trade_strategy.' '.$expire_date.' '.$strike_price;
+        $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price;
       } else {
-        $description = $symbol.' '.$trade_strategy.' '.$expire_date.' '.$strike_price.' - '.$strike_price2;
+        $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price.' - $'.$strike_price2;
       }
       $amount = ($total + $entry_amt);
       $platform = $platform;
