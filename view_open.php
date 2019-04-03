@@ -83,10 +83,12 @@ function viewByPlatform($platform){
             $tar_total = (((($obj->executed_price * 100) + (abs($obj->com_fee)/$new_qty)) * 2)/100);
         }
         $tar_total = abs($tar_total);
-        $d = DateTime::createFromFormat('Y-m-d', $obj->expire_date);
-        $d->modify('-15 days'); 
-        if ($d < new DateTime()) {
-            echo "<tr>";
+        date_default_timezone_set("America/New_York");
+        $today = date("Y-m-d");
+        $new_expire = strtotime($obj->expire_date.' -15 days');
+        $test_date = date("Y-m-d", $new_expire);
+        if ($today >= $test_date) {
+            echo "<tr bgcolor='light-red'>";
         } else {
             echo '<tr>';
         }
