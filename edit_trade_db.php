@@ -54,7 +54,7 @@ if ($dbconnection->connect_error) {
     $sql = "UPDATE trades SET executed_date = '".$executed_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."' WHERE ID = '".$id."';";
   } else {
     $sql = "UPDATE trades SET executed_date = '".$executed_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."', strike_price2 = '".$strike_price2."', order_type2 = '".$order_type2."' WHERE ID = '".$id."';";
-    echo "FINSIH ME!";
+    #echo "FINSIH ME!";
   }
   #echo $sql;
   $results_2 = $dbconnection->query($sql);
@@ -95,6 +95,9 @@ if ($dbconnection->connect_error) {
       } else {
         echo "Sorry, editing this profit failed. Please try again";
       }
+    } else {
+        header("Location: {$_POST['referer']}");
+        die();
     }
   } else {
     echo "Sorry, editing this trade failed. Please try again";
