@@ -67,7 +67,7 @@
 <td></td>
 </tr>
 </table>
-
+<?php echo '<input type="hidden" name="referer" value="'.$_SERVER['HTTP_REFERER'].'">'; ?>
 <input type="submit" />
 </form>
 
