@@ -83,8 +83,14 @@ function viewByPlatform($platform){
             $tar_total = (((($obj->executed_price * 100) + (abs($obj->com_fee)/$new_qty)) * 2)/100);
         }
         $tar_total = abs($tar_total);
-        echo "<tr>
-              <td align='center'><span style='font-size:.8em'>$obj->executed_date</span></td>
+        $d = DateTime::createFromFormat('Y-m-d', $obj->expire_date);
+        $d->modify('-15 days');  // subtract 15 days from due date
+        if ($d < new DateTime()) {
+            echo "<tr bgcolor='light-red'>";
+        } else {
+            echo '<tr>';
+        }
+        echo "<td align='center'><span style='font-size:.8em'>$obj->executed_date</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->type</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
