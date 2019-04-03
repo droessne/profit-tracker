@@ -88,7 +88,7 @@ function viewByPlatform($platform){
         $new_expire = strtotime($obj->expire_date.' -15 days');
         $test_date = date("Y-m-d", $new_expire);
         if ($today >= $test_date) {
-            echo "<tr bgcolor='red'>";
+            echo "<tr bgcolor='Orange'>";
         } else {
             echo '<tr>';
         }
