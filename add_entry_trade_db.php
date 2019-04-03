@@ -42,7 +42,7 @@ if ($dbconnection->connect_error) {
 
   if ($results_2) {
     echo "Trade added.";
-    header("Location: view_open.php");
+    header("Location: {$_POST['referer']}");
     die();
   } else {
     echo "Sorry, adding this trade failed. Please try again";
