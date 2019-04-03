@@ -84,9 +84,9 @@ function viewByPlatform($platform){
         }
         $tar_total = abs($tar_total);
         $d = DateTime::createFromFormat('Y-m-d', $obj->expire_date);
-        $d->modify('-15 days');  // subtract 15 days from due date
+        $d->modify('-15 days'); 
         if ($d < new DateTime()) {
-            echo "<tr bgcolor='light-red'>";
+            echo "<tr>";
         } else {
             echo '<tr>';
         }
