@@ -135,8 +135,8 @@ if ($dbconnection->connect_error) {
           </select></td>';
     echo '<td></td><td></td>';
     echo '<td><input type="text" name="strike_price2" value="'.$obj->strike_price2.'" size="10"></td>';
-    echo '<td><input type="hidden" name="ID" value="'.$id.'"></td><td><input type="hidden" name="referer" value="'.$_SERVER['HTTP_REFERER'].'">
-</td></tr></table>';
+    echo '<td><input type="hidden" name="ID" value="'.$id.'"></td></tr></table>';
+    echo '<input type="hidden" name="referer" value="'.$_SERVER['HTTP_REFERER'].'">';
     echo '<input type="submit" /></form>';
     echo '';
 
