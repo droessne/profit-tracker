@@ -85,7 +85,7 @@ function viewByPlatform($platform){
         $tar_total = abs($tar_total);
         date_default_timezone_set("America/New_York");
         $today = date("Y-m-d");
-        $new_expire = strtotime($obj->expire_date.' -15 days');
+        $new_expire = strtotime($obj->expire_date.' -7 days');
         $test_date = date("Y-m-d", $new_expire);
         if ($today >= $test_date) {
             echo "<tr bgcolor='Orange'>";
