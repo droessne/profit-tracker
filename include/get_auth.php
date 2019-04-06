@@ -1,4 +1,5 @@
 <?php
+//https://auth.tdameritrade.com/oauth?client_id=DERS_MONEY@AMER.OAUTHAP&response_type=code&redirect_uri=https://money.dersllc.com:8743
 
 require_once("include/database.cfg.php");
 
