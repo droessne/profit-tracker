@@ -26,7 +26,7 @@ if ($dbconnection->connect_error) {
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_POSTFIELDS => "",
     CURLOPT_HTTPHEADER => array(
-      "Authorization: Bearer ".$access_token.",
+      "Authorization: Bearer ".$access_token,
       "cache-control: no-cache"
     ),
   ));
