@@ -55,14 +55,15 @@ function get_auth() {
       $sql = "UPDATE auth SET access_token = '".$data->access_token."', refresh_token = '".$data->refresh_token."' WHERE ID = 1;";
       $results = $dbconnection->query($sql);
       if ($results) {
-        echo "Auth updated.";
+        #echo "Auth updated.";
+        echo "";
         #header("Location: {$_SERVER['HTTP_REFERER']}");
         #die();
       } else {
         echo $results;
         echo "Sorry, adding this auth failed. Please try again";
       }
-      echo $response;
+      #echo $response;
     }
 }
 
