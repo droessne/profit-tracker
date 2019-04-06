@@ -57,11 +57,9 @@ function get_auth() {
       if ($results) {
         #echo "Auth updated.";
         echo "";
-        #header("Location: {$_SERVER['HTTP_REFERER']}");
-        #die();
       } else {
         echo $results;
-        echo "Sorry, adding this auth failed. Please try again";
+        echo "GET_AUTH.PHP - Sorry, adding this auth failed. Please try again";
       }
       #echo $response;
     }
