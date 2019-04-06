@@ -7,7 +7,7 @@
 <tr>
 <th>JSON</th>
 </tr><tr>
-<td><input type="textarea" name="json" value="" size="500"></td>
+<td><textarea name="json" rows="20" cols="100"></textarea></td>
 </tr>
 </table>
 
@@ -16,3 +16,4 @@
 
 </body>
 </html>
+
