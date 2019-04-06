@@ -16,7 +16,7 @@ if ($dbconnection->connect_error) {
   $refresh_token = $data->refresh_token;
   echo $refresh_token;
   echo "<br>";
-  $client_id = "DERS_MONEY";
+  $client_id = "DERS_MONEY@AMER.OAUTHAP";
   echo $client_id;
   echo "<br>";
   $redirect_uri = "https%3A%2F%2Fmoney.dersllc.com%3A8743";
