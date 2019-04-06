@@ -1,6 +1,15 @@
 <?php
 
+require_once("include/database.cfg.php");
+
 function get_auth() {
+    $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    if (!$dbconnection->connect_errno) {
+        #$sql = "SELECT * FROM auth WHERE type='Entry' AND platform='".$platform."';";
+        $results = $dbconnection->query($sql);
+        while($obj = $results->fetch_object()){
+        }
+    }
     $refresh_token = "";
     $client_id = "DERS_MONEY";
     $redirect_uri = "https%3A%2F%2Fmoney.dersllc.com%3A8743";
