@@ -16,7 +16,7 @@ class Handler(BaseHTTPRequestHandler):
         code = parse_qs(query_string)['code'][0]
         #Post Access Token Request
         headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-        data = { 'grant_type': 'authorization_code', 'access_type': 'offline', 'code': code, 'client_id': 'PROFITTRACKER', 'redirect_uri': 'https://money.dersllc.com:8743' }
+        data = { 'grant_type': 'authorization_code', 'access_type': 'offline', 'code': code, 'client_id': 'ders_profits', 'redirect_uri': 'https://money.dersllc.com:8743' }
         auth_reply = requests.post('https://api.tdameritrade.com/v1/oauth2/token', headers=headers, data=data)
         #returned just to test that it's working
         self.wfile.write(auth_reply.text.encode())
