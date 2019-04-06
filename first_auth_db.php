@@ -19,7 +19,7 @@ if ($dbconnection->connect_error) {
   $client_id = "DERS_MONEY";
   echo $client_id;
   echo "<br>";
-  $redirect_uri = "https://money.dersllc.com:8743";
+  $redirect_uri = "https%3A%2F%2Fmoney.dersllc.com%3A8743";
   echo $redirect_uri;
   echo "<br>";
 
