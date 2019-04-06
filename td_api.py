@@ -16,11 +16,13 @@ class Handler(BaseHTTPRequestHandler):
         code = parse_qs(query_string)['code'][0]
         #Post Access Token Request
         headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
-        data = { 'grant_type': 'authorization_code', 'access_type': 'offline', 'code': code, 'client_id': 'ders_profits', 'redirect_uri': 'https://money.dersllc.com:8743' }
+        data = { 'grant_type': 'authorization_code', 'access_type': 'offline', 'code': code, 'client_id': 'DERS_MONEY@AMER.OAUTHAP', 'redirect_uri': 'https://money.dersllc.com:8743' }
         auth_reply = requests.post('https://api.tdameritrade.com/v1/oauth2/token', headers=headers, data=data)
         #returned just to test that it's working
         self.wfile.write(auth_reply.text.encode())
-        
+
+
+
 httpd = HTTPServer(('0.0.0.0', 8743), Handler)
 httpd.socket = ssl.wrap_socket (httpd.socket, keyfile='./dersllc-new.key', certfile='./STAR_dersllc_com.crt', server_side=True)
 httpd.serve_forever()
