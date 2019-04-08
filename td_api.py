@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 from urlparse import parse_qs
 import requests
@@ -8,7 +9,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
-        
+
     def do_GET(self):
         self._set_headers()
         #Get the Auth Code
