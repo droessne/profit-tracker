@@ -1,44 +1,73 @@
 <?php
-require_once("include/database.cfg.php");
-require_once("include/get_auth.php");
+require_once("database.cfg.php");
+require_once("get_auth.php");
 
-$dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+function get_call($symbol, $strike, $expire_date){
 
-if ($dbconnection->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-} else {
-  $sql = "SELECT * FROM auth WHERE ID='1';";
-  $results = $dbconnection->query($sql);
-  while($obj = $results->fetch_object()){
-    $access_token = $obj->access_token;
+  $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+  if ($dbconnection->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  } else {
+    $sql = "SELECT * FROM auth WHERE ID='1';";
+    $results = $dbconnection->query($sql);
+    while($obj = $results->fetch_object()){
+      $access_token = $obj->access_token;
+      $client_id = $obj->client_id;
+    }
+  }
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => "https://api.tdameritrade.com/v1/marketdata/chains?apikey=".$client_id."&symbol=".$symbol."&contractType=CALL&strike=".$strike."&fromDate=".$expire_date."&toDate=".$expire_date,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "GET",
+      CURLOPT_POSTFIELDS => "",
+      CURLOPT_HTTPHEADER => array(
+        "Authorization: Bearer ".$access_token,
+        "cache-control: no-cache"
+      ),
+    ));
+
+  $response = curl_exec($curl);
+  $err = curl_error($curl);
+
+  curl_close($curl);
+
+  if ($err) {
+    echo "cURL Error #:" . $err;
+  } else {
+    #echo $response;
+    $data = json_decode($response);
+    foreach($data->callExpDateMap as $row) {
+      foreach($row as $key => $val) {
+        foreach($val as $v){
+          $last = $v->last;
+          $mark = $v->mark;
+          $volatility = $v->volatility;
+          $d_2_ex = $v->daysToExpiration;
+          $tot_vol = $v->totalVolume;
+        }
+      }
+    }
+    $results = [
+      "last" => $last,
+      "mark" => $mark,
+      "volatility" => $volatility,
+      "d_2_ex" => $d_2_ex,
+      "tot_vol" => $tot_vol
+    ];
+    return $results;
   }
 }
 
-  $curl = curl_init();
+#$results = get_call('HLF','52', '2019-05-10');
+#print_r($results);
+#echo $results['mark'];
 
-  curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://api.tdameritrade.com/v1/marketdata/chains?apikey=DERS_MONEY&symbol=HLF&contractType=CALL",
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => "",
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 30,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => "GET",
-    CURLOPT_POSTFIELDS => "",
-    CURLOPT_HTTPHEADER => array(
-      "Authorization: Bearer ".$access_token,
-      "cache-control: no-cache"
-    ),
-  ));
-
-$response = curl_exec($curl);
-$err = curl_error($curl);
-
-curl_close($curl);
-
-if ($err) {
-  echo "cURL Error #:" . $err;
-} else {
-  echo $response;
-}
 ?>
