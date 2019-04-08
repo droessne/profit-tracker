@@ -57,6 +57,7 @@ body {font-family: Arial;}
 
 <h1 align='center'>Profit Tracker</h1>
 <div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'view_open3')">Home</button>
   <button class="tablinks" onclick="openTab(event, 'add_entry_trade')">Add Trade</button>
   <button class="tablinks" onclick="openTab(event, 'view_open')">Open Trades</button>
   <button class="tablinks" onclick="openTab(event, 'view_closed')">Closed Trades</button>
@@ -66,6 +67,9 @@ body {font-family: Arial;}
   <button class="tablinks" onclick="openTab(event, 'view_monthly_profits')">Monthly Profits</button>
 </div>
 
+<div id="view_open3" class="tabcontent">
+  <iframe id="view_open4" src="view_open2.php" class="content"></iframe>
+</div>
 
 <div id="add_entry_trade" class="tabcontent">
   <iframe id="add_entry_trade2" src="add_entry_trade.php" class="content"></iframe>
@@ -96,7 +100,7 @@ body {font-family: Arial;}
 </div>
 
 <script>
-document.getElementsByClassName('tablinks')[1].click()
+document.getElementsByClassName('tablinks')[0].click()
 function openTab(evt, pageName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
