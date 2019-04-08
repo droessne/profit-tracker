@@ -15,18 +15,19 @@ function get_auth() {
         }
     }
     $curl = curl_init();
-    
+
     $fields = array(
-	'grant_type' => urlencode('refresh_token'),
-	'refresh_token' => urlencode($refresh_token),
-	'access_type' => urlencode('offline'),
-	'code' => urlencode('code'),
-	'client_id' => urlencode($client_id),
-	'redirect_uri' => urlencode($redirect_uri)
+        'grant_type' => urlencode('refresh_token'),
+        'refresh_token' => urlencode($refresh_token),
+        'access_type' => urlencode('offline'),
+        'code' => urlencode('code'),
+        'client_id' => urlencode($client_id),
+        'redirect_uri' => urlencode($redirect_uri)
     );
+    $fields_string = "";
     foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
     rtrim($fields_string, '&');
-    
+
     curl_setopt_array($curl, array(
       CURLOPT_URL => "https://api.tdameritrade.com/v1/oauth2/token",
       CURLOPT_RETURNTRANSFER => true,
@@ -51,20 +52,18 @@ function get_auth() {
       echo "cURL Error #:" . $err;
     } else {
       $data = json_decode($response);
-
+      #echo $response;
       $sql = "UPDATE auth SET access_token = '".$data->access_token."', refresh_token = '".$data->refresh_token."' WHERE ID = 1;";
       $results = $dbconnection->query($sql);
       if ($results) {
-        #echo "Auth updated.";
         echo "";
       } else {
-        echo $results;
-        echo "GET_AUTH.PHP - Sorry, adding this auth failed. Please try again";
+        echo "Sorry, adding this auth failed. Please try again";
       }
-      #echo $response;
+      return $response;
     }
 }
 
-get_auth();
+#get_auth();
 
 ?>
