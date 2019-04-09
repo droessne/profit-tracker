@@ -69,68 +69,66 @@ echo "<h1>Open Trades</h1>";
           }
         }
       }
-#########################
-      $symbol = str_replace("*", "", $obj->symbol);
-      $sell = 0;
-      if ($obj->trade_strategy == 'Put Spread'){
-        # Put Spread 80% Profit target
-        $sell = ((((($obj->executed_price * 100) * $obj->qty) + abs($obj->com_fee)) * .2) / 100);
-      } elseif (strpos($obj->symbol, '*') !== false) {
-        # 50% Profit Target
-        $sell = ((((($obj->executed_price * 100) * $obj->qty) + abs($obj->com_fee)) * 1.5) / 100);
-      } else {
-        # 100% Profit Target
-        $sell = ((((($obj->executed_price * 100) * $obj->qty) + abs($obj->com_fee)) * 2) / 100);
-      }
-      if ('Call' == $obj->trade_strategy) {
-        $cur_data = get_call($symbol, $obj->strike_price, $obj->expire_date);
-        $gain_loss = ($cur_data['mark'] - $obj->executed_price);
-        $away_amt = ($sell - $cur_data['mark']);
-        $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
-      } elseif ('Put' == $obj->trade_strategy) {
-        $cur_data = get_put($symbol, $obj->strike_price, $obj->expire_date);
-        $gain_loss = ($cur_data['mark'] - $obj->executed_price);
-        $away_amt = ($sell - $cur_data['mark']);
-        $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
-      } elseif ('Call Spread' == $obj->trade_strategy) {
-        $cur_data = get_call_spread($symbol, $obj->strike_price, $obj->strike_price2, $obj->expire_date);
-        $gain_loss = ($cur_data['mark'] - $obj->executed_price);
-        $away_amt = ($sell - $cur_data['mark']);
-        $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
-      } elseif ('Put Spread' == $obj->trade_strategy) {
-        #$cur_data = get_call($symbol, $obj->strike_price, $obj->expire_date);
-        $cur_data = 0;
-      }
-      $num_trades = ($num_trades + 1);
-      #color section
-      $color = 'White';
-      $font_color = 'Black';
-      if ($percent_away > 5 && $percent_away < 50){
-        $num_green = ($num_green + 1);
-        $color = 'LightGreen';
-        $font_color = 'Black';
-      } elseif ($percent_away > 50){
-        $num_green = ($num_green + 1);
-        $color = 'DarkGreen';
-        $font_color = 'White';
-      } elseif ($percent_away < -5 && $percent_away > -50){
-        $num_red = ($num_red + 1);
-        $color = 'LightCoral';
-        $font_color = 'Black';
-      } elseif ($percent_away < -50){
-        $num_red = ($num_red + 1);
-        $color = 'DarkRed';
-        $font_color = 'White';
-      }
-      if ($cur_data['d_2_ex'] < 7){
-        $ex_color = 'Orange';
-      } else {
-        $ex_color = 'White';
-      }
-
-
-#########################
       if ( $skip != True ){
+        #########################
+        $symbol = str_replace("*", "", $obj->symbol);
+        $sell = 0;
+        if ($obj->trade_strategy == 'Put Spread'){
+          # Put Spread 80% Profit target
+          $sell = ((((($obj->executed_price * 100) * $obj->qty) + abs($obj->com_fee)) * .2) / 100);
+        } elseif (strpos($obj->symbol, '*') !== false) {
+          # 50% Profit Target
+          $sell = ((((($obj->executed_price * 100) * $obj->qty) + abs($obj->com_fee)) * 1.5) / 100);
+        } else {
+          # 100% Profit Target
+          $sell = ((((($obj->executed_price * 100) * $obj->qty) + abs($obj->com_fee)) * 2) / 100);
+        }
+        if ('Call' == $obj->trade_strategy) {
+          $cur_data = get_call($symbol, $obj->strike_price, $obj->expire_date);
+          $gain_loss = ($cur_data['mark'] - $obj->executed_price);
+          $away_amt = ($sell - $cur_data['mark']);
+          $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
+        } elseif ('Put' == $obj->trade_strategy) {
+          $cur_data = get_put($symbol, $obj->strike_price, $obj->expire_date);
+          $gain_loss = ($cur_data['mark'] - $obj->executed_price);
+          $away_amt = ($sell - $cur_data['mark']);
+          $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
+        } elseif ('Call Spread' == $obj->trade_strategy) {
+          $cur_data = get_call_spread($symbol, $obj->strike_price, $obj->strike_price2, $obj->expire_date);
+          $gain_loss = ($cur_data['mark'] - $obj->executed_price);
+          $away_amt = ($sell - $cur_data['mark']);
+          $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
+        } elseif ('Put Spread' == $obj->trade_strategy) {
+          #$cur_data = get_call($symbol, $obj->strike_price, $obj->expire_date);
+          $cur_data = 0;
+        }
+        $num_trades = ($num_trades + 1);
+        #color section
+        $color = 'White';
+        $font_color = 'Black';
+        if ($percent_away > 5 && $percent_away < 50){
+          $num_green = ($num_green + 1);
+          $color = 'LightGreen';
+          $font_color = 'Black';
+        } elseif ($percent_away > 50){
+          $num_green = ($num_green + 1);
+          $color = 'DarkGreen';
+          $font_color = 'White';
+        } elseif ($percent_away < -5 && $percent_away > -50){
+          $num_red = ($num_red + 1);
+          $color = 'LightCoral';
+          $font_color = 'Black';
+        } elseif ($percent_away < -50){
+          $num_red = ($num_red + 1);
+          $color = 'DarkRed';
+          $font_color = 'White';
+        }
+        if ($cur_data['d_2_ex'] < 7){
+          $ex_color = 'Orange';
+        } else {
+          $ex_color = 'White';
+        }
+        #########################
         echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
