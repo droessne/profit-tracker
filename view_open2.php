@@ -75,13 +75,13 @@ echo "<h1>Open Trades</h1>";
         $sell = 0;
         if ($obj->trade_strategy == 'Put Spread'){
           # Put Spread 80% Profit target
-          $sell = ((((($obj->executed_price * 100) * $obj->qty) + abs($obj->com_fee)) * .2) / 100);
+          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * .2) / 100);
         } elseif (strpos($obj->symbol, '*') !== false) {
           # 50% Profit Target
-          $sell = ((((($obj->executed_price * 100) * $obj->qty) + abs($obj->com_fee)) * 1.5) / 100);
+          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 1.5) / 100);
         } else {
           # 100% Profit Target
-          $sell = ((((($obj->executed_price * 100) * $obj->qty) + abs($obj->com_fee)) * 2) / 100);
+          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 2) / 100);
         }
         if ('Call' == $obj->trade_strategy) {
           $cur_data = get_call($symbol, $obj->strike_price, $obj->expire_date);
