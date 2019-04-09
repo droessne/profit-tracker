@@ -6,6 +6,9 @@ require_once("include/get_call.php");
 require_once("include/get_put.php");
 require_once("include/get_call_spread.php");
 get_auth();
+$num_green = 0;
+$num_red = 0;
+$num_trades = 0;
 
 setlocale(LC_MONETARY, 'en_US');
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -98,19 +101,24 @@ echo "<h1>Open Trades</h1>";
         #$cur_data = get_call($symbol, $obj->strike_price, $obj->expire_date);
         $cur_data = 0;
       }
+      $num_trades = ($num_trades + 1);
       #color section
       $color = 'White';
       $font_color = 'Black';
       if ($percent_away > 5 && $percent_away < 50){
+        $num_green = ($num_green + 1);
         $color = 'LightGreen';
         $font_color = 'Black';
       } elseif ($percent_away > 50){
+        $num_green = ($num_green + 1);
         $color = 'DarkGreen';
         $font_color = 'White';
       } elseif ($percent_away < -5 && $percent_away > -50){
+        $num_red = ($num_red + 1);
         $color = 'LightCoral';
         $font_color = 'Black';
       } elseif ($percent_away < -50){
+        $num_red = ($num_red + 1);
         $color = 'DarkRed';
         $font_color = 'White';
       }
@@ -141,6 +149,11 @@ echo "<h1>Open Trades</h1>";
     unset($obj);
   }
   echo "</table>";
-
+  echo "<table border='1'>
+        <tr><td align='center'>Winners</td><td align='center'>".$num_green."</td></tr>
+        <tr><td align='center'>Losers</td><td align='center'>".$num_red."</td></tr>
+        <tr><td align='center'>Neutral</td><td align='center'>".($num_trades - $num_red - $num_green)."</td></tr>
+        <tr><td align='center'>Total</td><td align='center'>".$num_trades."</td></tr>
+        </table>";
 
 ?>
