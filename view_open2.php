@@ -23,7 +23,7 @@ echo "<h1>Open Trades</h1>";
         <th><span style='font-size:.8em'>Exiration Date</span></th>
         </tr>";
   if (!$dbconnection->connect_errno) {
-    $sql = "SELECT * FROM trades WHERE type='Entry';";
+    $sql = "SELECT * FROM trades WHERE type='Entry' ORDER BY ID DESC;";
     $results = $dbconnection->query($sql);
     while($obj = $results->fetch_object()){
       $new_qty = $obj->qty;
