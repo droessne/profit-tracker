@@ -52,7 +52,7 @@ function get_auth() {
       echo "cURL Error #:" . $err;
     } else {
       $data = json_decode($response);
-      echo $response;
+      #echo $response;
       $sql = "UPDATE auth SET access_token = '".$data->access_token."', refresh_token = '".$data->refresh_token."' WHERE ID = 1;";
       $results = $dbconnection->query($sql);
       if ($results) {
