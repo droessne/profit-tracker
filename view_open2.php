@@ -13,9 +13,10 @@ echo "<h1>Open Trades</h1>";
   echo "<table border=1>";
   echo "<tr>
         <th><span style='font-size:.8em'>Symbol</span></th>
+        <th><span style='font-size:.8em'>Trade Strategy</span></th>
         <th><span style='font-size:.8em'>Purchase Price</span></th>
-        <th><span style='font-size:.8em'>Sell Price</span></th>
         <th><span style='font-size:.8em'>Current Price</span></th>
+        <th><span style='font-size:.8em'>Sell Price</span></th>
         <th><span style='font-size:.8em'>Gain/Loss</span></th>
         <th><span style='font-size:.8em'>Away</span></th>
         <th><span style='font-size:.8em'>Percent</span></th>
@@ -124,9 +125,10 @@ echo "<h1>Open Trades</h1>";
       if ( $skip != True ){
         echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
+              <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->executed_price)."</span></td>
-              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $sell)."</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $cur_data['mark'])."</span></td>
+              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $sell)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,2)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($away_amt,2)."</span></td>
               <td align='center'><span style='font-size:.8em'>$percent_away%</span></td>
