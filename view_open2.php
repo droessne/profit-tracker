@@ -5,6 +5,7 @@ require_once("include/get_auth.php");
 require_once("include/get_call.php");
 require_once("include/get_put.php");
 require_once("include/get_call_spread.php");
+require_once("include/get_put_spread.php");
 get_auth();
 $num_green = 0;
 $num_red = 0;
