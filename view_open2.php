@@ -137,7 +137,7 @@ echo "<h1>Open Trades</h1>";
               <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $sell)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,2)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($away_amt,2)."</span></td>
-              <td align='center'><span style='font-size:.8em'>$percent_away%</span></td>
+              <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
               <td align='center'><span style='font-size:.8em'>$obj->platform</span></td>
               <td align='center' bgcolor='".$ex_color."' style='color: Black;'><span style='font-size:.9em'>$obj->expire_date</span></td>
               </tr>";
