@@ -21,7 +21,7 @@ function get_put_spread($symbol, $strike, $strike2, $expire_date){
     $interval = ($strike2 - $strike);
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => "https://api.tdameritrade.com/v1/marketdata/chains?apikey=".$client_id."&symbol=".$symbol."&contractType=CALL&strategy=VERTICAL&interval=".$interval."&strike=".$strike,
+      CURLOPT_URL => "https://api.tdameritrade.com/v1/marketdata/chains?apikey=".$client_id."&symbol=".$symbol."&contractType=PUT&strategy=VERTICAL&interval=".$interval."&strike=".$strike,
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => "",
       CURLOPT_MAXREDIRS => 10,
