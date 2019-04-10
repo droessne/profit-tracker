@@ -110,7 +110,7 @@ echo "<h1>Open Trades</h1>";
           $num_green = ($num_green + 1);
           $color = 'LightGreen';
           $font_color = 'Black';
-        } elseif ($percent_away > 50){
+        } elseif ($percent_away >= 50){
           $num_green = ($num_green + 1);
           $color = 'DarkGreen';
           $font_color = 'White';
@@ -118,7 +118,7 @@ echo "<h1>Open Trades</h1>";
           $num_red = ($num_red + 1);
           $color = 'LightCoral';
           $font_color = 'Black';
-        } elseif ($percent_away < -50){
+        } elseif ($percent_away <= -50){
           $num_red = ($num_red + 1);
           $color = 'DarkRed';
           $font_color = 'White';
