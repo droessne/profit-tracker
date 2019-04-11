@@ -126,7 +126,7 @@ echo "<h1>Open Trades</h1>";
           $color = 'DarkRed';
           $font_color = 'White';
         }
-        if ($cur_data['d_2_ex'] < 7){
+        if ($cur_data['d_2_ex'] <= 7){
           $ex_color = 'Orange';
         } else {
           $ex_color = 'White';
