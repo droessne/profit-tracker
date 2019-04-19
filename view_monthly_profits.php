@@ -108,7 +108,7 @@ for ($i = ($cur_month+1); $i <= 12; $i++) {
     $dateObj   = DateTime::createFromFormat('!m', $monthNum);
     $monthName = $dateObj->format('F');
 
-    $proj_percent = .5;
+    $proj_percent = $monthly_profit_percent_target;
     $profit_amt = ($new_base_amt * $proj_percent);
     $proj_percent = sprintf("%.2f%%", $proj_percent * 100);
 
