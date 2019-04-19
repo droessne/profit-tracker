@@ -20,7 +20,7 @@ function viewByPlatform($platform){
     while($obj_1 = $results_1->fetch_object()){
       $total_balance = $obj_1->balance;
     }
-    $sql_2 = "SELECT * FROM trades WHERE type='Entry' AND platform='".$platform."' ORDER BY executed_date;";
+    $sql_2 = "SELECT * FROM trades WHERE type='Entry' AND platform='".$platform."' AND mate_id IS NOT NULL ORDER BY executed_date;";
     $results_2 = $dbconnection->query($sql_2);
     $total_used = 0;
     while($obj_2 = $results_2->fetch_object()){
