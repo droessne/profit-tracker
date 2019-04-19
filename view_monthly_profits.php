@@ -9,6 +9,7 @@ $sec = "5";
 </head>
 <?php
 require_once("include/database.cfg.php");
+require_once("include/defaults.cfg.php");
 setlocale(LC_MONETARY, 'en_US');
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -58,7 +59,7 @@ for ($i = 1; $i <= $cur_month; $i++) {
     $profit_amt = ($full_amt - $used_amt - $base_amt);
     $percent = (($profit_amt/$new_base_amt));
     $percent = sprintf("%.2f%%", $percent * 100);
-    $tar_percent = .5;
+    $tar_percent = $monthly_profit_percent_target;
     $tar_profit_amt = ($new_base_amt * $tar_percent);
     $tar_percent = sprintf("%.2f%%", $tar_percent * 100);
     echo "<tr>
