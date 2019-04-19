@@ -27,9 +27,10 @@ function viewByPlatform($platform){
       $total_used = $total_used + abs($obj_2->total);
     }
     $percent = ($total_balance/$total_used);
+    $platform_percent = sprintf("%.2f%%", $percent * 100);
     echo "<center><table border=1><tr><th>Total ".$platform." Profits</th>";
-    echo "<th>".money_format('%(#10n', $total_balance)."</th></tr>";
-    echo "<th>".money_format('%(#10n', $percent)."</th></tr>";
+    echo "<th>".money_format('%(#10n', $total_balance)."</th>";
+    echo "<th>$platform_percent</th></tr>";
     echo "</table><BR>";
     echo "<table border=1 width=80%>";
     echo "<tr>
