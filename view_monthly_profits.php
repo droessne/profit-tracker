@@ -118,7 +118,7 @@ for ($i = ($cur_month+1); $i <= 12; $i++) {
           <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $profit_amt)."</span></td>
           <td align='center'><span style='font-size:.8em'>".$proj_percent."</span></td>
           </tr>";
-    $new_base_amt = ($new_base_amt+($profit_amt/2));
+    $new_base_amt = ($new_base_amt+($profit_amt*$monthly_profit_percent_to_keep));
     $total_profits = ($total_profits + $profit_amt);
 }
 echo "<tr>
