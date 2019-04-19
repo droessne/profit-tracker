@@ -20,8 +20,16 @@ function viewByPlatform($platform){
     while($obj_1 = $results_1->fetch_object()){
       $total_balance = $obj_1->balance;
     }
+    $sql_2 = "SELECT * FROM trades WHERE type='Entry' AND platform='".$platform."' ORDER BY executed_date;";
+    $results_2 = $dbconnection->query($sql_2);
+    $total_used = 0;
+    while($obj_2 = $results_2->fetch_object()){
+      $total_used = $total_used + abs($obj_2->total);
+    }
+    $percent = ($total_balance/$total_used);
     echo "<center><table border=1><tr><th>Total ".$platform." Profits</th>";
     echo "<th>".money_format('%(#10n', $total_balance)."</th></tr>";
+    echo "<th>".money_format('%(#10n', $percent)."</th></tr>";
     echo "</table><BR>";
     echo "<table border=1 width=80%>";
     echo "<tr>
