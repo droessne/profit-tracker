@@ -2,7 +2,7 @@
 
 require_once("include/database.cfg.php");
 
-function viewByPlatform($platform){
+function viewByPlatform($platform, $trades_table){
   if ($_POST['time_frame'] = 'ytd'){
     $year = date("Y");
     $sql_add = " AND executed_date BETWEEN '".$year."-01-01' AND '".$year."-12-31'";
@@ -109,7 +109,7 @@ function viewByPlatform($platform){
 #foreach ($platforms as &$p) {
 #    viewByPlatform($p);
 #}
-viewByPlatform($_POST['platform']);
+viewByPlatform($_POST['platform'], $trades_table);
 
 ?>
 
