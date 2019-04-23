@@ -12,7 +12,7 @@ if ($dbconnection->connect_error) {
   $platform = $_POST['platform'];
   $entry_id = $_POST['entry_id'];
   $exit_id = $_POST['exit_id'];
-  $sql = "INSERT INTO profits (date, description, amount, platform, entry_id, exit_id) VALUES('".$date."', '".$description."', '".$amount."', '".$platform."', '".$entry_id."', '".$exit_id."');";
+  $sql = "INSERT INTO ".$profits_table." (date, description, amount, platform, entry_id, exit_id) VALUES('".$date."', '".$description."', '".$amount."', '".$platform."', '".$entry_id."', '".$exit_id."');";
   $results = $dbconnection->query($sql);
   if ($results) {
     echo "Profit added.";
