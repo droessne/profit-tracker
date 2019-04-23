@@ -6,7 +6,7 @@ $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $id = $_POST['ID'];
 
 if (!$dbconnection->connect_errno) {
-  $sql = "DELETE FROM trades WHERE ID='$id';";
+  $sql = "DELETE FROM ".$trades_table." WHERE ID='$id';";
   #echo $sql;
   $results = $dbconnection->query($sql);
   #$results->close();
