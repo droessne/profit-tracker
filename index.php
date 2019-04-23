@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Profit Tracker</title>
+<title><?php require_once("include/defaults.cfg.php"); echo $webpage_title; ?> Profit Tracker</title>
 <link rel="icon" type="image/png" href="favicon.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -55,7 +55,7 @@ body {font-family: Arial;}
 </head>
 <body>
 
-<h1 align='center'>Profit Tracker</h1>
+<h1 align='center'><?php require_once("include/defaults.cfg.php"); echo $webpage_title; ?>Profit Tracker</h1>
 <div class="tab">
   <button class="tablinks" onclick="openTab(event, 'view_open3')">Home</button>
   <button class="tablinks" onclick="openTab(event, 'add_entry_trade')">Add Trade</button>
