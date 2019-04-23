@@ -10,7 +10,7 @@ $sec = "5";
 <?php
 require_once("include/database.cfg.php");
 
-function viewByPlatform($platform){
+function viewByPlatform($platform, $trades_table, $profits_table){
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1> ".$platform." Profits</h1>";
@@ -75,7 +75,7 @@ function viewByPlatform($platform){
 
 require_once("include/defaults.cfg.php");
 foreach ($platforms as &$p) {
-    viewByPlatform($p);
+    viewByPlatform($p, $trades_table, $profits_table);
 }
 
 ?>
