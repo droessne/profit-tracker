@@ -15,12 +15,12 @@ function viewByPlatform($platform){
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1> ".$platform." Profits</h1>";
   if (!$dbconnection->connect_errno) {
-    $sql_1 = "SELECT SUM(amount) AS balance FROM profits WHERE platform='".$platform."'";
+    $sql_1 = "SELECT SUM(amount) AS balance FROM ".$profits_table." WHERE platform='".$platform."'";
     $results_1 = $dbconnection->query($sql_1);
     while($obj_1 = $results_1->fetch_object()){
       $total_balance = $obj_1->balance;
     }
-    $sql_2 = "SELECT * FROM trades WHERE type='Entry' AND platform='".$platform."' AND mate_id IS NOT NULL ORDER BY executed_date;";
+    $sql_2 = "SELECT * FROM ".$trades_table." WHERE type='Entry' AND platform='".$platform."' AND mate_id IS NOT NULL ORDER BY executed_date;";
     $results_2 = $dbconnection->query($sql_2);
     $total_used = 0;
     while($obj_2 = $results_2->fetch_object()){
@@ -40,7 +40,7 @@ function viewByPlatform($platform){
           <th><span style='font-size:.8em'>Balance</span></th>
           <th><span style='font-size:.8em'>Actions</span></th>
           </tr>";
-    $sql = "SELECT * FROM profits WHERE platform='".$platform."' ORDER BY date DESC;";
+    $sql = "SELECT * FROM ".$profits_table." WHERE platform='".$platform."' ORDER BY date DESC;";
     $results = $dbconnection->query($sql);
     $count = 0;
     $last_amount = 0;
