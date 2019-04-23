@@ -49,11 +49,11 @@ if ($dbconnection->connect_error) {
   }
 
   if ($trade_strategy == 'Call'){
-    $sql = "UPDATE trades SET executed_date = '".$executed_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."' WHERE ID = '".$id."';"; 
+    $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."' WHERE ID = '".$id."';"; 
   } elseif ($trade_strategy == 'Put'){
-    $sql = "UPDATE trades SET executed_date = '".$executed_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."' WHERE ID = '".$id."';";
+    $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."' WHERE ID = '".$id."';";
   } else {
-    $sql = "UPDATE trades SET executed_date = '".$executed_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."', strike_price2 = '".$strike_price2."', order_type2 = '".$order_type2."' WHERE ID = '".$id."';";
+    $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."', strike_price2 = '".$strike_price2."', order_type2 = '".$order_type2."' WHERE ID = '".$id."';";
     #echo "FINSIH ME!";
   }
   #echo $sql;
@@ -65,13 +65,13 @@ if ($dbconnection->connect_error) {
     #die();   
     if ($type == 'Exit'){
       echo "helo";
-      $sql_5 = " SELECT * FROM trades WHERE type = 'Entry' AND mate_id like '%$id%';";
+      $sql_5 = " SELECT * FROM ".$trades_table." WHERE type = 'Entry' AND mate_id like '%$id%';";
       $results_5 = $dbconnection->query($sql_5);
       while($obj = $results_5->fetch_object()){
         $entry_amt = $obj->total;
         $entry_id = $obj->ID;
       }
-      $sql_6 = "select * From profits where exit_id Like '%$id%';";
+      $sql_6 = "select * From ".$profits_table." where exit_id Like '%$id%';";
       $results_6 = $dbconnection->query($sql_6);
       while($obj = $results_6->fetch_object()){
         $profit_id = $obj->ID;
@@ -85,7 +85,7 @@ if ($dbconnection->connect_error) {
       $amount = ($total + $entry_amt);
       $platform = $platform;
       $exit_id = $id;
-      $sql = "UPDATE profits SET date='".$date."', description='".$description."', amount='".$amount."', platform='".$platform."', entry_id='".$entry_id."', exit_id='".$exit_id."' WHERE ID='".$profit_id."';";
+      $sql = "UPDATE ".$profits_table." SET date='".$date."', description='".$description."', amount='".$amount."', platform='".$platform."', entry_id='".$entry_id."', exit_id='".$exit_id."' WHERE ID='".$profit_id."';";
       echo $sql;
       $results = $dbconnection->query($sql);
       if ($results) {
