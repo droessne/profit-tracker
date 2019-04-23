@@ -32,9 +32,9 @@ $total_used = 0;
 $togo_amt = 0;
 for ($i = 1; $i <= $cur_month; $i++) {
   if (!$dbconnection->connect_errno) {
-    $sql_1 = "SELECT SUM(amount) AS base_amt FROM profits where platform='Deposit' AND MONTH(date) = ".$i." AND YEAR(date) = ".$cur_year.";";
-    $sql_2 = "SELECT SUM(amount) AS used_amt FROM profits where platform='Withdrawal' AND MONTH(date) = ".$i." AND YEAR(date) = ".$cur_year.";";
-    $sql_3 = "SELECT SUM(amount) AS full_amt FROM profits where MONTH(date) = ".$i." AND YEAR(date) = ".$cur_year.";";
+    $sql_1 = "SELECT SUM(amount) AS base_amt FROM ".$profits_table." where platform='Deposit' AND MONTH(date) = ".$i." AND YEAR(date) = ".$cur_year.";";
+    $sql_2 = "SELECT SUM(amount) AS used_amt FROM ".$profits_table." where platform='Withdrawal' AND MONTH(date) = ".$i." AND YEAR(date) = ".$cur_year.";";
+    $sql_3 = "SELECT SUM(amount) AS full_amt FROM ".$profits_table." where MONTH(date) = ".$i." AND YEAR(date) = ".$cur_year.";";
 
     $results_1 = $dbconnection->query($sql_1);
     while($obj_1 = $results_1->fetch_object()){
