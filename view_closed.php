@@ -23,7 +23,7 @@ function viewByPlatform($platform){
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1> ".$platform." Closed Trades</h1>";
   if (!$dbconnection->connect_errno) {
-    $sql = "SELECT * FROM trades WHERE type='Entry' AND mate_id IS NOT NULL AND platform='".$platform."'".$sql_add.";";
+    $sql = "SELECT * FROM ".$trades_table." WHERE type='Entry' AND mate_id IS NOT NULL AND platform='".$platform."'".$sql_add.";";
     $results = $dbconnection->query($sql);
     while($obj = $results->fetch_object()){
       $trade_total = $obj->total;
@@ -67,7 +67,7 @@ function viewByPlatform($platform){
                 <input type='hidden' name='ID' value='$obj->ID'>
                 <button type='submit'>Del</button></form></td></tr></table></td>
             </tr>";
-       $sql_2 = "SELECT * FROM trades WHERE type='Exit' AND mate_id='$obj->ID';";
+       $sql_2 = "SELECT * FROM ".$trades_table." WHERE type='Exit' AND mate_id='$obj->ID';";
        $results_2 = $dbconnection->query($sql_2);
        while($obj2 = $results_2->fetch_object()){
           $trade_total = $trade_total + $obj2->total;
