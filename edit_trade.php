@@ -13,7 +13,7 @@ if ($dbconnection->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 } else {
   $id = $_POST['ID'];
-  $sql = "SELECT * FROM trades WHERE ID='".$id."';";
+  $sql = "SELECT * FROM ".$trades_table." WHERE ID='".$id."';";
   $results = $dbconnection->query($sql);
   while($obj = $results->fetch_object()){
     echo '<form action="edit_trade_db.php" method="post">';
