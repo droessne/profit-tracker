@@ -3,6 +3,7 @@
 require_once("include/database.cfg.php");
 
 function viewByPlatform($platform){
+  require_once("include/database.cfg.php");
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1> ".$platform." Open Trades</h1>";
