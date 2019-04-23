@@ -14,7 +14,7 @@ if ($dbconnection->connect_error) {
   $exit_id = $_POST['exit_id'];
   $platform = $_POST['platform'];
 
-    $sql = "UPDATE profits SET date = '".$date."', description = '".$description."', amount = '".$amount."', entry_id = '".$entry_id."', exit_id = '".$exit_id."', platform = '".$platform."' WHERE ID = '".$id."';"; 
+    $sql = "UPDATE ".$profits_table." SET date = '".$date."', description = '".$description."', amount = '".$amount."', entry_id = '".$entry_id."', exit_id = '".$exit_id."', platform = '".$platform."' WHERE ID = '".$id."';"; 
   $results_2 = $dbconnection->query($sql);
 
   if ($results_2) {
