@@ -15,22 +15,22 @@ require_once("include/defaults.cfg.php");
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1>All Profits</h1>";
   if (!$dbconnection->connect_errno) {
-    $sql_1 = "SELECT SUM(amount) AS balance FROM profits WHERE platform != 'Deposit' AND platform != 'Withdrawal';";
+    $sql_1 = "SELECT SUM(amount) AS balance FROM ".$profits_table." WHERE platform != 'Deposit' AND platform != 'Withdrawal';";
     $results_1 = $dbconnection->query($sql_1);
     while($obj_1 = $results_1->fetch_object()){
       $total_balance = $obj_1->balance;
     }
-    $sql_2 = "SELECT SUM(amount) AS balance FROM profits WHERE platform = 'Deposit';";
+    $sql_2 = "SELECT SUM(amount) AS balance FROM ".$profits_table." WHERE platform = 'Deposit';";
     $results_2 = $dbconnection->query($sql_2);
     while($obj_2 = $results_2->fetch_object()){
       $base_balance = $obj_2->balance;
     }
-    $sql_4 = "SELECT SUM(amount) AS balance FROM profits WHERE platform = 'Withdrawal';";
+    $sql_4 = "SELECT SUM(amount) AS balance FROM ".$profits_table." WHERE platform = 'Withdrawal';";
     $results_4 = $dbconnection->query($sql_4);
     while($obj_4 = $results_4->fetch_object()){
       $used_balance = $obj_4->balance;
     }
-    $sql_3 = "SELECT SUM(total) AS balance FROM trades WHERE type='Entry' AND mate_id IS NULL ORDER BY executed_date;";
+    $sql_3 = "SELECT SUM(total) AS balance FROM ".$trades_table." WHERE type='Entry' AND mate_id IS NULL ORDER BY executed_date;";
     $results_3 = $dbconnection->query($sql_3);
     while($obj_3 = $results_3->fetch_object()){
       $trade_balance = $obj_3->balance;
@@ -67,7 +67,7 @@ require_once("include/defaults.cfg.php");
           <th><span style='font-size:.8em'>Balance</span></th>
           <th><span style='font-size:.8em'>Actions</span></th>
           </tr>";
-    $sql = "SELECT * FROM profits WHERE platform != 'Deposit' AND platform != 'Withdrawal' ORDER BY date DESC;";
+    $sql = "SELECT * FROM ".$profits_table." WHERE platform != 'Deposit' AND platform != 'Withdrawal' ORDER BY date DESC;";
     $results = $dbconnection->query($sql);
     $count = 0;
     $last_amount = 0;
@@ -104,7 +104,7 @@ require_once("include/defaults.cfg.php");
           <th><span style='font-size:.8em'>Balance</span></th>
           <th><span style='font-size:.8em'>Actions</span></th>
           </tr>";
-    $sql = "SELECT * FROM profits WHERE platform = 'Deposit' ORDER BY date DESC;";
+    $sql = "SELECT * FROM ".$profits_table." WHERE platform = 'Deposit' ORDER BY date DESC;";
     $results = $dbconnection->query($sql);
     $count = 0;
     $last_amount = 0;
@@ -141,7 +141,7 @@ require_once("include/defaults.cfg.php");
           <th><span style='font-size:.8em'>Balance</span></th>
           <th><span style='font-size:.8em'>Actions</span></th>
           </tr>";
-    $sql = "SELECT * FROM profits WHERE platform = 'Withdrawal' ORDER BY date DESC;";
+    $sql = "SELECT * FROM ".$profits_table." WHERE platform = 'Withdrawal' ORDER BY date DESC;";
     $results = $dbconnection->query($sql);
     $count = 0;
     $last_amount = 0;
