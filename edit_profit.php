@@ -13,7 +13,7 @@ if ($dbconnection->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 } else {
   $id = $_POST['ID'];
-  $sql = "SELECT * FROM profits WHERE ID='".$id."';";
+  $sql = "SELECT * FROM ".$profits_table." WHERE ID='".$id."';";
   $results = $dbconnection->query($sql);
   while($obj = $results->fetch_object()){
     echo '<form action="edit_profit_db.php" method="post">';
