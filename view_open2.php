@@ -28,14 +28,14 @@ echo "<h1>Open Trades</h1>";
         <th><span style='font-size:.8em'>Exiration Date</span></th>
         </tr>";
   if (!$dbconnection->connect_errno) {
-    $sql = "SELECT * FROM trades WHERE type='Entry' ORDER BY ID DESC;";
+    $sql = "SELECT * FROM ".$trades_table." WHERE type='Entry' ORDER BY ID DESC;";
     $results = $dbconnection->query($sql);
     while($obj = $results->fetch_object()){
       $new_qty = $obj->qty;
       $skip = False;
       if ( $obj->mate_id != '' ) {
         if (\strpos($obj->mate_id, '-') !== false) {
-          $sql_2 = "SELECT * FROM trades WHERE";
+          $sql_2 = "SELECT * FROM ".$trades_table." WHERE";
           $exits = explode("-", $obj->mate_id);
           $count = 0;
           foreach ($exits as $exit) {
@@ -58,7 +58,7 @@ echo "<h1>Open Trades</h1>";
             $new_qty = ($new_qty - $qty);
           }
         } else {
-          $sql_1 = "SELECT * FROM trades WHERE ID='".$obj->mate_id."';";
+          $sql_1 = "SELECT * FROM ".$trades_table." WHERE ID='".$obj->mate_id."';";
           $results_1 = $dbconnection->query($sql_1);
           while($obj_1 = $results_1->fetch_object()){
               if ( $obj_1->qty == $obj->qty ) {
