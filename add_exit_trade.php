@@ -8,7 +8,7 @@ $id = $_POST['ID'];
 date_default_timezone_set("America/New_York");
 
 if (!$dbconnection->connect_errno) {
-  $sql = "SELECT * FROM trades WHERE ID='$id';";
+  $sql = "SELECT * FROM ".$trades_table." WHERE ID='$id';";
   #echo $sql;
   $results = $dbconnection->query($sql);
   while($obj = $results->fetch_object()){
