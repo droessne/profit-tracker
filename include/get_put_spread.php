@@ -18,7 +18,7 @@ function get_put_spread($symbol, $strike, $strike2, $expire_date){
   }
 
     $curl = curl_init();
-    $interval = ($strike2 - $strike);
+    $interval = abs($strike2 - $strike);
 
     curl_setopt_array($curl, array(
       CURLOPT_URL => "https://api.tdameritrade.com/v1/marketdata/chains?apikey=".$client_id."&symbol=".$symbol."&contractType=PUT&strategy=VERTICAL&interval=".$interval."&strike=".$strike,
@@ -55,7 +55,9 @@ function get_put_spread($symbol, $strike, $strike2, $expire_date){
           $volatility = "N/A";
           $tot_vol = "N/A";
           foreach($row->optionStrategyList as $row1) {
-                $mark = abs(($row1->strategyAsk + $row1->strategyBid)/2);
+            if (strpos($row1->strategyStrike, $strike2) !== false){
+              $mark = abs(($row1->strategyAsk + $row1->strategyBid)/2);
+            }
           }
         }
       }
