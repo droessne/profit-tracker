@@ -113,7 +113,12 @@ echo "<h1>Open Trades</h1>";
           $cur_data = get_put_spread($symbol, $obj->strike_price, $obj->strike_price2, $obj->expire_date);
           $gain_loss = ($obj->executed_price - $cur_data['mark']);
           $away_amt = ($cur_data['mark'] - $sell);
-          $percent_away = number_format((((($cur_data['mark']/$obj->executed_price) - 1)*100)*-1), 2);
+          $interval = ($obj->strike_price2 - $obj->strike_price);
+          if ($interval < 0){
+            $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
+          } else {
+            $percent_away = number_format((((($cur_data['mark']/$obj->executed_price) - 1)*100)*-1), 2);
+          }
         }
         $num_trades = ($num_trades + 1);
         #color section
