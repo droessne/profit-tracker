@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS `trades` (
   `executed_date` date NOT NULL,
   `type` enum('Entry','Exit') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `symbol` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `trade_strategy` enum('Call','Call Spread','Put','Put Spread') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `trade_strategy` enum('Call','Call Spread','Put','Bull Put Spread','Bear Put Spread') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `order_type` enum('Buy Open','Sell Close','Sell Open','Buy Close') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `qty` int NOT NULL,
   `expire_date` date NOT NULL,
