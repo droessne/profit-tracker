@@ -73,16 +73,23 @@ function viewByPlatform($platform, $trades_table){
       if ( $skip != True ){
         $plat_total = ($plat_total + $obj->total);
         $plat_com = ($plat_com + $obj->com_fee);
-        if ($obj->trade_strategy == 'Put Spread'){
-            # Put Spread 80% Profit target
-            $tar_total = (((($obj->executed_price * 100) + (abs($obj->com_fee)/$new_qty)) * .2)/100);
-        } elseif (strpos($obj->symbol, '*') !== false) {
-            # 50% Profit Target
-            $tar_total = (((($obj->executed_price * 100) + (abs($obj->com_fee)/$new_qty)) * 1.5)/100);
+        if (strpos($obj->symbol, '*') !== false) {
+          # Force 50% Profit Target
+          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 1.5) / 100);
+        } elseif (strpos($obj->symbol, '`') !== false) {
+          # Force 75% Profit Target
+          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 1.75) / 100);
+        } elseif (strpos($obj->symbol, '~') !== false) {
+          # Force 100% Profit Target
+          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 2) / 100);
+        } elseif ($obj->trade_strategy == 'Put Spread'){
+          # Put Spread 80% Profit target
+          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * .2) / 100);
         } else {
-            # 100% Profit Target
-            $tar_total = (((($obj->executed_price * 100) + (abs($obj->com_fee)/$new_qty)) * 2)/100);
+          # 100% Profit Target
+          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 2) / 100);
         }
+        
         $tar_total = abs($tar_total);
         date_default_timezone_set("America/New_York");
         $today = date("Y-m-d");
