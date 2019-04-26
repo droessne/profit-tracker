@@ -90,7 +90,7 @@ function viewByPlatform($platform, $trades_table){
           $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 2) / 100);
         }
         
-        $tar_total = abs($tar_total);
+        $tar_total = abs($sell);
         date_default_timezone_set("America/New_York");
         $today = date("Y-m-d");
         $new_expire = strtotime($obj->expire_date.' -7 days');
