@@ -55,7 +55,7 @@ function get_put_spread($symbol, $strike, $strike2, $expire_date){
           $volatility = "N/A";
           $tot_vol = "N/A";
           foreach($row->optionStrategyList as $row1) {
-                $mark = (($row1->strategyAsk + $row1->strategyBid)/2);
+                $mark = abs(($row1->strategyAsk + $row1->strategyBid)/2);
           }
         }
       }
