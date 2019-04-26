@@ -75,12 +75,19 @@ echo "<h1>Open Trades</h1>";
         #########################
         $symbol = str_replace("*", "", $obj->symbol);
         $sell = 0;
-        if ($obj->trade_strategy == 'Put Spread'){
+         
+        if (strpos($obj->symbol, '*') !== false) {
+          # Force 50% Profit Target
+          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 1.5) / 100);
+        } elseif (strpos($obj->symbol, '`') !== false) {
+          # Force 75% Profit Target
+          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 1.75) / 100);
+        } elseif (strpos($obj->symbol, '~') !== false) {
+          # Force 100% Profit Target
+          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 2) / 100);
+        } elseif ($obj->trade_strategy == 'Put Spread'){
           # Put Spread 80% Profit target
           $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * .2) / 100);
-        } elseif (strpos($obj->symbol, '*') !== false) {
-          # 50% Profit Target
-          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 1.5) / 100);
         } else {
           # 100% Profit Target
           $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 2) / 100);
