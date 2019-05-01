@@ -9,6 +9,7 @@ $sec = "5";
 </head>
 <?php
 require_once("include/database.cfg.php");
+require_once("include/defaults.cfg.php");
 
 function viewByPlatform($platform, $trades_table, $profits_table){
   setlocale(LC_MONETARY, 'en_US');
