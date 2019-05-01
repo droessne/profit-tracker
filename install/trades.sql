@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS `trades` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `executed_date` date NOT NULL,
+  `sell_by_date` date,
   `type` enum('Entry','Exit') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `symbol` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `trade_strategy` enum('Call','Call Spread','Put','Bull Put Spread','Bear Put Spread') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
