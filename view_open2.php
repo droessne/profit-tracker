@@ -116,6 +116,7 @@ echo "<h1>Open Trades</h1>";
           $away_amt = ($cur_data['mark'] - $sell);
           $interval = ($obj->strike_price2 - $obj->strike_price);
           if ($interval < 0){
+            $cur_data['mark'] = ($cur_data['mark'] * -1)
             $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
           } else {
             $percent_away = number_format((((($cur_data['mark']/$obj->executed_price) - 1)*100)*-1), 2);
