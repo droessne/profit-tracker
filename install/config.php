@@ -65,7 +65,7 @@ echo '<input type="submit" /></form>';
 echo '<h2>Remove Broker:</h2>';
 echo '<form action="delete_broker_db.php" method="post"><table>';
 echo '<tr>
-      <td><label for="broker_del">Broker:</label></td>
+      <td><label for="broker_del">Broker Name:</label></td>
       <td><select id="broker_del" name="broker">';
 echo '<option value="---" selected="selected">---</option>';
 if ($dbconnection->connect_error) {
