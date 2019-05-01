@@ -1,6 +1,7 @@
 <?php
 
 require_once("include/database.cfg.php");
+require_once("include/defaults.cfg.php");
 
 function viewByPlatform($platform, $trades_table){
   if ($_POST['time_frame'] = 'ytd'){
