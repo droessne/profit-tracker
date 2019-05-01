@@ -40,6 +40,8 @@ if (!$dbconnection->connect_errno) {
 }
 for ($i = 1; $i <= $cur_month; $i++) {
   if (!$dbconnection->connect_errno) {
+    $used_amt = 0;
+    $full_amt = 0;
     foreach ($profit_tables as $profit_table){
       $sql_1 = "SELECT SUM(amount) AS base_amt FROM ".$profit_table." where platform='Deposit' AND MONTH(date) = ".$i." AND YEAR(date) = ".$cur_year.";";
       $sql_2 = "SELECT SUM(amount) AS used_amt FROM ".$profit_table." where platform='Withdrawal' AND MONTH(date) = ".$i." AND YEAR(date) = ".$cur_year.";";
@@ -53,14 +55,14 @@ for ($i = 1; $i <= $cur_month; $i++) {
 
       $results_2 = $dbconnection->query($sql_2);
       while($obj_2 = $results_2->fetch_object()){
-        $used_amt = $obj_2->used_amt;
+        $used_amt = ($obj_2->used_amt + $used_amt);
       }
 
       $results_3 = $dbconnection->query($sql_3);
       while($obj_3 = $results_3->fetch_object()){
-        $full_amt = $obj_3->full_amt;
+        $full_amt = ($obj_3->full_amt + $full_amt);
       }
-
+    }
       $monthNum  = $i;
       $dateObj   = DateTime::createFromFormat('!m', $monthNum);
       $monthName = $dateObj->format('F');
@@ -89,7 +91,7 @@ for ($i = 1; $i <= $cur_month; $i++) {
       unset($obj_1);
       unset($obj_2);
       unset($obj_3);
-    }
+    
   }
 }
 
