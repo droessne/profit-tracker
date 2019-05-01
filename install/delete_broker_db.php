@@ -8,7 +8,6 @@ if ($dbconnection->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 } else {
   $broker_id = $_POST['broker'];
-  print_r($_POST);
   if ($broker_id == ''){
       echo "Error: Broker_id cannot be blank";
       die();
