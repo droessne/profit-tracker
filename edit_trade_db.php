@@ -8,6 +8,7 @@ if ($dbconnection->connect_error) {
 } else {
   $id = $_POST['ID'];
   $executed_date = $_POST['executed_date'];
+  $sell_by_date = $_POST['sell_by_date'];
   $type = $_POST['type'];
   $symbol = $_POST['symbol'];
   $trade_strategy = $_POST['trade_strategy'];
@@ -49,11 +50,11 @@ if ($dbconnection->connect_error) {
   }
 
   if ($trade_strategy == 'Call'){
-    $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."' WHERE ID = '".$id."';"; 
+    $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', sell_by_date = '".$sell_by_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."' WHERE ID = '".$id."';"; 
   } elseif ($trade_strategy == 'Put'){
-    $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."' WHERE ID = '".$id."';";
+    $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', sell_by_date = '".$sell_by_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."' WHERE ID = '".$id."';";
   } else {
-    $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."', strike_price2 = '".$strike_price2."', order_type2 = '".$order_type2."' WHERE ID = '".$id."';";
+    $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', sell_by_date = '".$sell_by_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."', strike_price2 = '".$strike_price2."', order_type2 = '".$order_type2."' WHERE ID = '".$id."';";
     #echo "FINSIH ME!";
   }
   #echo $sql;
