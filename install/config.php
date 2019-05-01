@@ -41,7 +41,7 @@ if ($dbconnection->connect_error) {
           <td><label for="active_broker">Active Broker:</label></td>
           <td><select id="active_broker" name="active_broker">';
     while($obj1 = $results1->fetch_object()){
-        echo '<option value="'.$obj1->broker_name.'"';
+        echo '<option value="'.$obj1->broker_id.'"';
         if ($obj1->broker_id == $obj->active_broker_id){
           echo ' selected="selected"';
         }
