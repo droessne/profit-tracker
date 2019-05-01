@@ -7,7 +7,7 @@ $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if ($dbconnection->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 } else {
-  $broker_id = $_POST['broker_del'];
+  $broker_id = $_POST['broker'];
   print_r($_POST);
   if ($broker_id == ''){
       echo "Error: Broker_id cannot be blank";
