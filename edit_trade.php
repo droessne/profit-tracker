@@ -44,6 +44,8 @@ if ($dbconnection->connect_error) {
     echo '<tr>
           <td><label for="type">Execution Date:</label></td>
           <td><input type="text" name="executed_date" value="'.$obj->executed_date.'" size="10"></td>
+          </tr><tr>
+          <td><label for="type">Sell By Date:</label></td>
           <td><input type="text" name="sell_by_date" value="'.$obj->sell_by_date.'" size="10"></td>
           </tr></table>';
     echo '<table border=1><tr>
