@@ -74,7 +74,7 @@ if ($dbconnection->connect_error) {
   $sql1 = "SELECT * FROM brokers;";
   $results1 = $dbconnection->query($sql1);
   while($obj1 = $results1->fetch_object()){
-      echo '<option value="'.$obj1->broker_name.'">'.$obj1->broker_name.'</option>';
+      echo '<option value="'.$obj1->broker_id.'">'.$obj1->broker_name.'</option>';
   }
 }
 echo '</select></td></tr>';
