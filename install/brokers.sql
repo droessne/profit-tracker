@@ -1,8 +1,10 @@
 CREATE TABLE IF NOT EXISTS `brokers` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `broker_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `trade_table` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `profits_table` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `active` boolean,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+`broker_id` int(100) NOT NULL AUTO_INCREMENT,
+`broker_name` varchar(50) NOT NULL,
+`broker_trade_table_name` varchar(50) NOT NULL,
+`broker_trade_profit_name` varchar(50) NOT NULL,
+PRIMARY KEY (`broker_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12;
+
+#DEFAULT BROKER
+INSERT INTO brokers (broker_id,broker_name,broker_trade_table_name,broker_trade_profit_name) VALUES (1,'DERs','trades','profits');
