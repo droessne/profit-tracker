@@ -16,8 +16,11 @@ if ($dbconnection->connect_error) {
   $results = $dbconnection->query($sql);
   while($obj = $results->fetch_object()){
     $platforms = explode(':', $obj->platforms);
-    echo '<form action="edit_profit_db.php" method="post">';
-    echo '<table><tr>
+    echo '<form action="config_db.php" method="post"><table>';
+    echo '<tr>
+          <td><label for="platform_add">Add Platform:</label></td>
+          <td><input type="text" name="platform_add" size="17"></td></tr>';
+    echo '<tr>
           <td><label for="platform_del">Delete Platform:</label></td>
           <td><select id="platform_del" name="platform">';
     foreach ($platforms as &$p) {
@@ -25,10 +28,27 @@ if ($dbconnection->connect_error) {
     }
     echo '</select></td></tr>';
     echo '<tr>
-          <td><label for="platform_add">Add Platform:</label></td>
-          <td><input type="text" name="platform_add" size="10">';
-    echo '</td></tr></table>';
-
+          <td><label for="monthly_profit_percent_target">Monthly Profits - Target Percent (ex. 0.4):</label></td>
+          <td><input type="text" name="monthly_profit_percent_target" value="'.$obj->monthly_profit_percent_target.'"size="17"></td></tr>';
+    echo '<tr>
+          <td><label for="monthly_profit_percent_to_keep">Monthly Profits - Keep Percent (ex. 0.25):</label></td>
+          <td><input type="text" name="monthly_profit_percent_to_keep" value="'.$obj->monthly_profit_percent_to_keep.'" size="17"></td></tr>';
+    $sql1 = "SELECT * FROM brokers;";
+    $results1 = $dbconnection->query($sql1);
+    echo '<tr>
+          <td><label for="active_broker">Active Broker:</label></td>
+          <td><select id="active_broker" name="active_broker">';
+    while($obj1 = $results1->fetch_object()){
+        echo '<option value="'.$obj1->broker_name.'"';
+        if ($obj1->broker_id == $obj->active_broker_id){
+          echo ' selected="selected"';
+        }
+        echo '>'.$obj1->broker_name.'</option>';
+    }
+    echo '</select></td></tr>';
+    echo '</table>';
+    echo '<input type="hidden" name="referer" value="'.$_SERVER['HTTP_REFERER'].'">';
+    echo '<input type="submit" /></form>';
 
   }
 }
