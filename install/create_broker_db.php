@@ -56,13 +56,13 @@ if ($dbconnection->connect_error) {
                 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;";
       if ($dbconnection->query($sql3) === TRUE) {
        echo "Table ".$broker_trade_profit_name." created successfully";
+       header("Location: config.php");
       } else {
          echo "Error creating profits table: " . $dbconnection->error;
       }
     } else {
        echo "Error creating trade table: " . $dbconnection->error;
     }
-    #header("Location: {$_SERVER['HTTP_REFERER']}");
     die();
   } else {
     echo "Sorry, adding this broker failed. Please try again";
