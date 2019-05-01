@@ -152,9 +152,9 @@ echo "<h1>Open Trades</h1>";
         $datediff = $date - $current;
         $difference = floor($datediff/(60*60*24));
         if($difference==0){
-          $ex_color = 'Red';
+          $sb_color = 'Red';
         } else {
-          $ex_color = 'White';
+          $sb_color = 'White';
         }
         #########################
         echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
