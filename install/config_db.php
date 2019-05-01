@@ -17,7 +17,7 @@ if ($dbconnection->connect_error) {
     $results = $dbconnection->query($sql);
     while($obj = $results->fetch_object()){
       if ($platform_add != ''){
-        $platforms = $obj->platforms.":".$platform_add
+        $platforms = $obj->platforms.":".$platform_add;
       } else {
         $platforms = $obj->platforms;
       }
@@ -27,6 +27,7 @@ if ($dbconnection->connect_error) {
           unset($platform_array[$key]);
         }
         $platforms = implode(':', $platform_array);
+      }
     }
 
   $sql2 = "UPDATE defaluts SET platforms = '".$platforms."', monthly_profit_percent_target = '".$monthly_profit_percent_target."', monthly_profit_percent_to_keep = '".$monthly_profit_percent_to_keep."', active_broker = '".$active_broker."' WHERE ID = '1';"; 
