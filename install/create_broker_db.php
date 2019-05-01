@@ -7,6 +7,10 @@ if ($dbconnection->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 } else {
   $broker_name = $_POST['broker_name'];
+  if ($broker_name == ''){
+      echo "Broker_name cannot be blank";
+      die();
+  }
   $sql = "SELECT MAX(broker_id) AS id FROM brokers;";
   $results = $dbconnection->query($sql);
   while($obj = $results->fetch_object()){
