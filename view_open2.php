@@ -27,6 +27,7 @@ echo "<h1>Open Trades</h1>";
         <th><span style='font-size:.8em'>Percent</span></th>
         <th><span style='font-size:.8em'>Platform</span></th>
         <th><span style='font-size:.8em'>Exiration Date</span></th>
+        <th><span style='font-size:.8em'>Sell By Date</span></th>
         </tr>";
   if (!$dbconnection->connect_errno) {
     $sql = "SELECT * FROM ".$trades_table." WHERE type='Entry' ORDER BY ID DESC;";
@@ -146,6 +147,15 @@ echo "<h1>Open Trades</h1>";
         } else {
           $ex_color = 'White';
         }
+        $current = strtotime(date("Y-m-d"));
+        $date    = strtotime($obj->sell_by_date);
+        $datediff = $date - $current;
+        $difference = floor($datediff/(60*60*24));
+        if($difference==0){
+          $ex_color = 'Red';
+        } else {
+          $ex_color = 'White';
+        }
         #########################
         echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
@@ -158,6 +168,7 @@ echo "<h1>Open Trades</h1>";
               <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
               <td align='center'><span style='font-size:.8em'>$obj->platform</span></td>
               <td align='center' bgcolor='".$ex_color."' style='color: Black;'><span style='font-size:.9em'>$obj->expire_date</span></td>
+              <td align='center' bgcolor='".$sb_color."' style='color: Black;'><span style='font-size:.9em'>$obj->sell_by_date</span></td>
               </tr>";
       }
     }
