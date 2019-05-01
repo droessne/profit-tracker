@@ -1,7 +1,8 @@
 <html>
 <title> Profit Tracker </title>
 <body>
-<H1> Edit Default Settings </H1>
+<H1> Settings </H1>
+<h2> Default Settings:</h2>
 
 <?php
 require_once("../include/database.cfg.php");
@@ -53,6 +54,31 @@ if ($dbconnection->connect_error) {
 
   }
 }
+echo '<h2>Add New Broker:</h2>';
+echo '<form action="create_broker_db.php" method="post"><table>';
+echo '<tr>
+      <td><label for="broker_name">Broker Name:</label></td>
+      <td><input type="text" name="brocker_name" size="17"></td></tr>';
+echo '</table>';
+echo '<input type="submit" /></form>';
+
+echo '<h2>Remove Broker:</h2>';
+echo '<form action="delete_broker_db.php" method="post"><table>';
+echo '<tr>
+      <td><label for="broker_del">Broker:</label></td>
+      <td><select id="broker_del" name="broker">';
+echo '<option value="---" selected="selected">---</option>';
+if ($dbconnection->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+} else {
+  $sql1 = "SELECT * FROM brokers;";
+  $results1 = $dbconnection->query($sql1);
+  while($obj1 = $results1->fetch_object()){
+      echo '<option value="'.$obj1->broker_name.'">'.$p.'</option>';
+  }
+echo '</select></td></tr>';
+echo '</table>';
+echo '<input type="submit" /></form>';
 ?>
 </body>
 </html>
