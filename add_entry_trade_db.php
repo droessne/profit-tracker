@@ -7,6 +7,7 @@ if ($dbconnection->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 } else {
   $executed_date = $_POST['executed_date'];
+  $sell_by_date = $_POST['sell_by_date'];
   $type = 'Entry';
   $symbol = $_POST['symbol'];
   $trade_strategy = $_POST['trade_strategy'];
@@ -32,11 +33,11 @@ if ($dbconnection->connect_error) {
   }
 
   if ($trade_strategy == 'Call'){
-    $sql = "INSERT INTO ".$trades_table." (executed_date, type, symbol, trade_strategy, order_type, qty, expire_date, strike_price, executed_price, com_fee, total, platform) VALUES('" . $executed_date . "', '" . $type . "', '" . $symbol . "', '" . $trade_strategy . "', '" . $order_type . "', '" . $qty . "', '" . $expire_date . "', '" . $strike_price . "', '" . $executed_price . "', '" . $com_fee . "', '" . $total . "', '" . $platform . "');"; 
+    $sql = "INSERT INTO ".$trades_table." (executed_date, sell_by_date, type, symbol, trade_strategy, order_type, qty, expire_date, strike_price, executed_price, com_fee, total, platform) VALUES('" . $executed_date . "', '" . $sell_by_date . "', '" . $type . "', '" . $symbol . "', '" . $trade_strategy . "', '" . $order_type . "', '" . $qty . "', '" . $expire_date . "', '" . $strike_price . "', '" . $executed_price . "', '" . $com_fee . "', '" . $total . "', '" . $platform . "');"; 
   } elseif ($trade_strategy == 'Put'){
-    $sql = "INSERT INTO ".$trades_table." (executed_date, type, symbol, trade_strategy, order_type, qty, expire_date, strike_price, executed_price, com_fee, total, platform) VALUES('" . $executed_date . "', '" . $type . "', '" . $symbol . "', '" . $trade_strategy . "', '" . $order_type . "', '" . $qty . "', '" . $expire_date . "', '" . $strike_price . "', '" . $executed_price . "', '" . $com_fee . "', '" . $total . "', '" . $platform . "');";
+    $sql = "INSERT INTO ".$trades_table." (executed_date, sell_by_date, type, symbol, trade_strategy, order_type, qty, expire_date, strike_price, executed_price, com_fee, total, platform) VALUES('" . $executed_date . "', '" . $sell_by_date . "', '" . $type . "', '" . $symbol . "', '" . $trade_strategy . "', '" . $order_type . "', '" . $qty . "', '" . $expire_date . "', '" . $strike_price . "', '" . $executed_price . "', '" . $com_fee . "', '" . $total . "', '" . $platform . "');";
   } else {
-    $sql = "INSERT INTO ".$trades_table." (executed_date, type, symbol, trade_strategy, order_type, qty, expire_date, strike_price, executed_price, order_type2, strike_price2, com_fee, total, platform) VALUES('" . $executed_date . "', '" . $type . "', '" . $symbol . "', '" . $trade_strategy . "', '" . $order_type . "', '" . $qty . "', '" . $expire_date . "', '" . $strike_price . "', '" . $executed_price . "', '" . $order_type2 . "', '" . $strike_price2 . "', '" . $com_fee . "', '" . $total . "', '" . $platform . "');";
+    $sql = "INSERT INTO ".$trades_table." (executed_date, sell_by_date, type, symbol, trade_strategy, order_type, qty, expire_date, strike_price, executed_price, order_type2, strike_price2, com_fee, total, platform) VALUES('" . $executed_date . "', '" . $sell_by_date . "', '" . $type . "', '" . $symbol . "', '" . $trade_strategy . "', '" . $order_type . "', '" . $qty . "', '" . $expire_date . "', '" . $strike_price . "', '" . $executed_price . "', '" . $order_type2 . "', '" . $strike_price2 . "', '" . $com_fee . "', '" . $total . "', '" . $platform . "');";
   }
   $results_2 = $dbconnection->query($sql);
 
