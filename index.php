@@ -68,6 +68,7 @@ body {font-family: Arial;}
   <button class="tablinks" onclick="openTab(event, 'view_profits')">Profits</button>
   <button class="tablinks" onclick="openTab(event, 'view_all_profits')">All Profits</button>
   <button class="tablinks" onclick="openTab(event, 'view_monthly_profits')">Monthly Profits</button>
+  <button class="tablinks" onclick="openTab(event, 'all_monthly_profits')">All Monthly Profits</button>
   <button class="tablinks" onclick="openTab(event, 'config')"><span>&#9881;</span></button>
 </div>
 
@@ -102,6 +103,11 @@ body {font-family: Arial;}
 <div id="view_monthly_profits" class="tabcontent">
   <iframe id="view_monthly_profits2" src="view_monthly_profits.php" class="content"></iframe>
 </div>
+
+<div id="all_monthly_profits" class="tabcontent">
+  <iframe id="all_monthly_profits2" src="all_monthly_profits.php" class="content"></iframe>
+</div>
+
 <div id="config" class="tabcontent">
   <iframe id="config2" src="install/config.php" class="content"></iframe>
 </div>
