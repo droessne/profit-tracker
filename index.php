@@ -51,6 +51,9 @@ body {font-family: Arial;}
   height: 84%;
   width: 97%;
 }
+.span {
+  content: "\2699";
+}
 </style>
 </head>
 <body>
@@ -65,6 +68,7 @@ body {font-family: Arial;}
   <button class="tablinks" onclick="openTab(event, 'view_profits')">Profits</button>
   <button class="tablinks" onclick="openTab(event, 'view_all_profits')">All Profits</button>
   <button class="tablinks" onclick="openTab(event, 'view_monthly_profits')">Monthly Profits</button>
+  <button class="tablinks" onclick="openTab(event, 'config')"><span>&#9881;</span></button>
 </div>
 
 <div id="view_open3" class="tabcontent">
@@ -97,6 +101,9 @@ body {font-family: Arial;}
 
 <div id="view_monthly_profits" class="tabcontent">
   <iframe id="view_monthly_profits2" src="view_monthly_profits.php" class="content"></iframe>
+</div>
+<div id="config" class="tabcontent">
+  <iframe id="config2" src="install/config.php" class="content"></iframe>
 </div>
 
 <script>
