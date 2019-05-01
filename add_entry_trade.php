@@ -18,6 +18,8 @@
 <tr>
 <td><label for="type">Execution Date:</label></td>
 <td><input type="text" name="executed_date" value="<?php date_default_timezone_set("America/New_York"); echo date("Y-m-d"); ?>" size="10"></td>
+</tr>
+<tr>
 <td><label for="type">Sell By Date:</label></td>
 <td><input type="text" name="sell_by_date" size="10"></td>
 </tr>
