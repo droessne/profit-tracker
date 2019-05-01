@@ -30,7 +30,7 @@ if ($dbconnection->connect_error) {
       }
     }
 
-  $sql2 = "UPDATE defaluts SET platforms = '".$platforms."', monthly_profit_percent_target = '".$monthly_profit_percent_target."', monthly_profit_percent_to_keep = '".$monthly_profit_percent_to_keep."', active_broker = '".$active_broker."' WHERE ID = '1';"; 
+  $sql2 = "UPDATE defaults SET platforms = '".$platforms."', monthly_profit_percent_target = '".$monthly_profit_percent_target."', monthly_profit_percent_to_keep = '".$monthly_profit_percent_to_keep."', active_broker = '".$active_broker."' WHERE ID = '1';"; 
   $results_2 = $dbconnection->query($sql2);
 
   if ($results_2) {
