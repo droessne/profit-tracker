@@ -58,7 +58,7 @@ echo '<h2>Add New Broker:</h2>';
 echo '<form action="create_broker_db.php" method="post"><table>';
 echo '<tr>
       <td><label for="broker_name">Broker Name:</label></td>
-      <td><input type="text" name="brocker_name" size="17"></td></tr>';
+      <td><input type="text" name="broker_name" size="17"></td></tr>';
 echo '</table>';
 echo '<input type="submit" /></form>';
 
