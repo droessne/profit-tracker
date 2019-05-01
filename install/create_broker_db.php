@@ -1,5 +1,6 @@
 <?php
 require_once("../include/database.cfg.php");
+header( "refresh:2;url=config.php" );
 
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -21,7 +22,7 @@ if ($dbconnection->connect_error) {
   $sql1 = "INSERT INTO brokers (broker_id, broker_name, broker_trade_table_name, broker_trade_profit_name) VALUES('".$new_id."', '".$broker_name."', '".$broker_trade_table_name."', '".$broker_trade_profit_name."');";
   $results1 = $dbconnection->query($sql1);
   if ($results1) {
-    echo "Broker added.";
+    echo $broker_name." Broker added successfully.<br>";
     $sql2 = "CREATE TABLE IF NOT EXISTS `".$broker_trade_table_name."` (
             `ID` int(11) NOT NULL AUTO_INCREMENT,
             `executed_date` date NOT NULL,
@@ -43,7 +44,7 @@ if ($dbconnection->connect_error) {
             PRIMARY KEY (`ID`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12;";
     if ($dbconnection->query($sql2) === TRUE) {
-       echo "Table ".$broker_trade_table_name." created successfully";
+       echo "Table ".$broker_trade_table_name." created successfully.<br>";
        $sql3 = "CREATE TABLE IF NOT EXISTS `".$broker_trade_profit_name."` (
                 `ID` int(11) NOT NULL AUTO_INCREMENT,
                 `date` date NOT NULL,
@@ -55,17 +56,17 @@ if ($dbconnection->connect_error) {
                 PRIMARY KEY (`ID`)
                 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;";
       if ($dbconnection->query($sql3) === TRUE) {
-       echo "Table ".$broker_trade_profit_name." created successfully";
-       header("Location: config.php");
+       echo "Table ".$broker_trade_profit_name." created successfully.<br>";
+       #header("Location: config.php");
       } else {
-         echo "Error creating profits table: " . $dbconnection->error;
+         echo "Error creating profits table: " . $dbconnection->error."<br>";
       }
     } else {
-       echo "Error creating trade table: " . $dbconnection->error;
+       echo "Error creating trade table: " . $dbconnection->error."<br>";
     }
     die();
   } else {
-    echo "Sorry, adding this broker failed. Please try again";
+    echo "Sorry, adding this broker failed. Please try again. <br>";
   }
 }
 
