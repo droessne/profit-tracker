@@ -35,7 +35,7 @@ if (!$dbconnection->connect_errno) {
     $sql = "SELECT table_name FROM information_schema.tables WHERE table_name LIKE 'profits%';";
     $results = $dbconnection->query($sql);
     while($obj = $results->fetch_object()){
-      push_array($profit_tables, $obj->table_name);
+      array_push($profit_tables, $obj->table_name);
     }
 }
 for ($i = 1; $i <= $cur_month; $i++) {
