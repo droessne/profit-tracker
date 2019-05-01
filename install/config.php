@@ -23,7 +23,7 @@ if ($dbconnection->connect_error) {
           <td><input type="text" name="platform_add" size="17"></td></tr>';
     echo '<tr>
           <td><label for="platform_del">Delete Platform:</label></td>
-          <td><select id="platform_del" name="platform">';
+          <td><select id="platform_del" name="platform_del">';
     echo '<option value="---" selected="selected">---</option>';
     foreach ($platforms as &$p) {
       echo '<option value="'.$p.'">'.$p.'</option>';
