@@ -9,7 +9,11 @@ if ($dbconnection->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 } else {
   $executed_date = $_POST['executed_date'];
-  $sell_by_date = $_POST['sell_by_date'];
+  if ($_POST['sell_by_date'] == '') {
+    $sell_by_date = $_POST['expire_date'];
+  } else {
+    $sell_by_date = $_POST['sell_by_date'];
+  }
   $type = 'Entry';
   $symbol = $_POST['symbol'];
   $trade_strategy = $_POST['trade_strategy'];
