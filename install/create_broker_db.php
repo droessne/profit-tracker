@@ -29,7 +29,7 @@ if ($dbconnection->connect_error) {
             `sell_by_date` date,
             `type` enum('Entry','Exit') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
             `symbol` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-            `trade_strategy` enum('Call','Call Spread','Put','Bull Put Spread','Bear Put Spread') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+            `trade_strategy` enum('Call','Call Spread','Put','Put Spread') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
             `order_type` enum('Buy Open','Sell Close','Sell Open','Buy Close') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
             `qty` int NOT NULL,
             `expire_date` date NOT NULL,
@@ -39,7 +39,7 @@ if ($dbconnection->connect_error) {
             `strike_price2` float,
             `com_fee` float,
             `total` float,
-            `platform` enum('Alpha-9','Money Calendar Pro','Straight Line Profits','Weekly Money Call','The Money Zone','Fast Fortune Club','10 Minute Millionaire','Stealth Profits Trader','Seismic Profits Alert','DERs') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+            `platform` varchar(250) NUT NULL,
             `mate_id` varchar(50),
             PRIMARY KEY (`ID`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12;";
@@ -50,7 +50,7 @@ if ($dbconnection->connect_error) {
                 `date` date NOT NULL,
                 `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                 `amount` float,
-                `platform` enum('Alpha-9','Money Calendar Pro','Straight Line Profits','Weekly Money Call','The Money Zone','Fast Fortune Club','10 Minute Millionaire','Stealth Profits Trader','Seismic Profits Alert','Deposit','Withdrawal') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+                `platform`  varchar(250) NOT NULL,
                 `entry_id` int(11),
                 `exit_id` varchar(50),
                 PRIMARY KEY (`ID`)
