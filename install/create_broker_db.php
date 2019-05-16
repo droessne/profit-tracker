@@ -39,7 +39,7 @@ if ($dbconnection->connect_error) {
             `strike_price2` float,
             `com_fee` float,
             `total` float,
-            `platform` varchar(250) NUT NULL,
+            `platform` varchar(250),
             `mate_id` varchar(50),
             PRIMARY KEY (`ID`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12;";
@@ -50,7 +50,7 @@ if ($dbconnection->connect_error) {
                 `date` date NOT NULL,
                 `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
                 `amount` float,
-                `platform`  varchar(250) NOT NULL,
+                `platform` varchar(250),
                 `entry_id` int(11),
                 `exit_id` varchar(50),
                 PRIMARY KEY (`ID`)
