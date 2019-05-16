@@ -22,22 +22,22 @@ if ($dbconnection->connect_error) {
   $results1 = $dbconnection->query($sql1);
   if ($results1) {
     echo $profit_table." deleted successfully.<br>";
-    $sql2 = "DROP TABLE ".$trade_table.";";
-    if ($dbconnection->query($sql2) === TRUE) {
-       echo $trade_table." deleted successfully.<br>";
-       $sql3 = "DELETE FROM brokers WHERE broker_id='$broker_id';";
-       if ($dbconnection->query($sql3) === TRUE) {
-         echo "Broker deleted successfully.<br>";
-      } else {
-         echo "Error: Failed to delete broker from brokers table.<br>";
-      }
-    } else {
-       echo "Error: Failed to delete trade table. <br>";
-    }
-    die();
   } else {
     echo "Error: Failed to delete profits table. <br>";
   }
+  $sql2 = "DROP TABLE ".$trade_table.";";
+  if ($dbconnection->query($sql2) === TRUE) {
+    echo $trade_table." deleted successfully.<br>";
+  } else {
+    echo "Error: Failed to delete trade table. <br>";
+  }
+  $sql3 = "DELETE FROM brokers WHERE broker_id='$broker_id';";
+  if ($dbconnection->query($sql3) === TRUE) {
+    echo "Broker deleted successfully.<br>";
+  } else {
+         echo "Error: Failed to delete broker from brokers table.<br>";
+  }
+    die();
 }
 
 ?>
