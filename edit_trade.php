@@ -80,6 +80,16 @@ if ($dbconnection->connect_error) {
             echo ' selected="selected"';
           }
                                echo '>Put Spread</option>
+          <option value="Stock"';
+          if ($obj->trade_strategy == 'Stock'){
+            echo ' selected="selected"';
+          }
+                               echo '>Stock</option>
+          <option value="Crypto"';
+          if ($obj->trade_strategy == 'Crypto'){
+            echo ' selected="selected"';
+          }
+                               echo '>Crypto</option>
           </select></td>';
     echo '<td><select id="order_type" name="order_type">
           <option value="Buy Open"';
