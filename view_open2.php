@@ -3,6 +3,7 @@
 require_once("include/database.cfg.php");
 require_once("include/get_auth.php");
 require_once("include/get_call.php");
+require_once("include/get_stock.php");
 require_once("include/get_put.php");
 require_once("include/get_call_spread.php");
 require_once("include/get_put_spread.php");
