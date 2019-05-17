@@ -59,7 +59,7 @@ function get_stock($symbol){
     return $results;
   }
 }
-$results = get_stock('AAPL');
+#$results = get_stock('AAPL');
 #print_r($results);
 #echo $results['mark'];
 ?>
