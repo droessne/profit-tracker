@@ -41,6 +41,9 @@
   <option value="Call Spread">Call Spread</option>
   <option value="Put">Put</option>
   <option value="Put Spread">Put Spread</option>
+  <option value="Stock">Put Spread</option>
+  <option value="Crypto">Put Spread</option>
+
 </select></td>
 <td><select id="order_type" name="order_type">
   <option value="Buy Open">Buy Open</option>
