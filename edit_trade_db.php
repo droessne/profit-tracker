@@ -10,7 +10,13 @@ if ($dbconnection->connect_error) {
   $id = $_POST['ID'];
   $executed_date = $_POST['executed_date'];
   if ($_POST['sell_by_date'] == '') {
-    $sell_by_date = $_POST['expire_date'];
+    if ($_POST['trade_strategy'] == 'Stock') {
+      $sell_by_date = '2999-12-31';
+    } elseif ($_POST['trade_strategy'] == 'Crypto') {
+      $sell_by_date = '2999-12-31';
+    } else {  
+      $sell_by_date = $_POST['expire_date'];
+    }
   } else {
     $sell_by_date = $_POST['sell_by_date'];
   }
@@ -52,12 +58,28 @@ if ($dbconnection->connect_error) {
     } else {
       $total = ((((floatval($qty) * 100) * floatval($executed_price))) + $com_fee);
     }
+  } elseif ('Stock' == $trade_strategy) {
+    if ('Exit' == $type) {
+      $total = ((((floatval($qty)) * floatval($executed_price))) + $com_fee);
+    } else {
+      $total = ((((floatval($qty)) * floatval($executed_price)) * -1) + $com_fee);
+    }
+  } elseif ('Crypto' == $trade_strategy) {
+    if ('Exit' == $type) {
+      $total = ((((floatval($qty)) * floatval($executed_price))) + $com_fee);
+    } else {
+      $total = ((((floatval($qty)) * floatval($executed_price)) * -1) + $com_fee);
+    }
   }
 
   if ($trade_strategy == 'Call'){
     $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', sell_by_date = '".$sell_by_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."' WHERE ID = '".$id."';"; 
   } elseif ($trade_strategy == 'Put'){
     $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', sell_by_date = '".$sell_by_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."' WHERE ID = '".$id."';";
+  } elseif ($trade_strategy == 'Stock'){
+    $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', sell_by_date = '".$sell_by_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '2999-12-31', strike_price = '0', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."' WHERE ID = '".$id."';";
+  } elseif ($trade_strategy == 'Crypto'){
+    $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', sell_by_date = '".$sell_by_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '2999-12-31', strike_price = '0', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."' WHERE ID = '".$id."';";
   } else {
     $sql = "UPDATE ".$trades_table." SET executed_date = '".$executed_date."', sell_by_date = '".$sell_by_date."', type = '".$type."', symbol = '".$symbol."', trade_strategy = '".$trade_strategy."', order_type = '".$order_type."', qty = '".$qty."', expire_date = '".$expire_date."', strike_price = '".$strike_price."', executed_price = '".$executed_price."', com_fee = '".$com_fee."', total = '".$total."', platform = '".$platform."', strike_price2 = '".$strike_price2."', order_type2 = '".$order_type2."' WHERE ID = '".$id."';";
     #echo "FINSIH ME!";
@@ -84,7 +106,13 @@ if ($dbconnection->connect_error) {
       }
       $date = $executed_date;
       if ($strike_price2 == ''){
-        $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price;
+        if ($trade_strategy == 'Stock'){
+          $description = $symbol.' '.$trade_strategy.' purchased on '.$executed_date.' at $'.$executed_price.' per share';
+        } elseif ($trade_strategy == 'Crypto'){
+          $description = $symbol.' '.$trade_strategy.' purchased on '.$executed_date.' at $'.$executed_price.' per share';
+        } else {
+          $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price;
+        }
       } else {
         $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price.' - $'.$strike_price2;
       }
