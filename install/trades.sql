@@ -18,3 +18,7 @@ CREATE TABLE IF NOT EXISTS `trades` (
   `mate_id` varchar(50),
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+
+ALTER TABLE `trades` MODIFY COLUMN 
+  `trade_strategy` enum('Call','Call Spread','Put','Put Spread','Stock','Crypto') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
