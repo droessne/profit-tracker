@@ -54,7 +54,8 @@ function get_stock($symbol){
       "mark" => $mark,
       "volatility" => $volatility,
       "div_yield" => $div_yield,
-      "tot_vol" => $tot_vol
+      "tot_vol" => $tot_vol,
+      "d_2_ex" => 999
     ];
     return $results;
   }
