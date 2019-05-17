@@ -10,7 +10,13 @@ if ($dbconnection->connect_error) {
 } else {
   $executed_date = $_POST['executed_date'];
   if ($_POST['sell_by_date'] == '') {
-    $sell_by_date = $_POST['expire_date'];
+    if ($_POST['trade_strategy'] == 'Stock') {
+      $sell_by_date = '2999-12-31';
+    } elseif ($_POST['trade_strategy'] == 'Crypto') {
+      $sell_by_date = '2999-12-31';
+    } else {  
+      $sell_by_date = $_POST['expire_date'];
+    }
   } else {
     $sell_by_date = $_POST['sell_by_date'];
   }
@@ -36,10 +42,18 @@ if ($dbconnection->connect_error) {
     $total = ((((floatval($qty) * 100) * floatval($executed_price)) * -1) + $com_fee);
   } elseif ('Put Spread' == $trade_strategy) {
     $total = (((floatval($qty) * 100) * floatval($executed_price)) + $com_fee);
+  } elseif ('Stock' == $trade_strategy) {
+    $total = ((((floatval($qty)) * floatval($executed_price)) * -1) + $com_fee);
+  } elseif ('Crypto' == $trade_strategy) {
+    $total = ((((floatval($qty)) * floatval($executed_price)) * -1) + $com_fee);
   }
 
   if ($trade_strategy == 'Call'){
     $sql = "INSERT INTO ".$trades_table." (executed_date, sell_by_date, type, symbol, trade_strategy, order_type, qty, expire_date, strike_price, executed_price, com_fee, total, platform) VALUES('" . $executed_date . "', '" . $sell_by_date . "', '" . $type . "', '" . $symbol . "', '" . $trade_strategy . "', '" . $order_type . "', '" . $qty . "', '" . $expire_date . "', '" . $strike_price . "', '" . $executed_price . "', '" . $com_fee . "', '" . $total . "', '" . $platform . "');"; 
+  } elseif ($trade_strategy == 'Stock'){
+    $sql = "INSERT INTO ".$trades_table." (executed_date, sell_by_date, type, symbol, trade_strategy, order_type, qty, expire_date, strike_price, executed_price, com_fee, total, platform) VALUES('" . $executed_date . "', '" . $sell_by_date . "', '" . $type . "', '" . $symbol . "', '" . $trade_strategy . "', '" . $order_type . "', '" . $qty . "', '2999-12-31', '0', '" . $executed_price . "', '" . $com_fee . "', '" . $total . "', '" . $platform . "');";
+  } elseif ($trade_strategy == 'Crypto'){
+    $sql = "INSERT INTO ".$trades_table." (executed_date, sell_by_date, type, symbol, trade_strategy, order_type, qty, expire_date, strike_price, executed_price, com_fee, total, platform) VALUES('" . $executed_date . "', '" . $sell_by_date . "', '" . $type . "', '" . $symbol . "', '" . $trade_strategy . "', '" . $order_type . "', '" . $qty . "', '2999-12-31', '0', '" . $executed_price . "', '" . $com_fee . "', '" . $total . "', '" . $platform . "');";
   } elseif ($trade_strategy == 'Put'){
     $sql = "INSERT INTO ".$trades_table." (executed_date, sell_by_date, type, symbol, trade_strategy, order_type, qty, expire_date, strike_price, executed_price, com_fee, total, platform) VALUES('" . $executed_date . "', '" . $sell_by_date . "', '" . $type . "', '" . $symbol . "', '" . $trade_strategy . "', '" . $order_type . "', '" . $qty . "', '" . $expire_date . "', '" . $strike_price . "', '" . $executed_price . "', '" . $com_fee . "', '" . $total . "', '" . $platform . "');";
   } else {
