@@ -81,9 +81,9 @@ if ($dbconnection->connect_error) {
       $date = $executed_date;
       if ($strike_price2 == ''){
         if ($trade_strategy == 'Stock'){
-          $description = $symbol.' '.$trade_strategy.' purchased on '.$executed_date.' at $'.$executed_price.' per share';
+          $description = $symbol.' '.$trade_strategy.' sold on '.$executed_date.' at $'.$executed_price.' per share';
         } elseif ($trade_strategy == 'Crypto'){
-          $description = $symbol.' '.$trade_strategy.' purchased on '.$executed_date.' at $'.$executed_price.' per share';
+          $description = $symbol.' '.$trade_strategy.' sold on '.$executed_date.' at $'.$executed_price.' per share';
         } else {
           $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price;
         }
