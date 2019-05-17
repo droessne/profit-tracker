@@ -88,6 +88,16 @@ echo '
       echo ' selected';
     }
   echo '>Put Spread</option>
+  <option value="Stock"';
+    if ($trade_strategy == 'Stock'){
+      echo ' selected';
+    }
+  echo '>Stock</option>
+  <option value="Crypto"';
+    if ($trade_strategy == 'Crypto'){
+      echo ' selected';
+    }
+  echo '>Crypto</option>
   </select></td>
   ';
 echo '
