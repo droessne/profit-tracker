@@ -12,6 +12,9 @@ get_auth();
 $num_green = 0;
 $num_red = 0;
 $num_trades = 0;
+$invested_total = 0;
+$current_total = 0;
+$max_total = 0;
 
 setlocale(LC_MONETARY, 'en_US');
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -19,6 +22,7 @@ echo "<h1>Open Trades</h1>";
   echo "<table border=1>";
   echo "<tr>
         <th><span style='font-size:.8em'>Symbol</span></th>
+        <th><span style='font-size:.8em'>Qty</span></th>
         <th><span style='font-size:.8em'>Trade Strategy</span></th>
         <th><span style='font-size:.8em'>Purchase Price</span></th>
         <th><span style='font-size:.8em'>Current Price</span></th>
@@ -166,6 +170,7 @@ echo "<h1>Open Trades</h1>";
         #########################
         echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
+              <td align='center'><span style='font-size:.8em'>$obj->qty</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->executed_price)."</span></td>
               <td align='center'><strong><span style='font-size:1em'>".money_format('%(#10n', $cur_data['mark'])."</span></strong></td>
@@ -177,11 +182,41 @@ echo "<h1>Open Trades</h1>";
               <td align='center' bgcolor='".$ex_color."' style='color: Black;'><span style='font-size:.9em'>$obj->expire_date</span></td>
               <td align='center' bgcolor='".$sb_color."' style='color: Black;'><span style='font-size:.9em'>$obj->sell_by_date</span></td>
               </tr>";
+          if ('Stock' == $obj->trade_strategy) {
+            $invested_total = (($obj->qty * $obj->executed_price)) + $invested_total;
+            $current_total = (($obj->qty * $cur_data['mark'])) + $current_total;
+            $max_total = (($obj->qty * $obj->executed_price)) + $max_total;  
+          } elseif ('Crypto' == $obj->trade_strategy) {
+            $invested_total = (($obj->qty * $obj->executed_price)) + $invested_total;
+            $current_total = (($obj->qty * $cur_data['mark'])) + $current_total;
+            $max_total = (($obj->qty * $obj->executed_price)) + $max_total;
+          } else {
+            $invested_total = (($obj->qty * $obj->executed_price) * 100) + $invested_total;
+            $current_total = (($obj->qty * $cur_data['mark']) * 100) + $current_total;
+            $max_total = (($obj->qty * $obj->executed_price) * 100) + $max_total;
+          }
       }
     }
     $results->close();
     unset($obj);
   }
+  $gain_loss = ($current_total - $invested_total);
+  $away_amt = ($max_total - $current_total);
+  $percent_away = number_format(((($current_total/$invested_total) - 1)*100), 2);
+  echo "<tr>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $invested_total)."</span></td>
+              <td align='center'><strong><span style='font-size:1em'>".money_format('%(#10n', $current_total)."</span></strong></td>
+              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $max_total)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,2)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".number_format($away_amt,2)."</span></td>
+              <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              </tr>";
   echo "</table>";
   echo "<table border='1'>
         <tr><td align='center'>Winners</td><td align='center'>".$num_green."</td></tr>
