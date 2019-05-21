@@ -185,15 +185,15 @@ echo "<h1>Open Trades</h1>";
           if ('Stock' == $obj->trade_strategy) {
             $invested_total = (($obj->qty * $obj->executed_price)) + $invested_total;
             $current_total = (($obj->qty * $cur_data['mark'])) + $current_total;
-            $max_total = (($obj->qty * $obj->executed_price)) + $max_total;  
+            $max_total = (($obj->qty * $sell)) + $max_total;  
           } elseif ('Crypto' == $obj->trade_strategy) {
             $invested_total = (($obj->qty * $obj->executed_price)) + $invested_total;
             $current_total = (($obj->qty * $cur_data['mark'])) + $current_total;
-            $max_total = (($obj->qty * $obj->executed_price)) + $max_total;
+            $max_total = (($obj->qty * $sell)) + $max_total;
           } else {
             $invested_total = (($obj->qty * $obj->executed_price) * 100) + $invested_total;
             $current_total = (($obj->qty * $cur_data['mark']) * 100) + $current_total;
-            $max_total = (($obj->qty * $obj->executed_price) * 100) + $max_total;
+            $max_total = (($obj->qty * $sell) * 100) + $max_total;
           }
       }
     }
