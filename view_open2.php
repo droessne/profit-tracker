@@ -82,6 +82,7 @@ echo "<h1>Open Trades</h1>";
         $symbol = str_replace("*", "", $obj->symbol);
         $symbol = str_replace("~", "", $symbol);
         $symbol = str_replace("`", "", $symbol);
+        $symbol = str_replace("?", "", $symbol);
         $sell = 0;
          
         if (strpos($obj->symbol, '*') !== false) {
