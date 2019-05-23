@@ -79,16 +79,17 @@ if ($dbconnection->connect_error) {
         $entry_amt = $obj->total;
       }
       $date = $executed_date;
+      $percent = number_format( (abs($total)/abs($entry_amt)) * 100, 2).'%';
       if ($strike_price2 == ''){
         if ($trade_strategy == 'Stock'){
-          $description = $symbol.' '.$trade_strategy.' sold on '.$executed_date.' at $'.$executed_price.' per share';
+          $description = $symbol.' '.$trade_strategy.' sold on '.$executed_date.' at $'.$executed_price.' per share @ '.$percent;
         } elseif ($trade_strategy == 'Crypto'){
-          $description = $symbol.' '.$trade_strategy.' sold on '.$executed_date.' at $'.$executed_price.' per share';
+          $description = $symbol.' '.$trade_strategy.' sold on '.$executed_date.' at $'.$executed_price.' per share @ '.$percent;
         } else {
-          $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price;
+          $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price.' @ '.$percent;
         }
       } else {
-        $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price.' - $'.$strike_price2;
+        $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price.' - $'.$strike_price2.' @ '.$percent;
       }
       $amount = ($total + $entry_amt);
       $platform = $platform;
