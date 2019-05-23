@@ -40,7 +40,7 @@ require_once("include/defaults.cfg.php");
     $donate = ($total_balance * .10);
     $left_over = ($total_balance * .65);
     $prof_left = ($total_balance + $used_balance);
-    $account_total = ($total_balance + $prof_left);
+    $account_total = ($base_balance + $prof_left);
     echo "<center><table border=1><tr><th>Total Profits</th>";
     echo "<th>".money_format('%(#10n', $total_balance)."</th></tr>";
     echo "<tr><td>Base Amount</td>";
