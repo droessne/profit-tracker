@@ -21,6 +21,7 @@ $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 echo "<h1>Open Trades</h1>";
   echo "<table border=1>";
   echo "<tr>
+        <th><span style='font-size:.8em'>Entry Date</span></th>
         <th><span style='font-size:.8em'>Symbol</span></th>
         <th><span style='font-size:.8em'>Qty</span></th>
         <th><span style='font-size:.8em'>Trade Strategy</span></th>
@@ -31,6 +32,7 @@ echo "<h1>Open Trades</h1>";
         <th><span style='font-size:.8em'>Away</span></th>
         <th><span style='font-size:.8em'>Percent</span></th>
         <th><span style='font-size:.8em'>Platform</span></th>
+        <th><span style='font-size:.8em'>Trade Length</span></th>
         <th><span style='font-size:.8em'>Exiration Date</span></th>
         <th><span style='font-size:.8em'>Sell By Date</span></th>
         </tr>";
@@ -169,7 +171,13 @@ echo "<h1>Open Trades</h1>";
           $sb_color = 'White';
         }
         #########################
+        $now = time(); // or your date as well
+        $your_date = strtotime($obj->executed_date);
+        $datediff = $now - $your_date;
+        $trade_length = round($datediff / (60 * 60 * 24));
+        
         echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
+              <td align='center'><span style='font-size:.9em'>$obj->executed_date</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->qty</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
@@ -180,6 +188,7 @@ echo "<h1>Open Trades</h1>";
               <td align='center'><span style='font-size:.8em'>".number_format($away_amt,2)."</span></td>
               <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
               <td align='center'><span style='font-size:.8em'>$obj->platform</span></td>
+              <td align='center'><span style='font-size:.8em'>$trade_length</span></td>
               <td align='center' bgcolor='".$ex_color."' style='color: Black;'><span style='font-size:.9em'>$obj->expire_date</span></td>
               <td align='center' bgcolor='".$sb_color."' style='color: Black;'><span style='font-size:.9em'>$obj->sell_by_date</span></td>
               </tr>";
@@ -205,6 +214,7 @@ echo "<h1>Open Trades</h1>";
   $away_amt = ($max_total - $current_total);
   $percent_away = number_format(((($current_total/$invested_total) - 1)*100), 2);
   echo "<tr>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
