@@ -86,14 +86,14 @@ if ($dbconnection->connect_error) {
       $percent = number_format( ((abs($total)/abs($entry_amt)) - 1) * 100, 2).'%';
       if ($strike_price2 == ''){
         if ($trade_strategy == 'Stock'){
-          $description = $symbol.' '.$trade_strategy.' sold on '.$executed_date.' at $'.$executed_price.' per share @ '.$percent.' in '.$trade_length.' days.';
+          $description = $symbol.' '.$trade_strategy.' sold on '.$executed_date.' at $'.$executed_price.' per share @ '.$percent.' profit in '.$trade_length.' days.';
         } elseif ($trade_strategy == 'Crypto'){
-          $description = $symbol.' '.$trade_strategy.' sold on '.$executed_date.' at $'.$executed_price.' per share @ '.$percent.' in '.$trade_length.' days.';
+          $description = $symbol.' '.$trade_strategy.' sold on '.$executed_date.' at $'.$executed_price.' per share @ '.$percent.' profit in '.$trade_length.' days.';
         } else {
-          $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price.' @ '.$percent.' in '.$trade_length.' days.';
+          $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price.' @ '.$percent.' profit in '.$trade_length.' days.';
         }
       } else {
-        $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price.' - $'.$strike_price2.' @ '.$percent.' in '.$trade_length.' days.';
+        $description = $symbol.' '.$trade_strategy.' '.$expire_date.' $'.$strike_price.' - $'.$strike_price2.' @ '.$percent.' profit in '.$trade_length.' days.';
       }
       $amount = ($total + $entry_amt);
       $platform = $platform;
