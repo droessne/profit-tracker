@@ -79,7 +79,7 @@ if ($dbconnection->connect_error) {
         $entry_amt = $obj->total;
       }
       $date = $executed_date;
-      $percent = number_format( (abs($total)/abs($entry_amt)) * 100, 2).'%';
+      $percent = number_format( ((abs($total)/abs($entry_amt)) - 1) * 100, 2).'%';
       if ($strike_price2 == ''){
         if ($trade_strategy == 'Stock'){
           $description = $symbol.' '.$trade_strategy.' sold on '.$executed_date.' at $'.$executed_price.' per share @ '.$percent;
