@@ -92,9 +92,11 @@ function viewByPlatform($platform, $trades_table){
         }
         if ($obj->trade_strategy == 'Crypto') {
             $format_line = '%(#10.11n';
+            $format_num = 11;
             $has_crypto = true;
         } else {
             $format_line = '%(#10n';
+            $format_num = 0;
         }
         $tar_total = abs($sell);
         date_default_timezone_set("America/New_York");
@@ -111,7 +113,7 @@ function viewByPlatform($platform, $trades_table){
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->order_type</span></td>
-              <td align='center'><span style='font-size:.8em'>$new_qty</span></td>
+              <td align='center'><span style='font-size:.8em'>".number_format($new_qty,$format_num)."</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->expire_date</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->strike_price)."</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->order_type2</span></td>
