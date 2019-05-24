@@ -78,25 +78,25 @@ require_once("install/binance.php");
     } else {
       $format = '%(#10n';
       echo "<center><table border=1><tr><th>Total Profits</th>";
-      echo "<th>".money_format($format, $total_balance)."</th></tr>";
+      echo "<th> $".money_format($format, $total_balance)."</th></tr>";
       echo "<tr><td>Base Amount</td>";
-      echo "<td>".money_format($format, $base_balance)."</td></tr>";
+      echo "<td> $".money_format($format, $base_balance)."</td></tr>";
       echo "<tr><td>Trade Amount</td>";
-      echo "<td>".money_format($format, $trade_balance)."</td></tr>";
+      echo "<td> $".money_format($format, $trade_balance)."</td></tr>";
       echo "<tr><td>Available Amount</td>";
-      echo "<td>".money_format($format, $available_amt)."</td></tr>";
+      echo "<td> $".money_format($format, $available_amt)."</td></tr>";
       echo "<tr><td>Used Amount</td>";
-      echo "<td>".money_format($format, $used_balance)."</td></tr>";
+      echo "<td> $".money_format($format, $used_balance)."</td></tr>";
       echo "<tr><td>Profit Left</td>";
-      echo "<td>".money_format($format, $prof_left)."</td></tr>";
+      echo "<td> $".money_format($format, $prof_left)."</td></tr>";
       echo "<tr><td>Account Total</td>";
-      echo "<td>".money_format($format, $account_total)."</td></tr>";
+      echo "<td> $".money_format($format, $account_total)."</td></tr>";
       echo "<tr><td><span style='font-size:.8em'>Amount for Taxes</span></td>";
-      echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $taxes)."</span></td></tr>";
+      echo "<td><span style='font-size:.8em'> $".money_format('%(#10n', $taxes)."</span></td></tr>";
       echo "<tr><td><span style='font-size:.8em'>Amount to Doante</span></td>";
-      echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $donate)."</span></td></tr>";
+      echo "<td><span style='font-size:.8em'> $".money_format('%(#10n', $donate)."</span></td></tr>";
       echo "<tr><td><span style='font-size:.8em'>Amount Left Over</span></td>";
-      echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $left_over)."</span></td></tr>";
+      echo "<td><span style='font-size:.8em'> $".money_format('%(#10n', $left_over)."</span></td></tr>";
       echo "</table><BR>";
     }
 
