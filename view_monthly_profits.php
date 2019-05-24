@@ -30,6 +30,15 @@ $new_base_amt = 0;
 $total_profits = 0;
 $total_used = 0;
 $togo_amt = 0;
+$sql_5 = "SELECT COUNT(*) as count FROM ".$trades_table." WHERE trade_strategy='Crypto';";
+$results_5 = $dbconnection->query($sql_5);
+while($obj_5 = $results_5->fetch_object()){
+  if  ( $obj_5->count == 0 ){
+    $has_crypto = False;
+  } else {
+    $has_crypto = True;
+  }
+}
 for ($i = 1; $i <= $cur_month; $i++) {
   if (!$dbconnection->connect_errno) {
     $sql_1 = "SELECT SUM(amount) AS base_amt FROM ".$profits_table." where platform='Deposit' AND MONTH(date) = ".$i." AND YEAR(date) = ".$cur_year.";";
@@ -62,13 +71,18 @@ for ($i = 1; $i <= $cur_month; $i++) {
     $tar_percent = $monthly_profit_percent_target;
     $tar_profit_amt = ($new_base_amt * $tar_percent);
     $tar_percent = sprintf("%.2f%%", $tar_percent * 100);
+    if ( $has_crytpo != True ){
+      $format = '%(#10.11n';
+    } else {
+      $format = '%(#10n';
+    }
     echo "<tr>
           <td align='center'><span style='font-size:.8em'>".$monthName."</span></td>
-          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $new_base_amt)."</span></td>
-          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $profit_amt)."</span></td>
-          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $used_amt)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format($format, $new_base_amt)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format($format, $profit_amt)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format($format, $used_amt)."</span></td>
           <td align='center'><span style='font-size:.8em'>".$percent."</span></td>
-          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $tar_profit_amt)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format($format, $tar_profit_amt)."</span></td>
           </tr>";
     $togo_amt = ($profit_amt-$tar_profit_amt);
     $new_base_amt = ($new_base_amt+($profit_amt+$used_amt));
@@ -86,10 +100,10 @@ for ($i = 1; $i <= $cur_month; $i++) {
 echo "<tr>
           <td align='center'><span style='font-size:.8em'>TOTALS</span></td>
           <td align='center'><span style='font-size:.8em'> --- </span></td>
-          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $total_profits)."</span></td>
-          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $total_used)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format($format, $total_profits)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format($format, $total_used)."</span></td>
           <td align='center'><span style='font-size:.8em'> --- </span></td>
-          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $togo_amt)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format($format, $togo_amt)."</span></td>
 
           </tr>";
 echo "</table>";
@@ -114,8 +128,8 @@ for ($i = ($cur_month+1); $i <= 12; $i++) {
 
     echo "<tr>
           <td align='center'><span style='font-size:.8em'>".$monthName."</span></td>
-          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $new_base_amt)."</span></td>
-          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $profit_amt)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format($format, $new_base_amt)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format($format, $profit_amt)."</span></td>
           <td align='center'><span style='font-size:.8em'>".$proj_percent."</span></td>
           </tr>";
     $new_base_amt = ($new_base_amt+($profit_amt*$monthly_profit_percent_to_keep));
@@ -124,7 +138,7 @@ for ($i = ($cur_month+1); $i <= 12; $i++) {
 echo "<tr>
           <td align='center'><span style='font-size:.8em'>TOTALS</span></td>
           <td align='center'><span style='font-size:.8em'> --- </span></td>
-          <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $total_profits)."</span></td>
+          <td align='center'><span style='font-size:.8em'>".money_format($format, $total_profits)."</span></td>
           <td align='center'><span style='font-size:.8em'> --- </span></td>
           </tr>";
 echo "</table>";
