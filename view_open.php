@@ -96,7 +96,7 @@ function viewByPlatform($platform, $trades_table){
         } else {
             $format_line = '%(#10n';
         }
-        
+        echo '$has_crypto';
         $tar_total = abs($sell);
         date_default_timezone_set("America/New_York");
         $today = date("Y-m-d");
@@ -137,7 +137,7 @@ function viewByPlatform($platform, $trades_table){
     $results->close();
     unset($obj);
   }
-  if ($has_crytpo){
+  if ($has_crypto){
     $format = '%(#10.11n';
   } else {
     $format = '%(#10n';
