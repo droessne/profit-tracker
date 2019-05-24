@@ -223,11 +223,11 @@ echo "<h1>Open Trades</h1>";
   $away_amt = ($max_total - $current_total);
   $percent_away = number_format(((($current_total/$invested_total) - 1)*100), 2);
   if ( $has_crytpo != True ){
-    $format = '%(#10.11n';
-    $format_num = 11;
-  } else {
     $format = '%(#10n';
     $format_num = 2;
+  } else {
+    $format = '%(#10.11n';
+    $format_num = 11;
   }
   echo "<tr>
               <td align='center'><span style='font-size:.8em'> - </span></td>
