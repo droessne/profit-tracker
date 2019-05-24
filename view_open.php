@@ -4,7 +4,7 @@ require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
 
 function viewByPlatform($platform, $trades_table){
-  $has_crypto = False;
+  $has_crypto = false;
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1> ".$platform." Open Trades</h1>";
@@ -92,7 +92,7 @@ function viewByPlatform($platform, $trades_table){
         }
         if ($obj->trade_strategy == 'Crypto') {
             $format_line = '%(#10.11n';
-            $has_crypto = True;
+            $has_crypto = true;
         } else {
             $format_line = '%(#10n';
         }
@@ -137,10 +137,10 @@ function viewByPlatform($platform, $trades_table){
     $results->close();
     unset($obj);
   }
-  if ( $has_crytpo != True ){
-    $format = '%(#10n';
-  } else {
+  if ($has_crytpo){
     $format = '%(#10.11n';
+  } else {
+    $format = '%(#10n';
   }
   echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
   echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_com)."</span></td>";
