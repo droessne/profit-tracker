@@ -138,9 +138,9 @@ function viewByPlatform($platform, $trades_table){
     unset($obj);
   }
   if ( $has_crytpo != True ){
-    $format = '%(#10.11n';
-  } else {
     $format = '%(#10n';
+  } else {
+    $format = '%(#10.11n';
   }
   echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
   echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_com)."</span></td>";
