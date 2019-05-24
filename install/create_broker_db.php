@@ -31,7 +31,7 @@ if ($dbconnection->connect_error) {
             `symbol` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
             `trade_strategy` enum('Call','Call Spread','Put','Put Spread','Stock','Crypto') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
             `order_type` enum('Buy Open','Sell Close','Sell Open','Buy Close') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-            `qty` int NOT NULL,
+            `qty` decimal(22,11) NOT NULL,
             `expire_date` date NOT NULL,
             `strike_price` float NOT NULL,
             `executed_price` float NOT NULL,
