@@ -51,9 +51,9 @@ require_once("include/defaults.cfg.php");
     $prof_left = ($total_balance + $used_balance);
     $account_total = ($base_balance + $prof_left);
     if ( $has_crytpo != True ){
-      $format = '%(#10.11n';
-    } else {
       $format = '%(#10n';
+    } else {
+      $format = '%(#10.11n';
     }
 
     echo "<center><table border=1><tr><th>Total Profits</th>";
