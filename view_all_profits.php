@@ -10,6 +10,8 @@ $sec = "5";
 <?php
 require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
+require 'vendor/autoload.php';
+require_once("install/binance.php");
 
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -52,31 +54,54 @@ require_once("include/defaults.cfg.php");
     $account_total = ($base_balance + $prof_left);
     if ( $has_crypto ){
       $format = '%(#10.11n';
+      echo "<center><table border=1><tr><th>Total Profits</th>";
+      echo "<th>".money_format($format, $total_balance)." BTC</th></tr>";
+      echo "<tr><td>Base Amount</td>";
+      echo "<td>".money_format($format, $base_balance)." BTC</td></tr>";
+      echo "<tr><td>Trade Amount</td>";
+      echo "<td>".money_format($format, $trade_balance)." BTC</td></tr>";
+      echo "<tr><td>Available Amount</td>";
+      echo "<td>".money_format($format, $available_amt)." BTC</td></tr>";
+      echo "<tr><td>Used Amount</td>";
+      echo "<td>".money_format($format, $used_balance)." BTC</td></tr>";
+      echo "<tr><td>Profit Left</td>";
+      echo "<td>".money_format($format, $prof_left)." BTC</td></tr>";
+      echo "<tr><td>Account Total</td>";
+      echo "<td>".money_format($format, $account_total)." BTC</td></tr>";
+      echo "<tr><td>Account Total</td>";
+      $btc_price = $api->price("BTCUSDT");
+      $usd = $account_total * $btc_price;
+      echo "<td>".money_format('%(#10n', $usd)."</td></tr>";
+      echo "<tr><td>BTC Price</td>";
+      echo "<td>".money_format('%(#10n', $btc_price)." BTC</td></tr>";
+      echo "</table><BR>";
     } else {
       $format = '%(#10n';
+      echo "<center><table border=1><tr><th>Total Profits</th>";
+      echo "<th>".money_format($format, $total_balance)."</th></tr>";
+      echo "<tr><td>Base Amount</td>";
+      echo "<td>".money_format($format, $base_balance)."</td></tr>";
+      echo "<tr><td>Trade Amount</td>";
+      echo "<td>".money_format($format, $trade_balance)."</td></tr>";
+      echo "<tr><td>Available Amount</td>";
+      echo "<td>".money_format($format, $available_amt)."</td></tr>";
+      echo "<tr><td>Used Amount</td>";
+      echo "<td>".money_format($format, $used_balance)."</td></tr>";
+      echo "<tr><td>Profit Left</td>";
+      echo "<td>".money_format($format, $prof_left)."</td></tr>";
+      echo "<tr><td>Account Total</td>";
+      echo "<td>".money_format($format, $account_total)."</td></tr>";
+      echo "<tr><td><span style='font-size:.8em'>Amount for Taxes</span></td>";
+      echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $taxes)."</span></td></tr>";
+      echo "<tr><td><span style='font-size:.8em'>Amount to Doante</span></td>";
+      echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $donate)."</span></td></tr>";
+      echo "<tr><td><span style='font-size:.8em'>Amount Left Over</span></td>";
+      echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $left_over)."</span></td></tr>";
+      echo "</table><BR>";
     }
 
-    echo "<center><table border=1><tr><th>Total Profits</th>";
-    echo "<th>".money_format($format, $total_balance)."</th></tr>";
-    echo "<tr><td>Base Amount</td>";
-    echo "<td>".money_format($format, $base_balance)."</td></tr>";
-    echo "<tr><td>Trade Amount</td>";
-    echo "<td>".money_format($format, $trade_balance)."</td></tr>";
-    echo "<tr><td>Available Amount</td>";
-    echo "<td>".money_format($format, $available_amt)."</td></tr>";
-    echo "<tr><td>Used Amount</td>";
-    echo "<td>".money_format($format, $used_balance)."</td></tr>";
-    echo "<tr><td>Profit Left</td>";
-    echo "<td>".money_format($format, $prof_left)."</td></tr>";
-    echo "<tr><td>Account Total</td>";
-    echo "<td>".money_format($format, $account_total)."</td></tr>";
-    echo "<tr><td><span style='font-size:.8em'>Amount for Taxes</span></td>";
-    echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $taxes)."</span></td></tr>";
-    echo "<tr><td><span style='font-size:.8em'>Amount to Doante</span></td>";
-    echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $donate)."</span></td></tr>";
-    echo "<tr><td><span style='font-size:.8em'>Amount Left Over</span></td>";
-    echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $left_over)."</span></td></tr>";
-    echo "</table><BR>";
+    
+    
     echo "<table border=1 width=80%>";
     echo "<tr>
           <th><span style='font-size:.8em'>Date</span></th>
