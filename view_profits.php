@@ -12,6 +12,7 @@ require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
 
 function viewByPlatform($platform, $trades_table, $profits_table){
+  $has_crypto = False;
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1> ".$platform." Profits</h1>";
@@ -25,12 +26,22 @@ function viewByPlatform($platform, $trades_table, $profits_table){
     $results_2 = $dbconnection->query($sql_2);
     $total_used = 0;
     while($obj_2 = $results_2->fetch_object()){
+      if ($obj_2->trade_strategy == 'Crypto') {
+          $has_crypto = True;
+      }
       $total_used = $total_used + abs($obj_2->total);
     }
     $percent = ($total_balance/$total_used);
     $platform_percent = sprintf("%.2f%%", $percent * 100);
+    if ( $has_crytpo != True ){
+      $format = '%(#10.11n';
+    } else {
+      $format = '%(#10n';
+    }
+
+    
     echo "<center><table border=1><tr><th>Total ".$platform." Profits</th>";
-    echo "<th>".money_format('%(#10n', $total_balance)."</th>";
+    echo "<th>".money_format($format, $total_balance)."</th>";
     echo "<th>$platform_percent</th></tr>";
     echo "</table><BR>";
     echo "<table border=1 width=80%>";
@@ -55,8 +66,8 @@ function viewByPlatform($platform, $trades_table, $profits_table){
       echo "<tr>
             <td align='center'><span style='font-size:.8em'>$obj->date</span></td>
             <td align='center'><span style='font-size:.8em'>$obj->description</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->amount)."</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $balance)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format, $obj->amount)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format, $balance)."</span></td>
             <td align='center'><table><tr>
                 <td><form method='POST' action='edit_profit.php'>
                 <input type='hidden' name='ID' value='$obj->ID'>
