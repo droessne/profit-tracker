@@ -15,6 +15,7 @@ $num_trades = 0;
 $invested_total = 0;
 $current_total = 0;
 $max_total = 0;
+$has_crypto = False;
 
 setlocale(LC_MONETARY, 'en_US');
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -175,17 +176,25 @@ echo "<h1>Open Trades</h1>";
         $your_date = strtotime($obj->executed_date);
         $datediff = $now - $your_date;
         $trade_length = round($datediff / (60 * 60 * 24));
+        if ($obj->trade_strategy == 'Crypto') {
+            $format_line = '%(#10.11n';
+            $format_num = 11;
+            $has_crypto = True;
+        } else {
+            $format_line = '%(#10n';
+            $format_num = 2;
+        }
         
         echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
               <td align='center'><span style='font-size:.9em'>$obj->executed_date</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->qty</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
-              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->executed_price)."</span></td>
-              <td align='center'><strong><span style='font-size:1em'>".money_format('%(#10n', $cur_data['mark'])."</span></strong></td>
-              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $sell)."</span></td>
-              <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,2)."</span></td>
-              <td align='center'><span style='font-size:.8em'>".number_format($away_amt,2)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->executed_price)."</span></td>
+              <td align='center'><strong><span style='font-size:1em'>".money_format($format_line, $cur_data['mark'])."</span></strong></td>
+              <td align='center'><span style='font-size:.8em'>".money_format($format_line, $sell)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,$format_num)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".number_format($away_amt,$format_num)."</span></td>
               <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
               <td align='center'><span style='font-size:.8em'>$obj->platform</span></td>
               <td align='center'><span style='font-size:.8em'>$trade_length</span></td>
@@ -213,16 +222,23 @@ echo "<h1>Open Trades</h1>";
   $gain_loss = ($current_total - $invested_total);
   $away_amt = ($max_total - $current_total);
   $percent_away = number_format(((($current_total/$invested_total) - 1)*100), 2);
+  if ( $has_crytpo != True ){
+    $format = '%(#10.11n';
+    $format_num = 11;
+  } else {
+    $format = '%(#10n';
+    $format_num = 2;
+  }
   echo "<tr>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
-              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $invested_total)."</span></td>
-              <td align='center'><strong><span style='font-size:1em'>".money_format('%(#10n', $current_total)."</span></strong></td>
-              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $max_total)."</span></td>
-              <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,2)."</span></td>
-              <td align='center'><span style='font-size:.8em'>".number_format($away_amt,2)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".money_format($format, $invested_total)."</span></td>
+              <td align='center'><strong><span style='font-size:1em'>".money_format($format, $current_total)."</span></strong></td>
+              <td align='center'><span style='font-size:.8em'>".money_format($format, $max_total)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,$format_num)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".number_format($away_amt,$format_num)."</span></td>
               <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
