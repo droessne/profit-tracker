@@ -71,7 +71,7 @@ for ($i = 1; $i <= $cur_month; $i++) {
     $tar_percent = $monthly_profit_percent_target;
     $tar_profit_amt = ($new_base_amt * $tar_percent);
     $tar_percent = sprintf("%.2f%%", $tar_percent * 100);
-    if ($has_crytpo){
+    if ($has_crypto){
       $format = '%(#10.11n';
     } else {
       $format = '%(#10n';
