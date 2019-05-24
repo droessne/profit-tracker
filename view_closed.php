@@ -31,8 +31,10 @@ function viewByPlatform($platform, $trades_table){
       $trade_com = $obj->com_fee;
       if ($obj->trade_strategy == 'Crypto') {
             $format_line = '%(#10.11n';
+            $format_num = 11;
         } else {
             $format_line = '%(#10n';
+            $format_num = 0;
         }
 
       echo "<table border=1>";
@@ -85,7 +87,7 @@ function viewByPlatform($platform, $trades_table){
                 <td align='center'><span style='font-size:.8em'>$obj2->symbol</span></td>
                 <td align='center'><span style='font-size:.8em'>$obj2->trade_strategy</span></td>
                 <td align='center'><span style='font-size:.8em'>$obj2->order_type</span></td>
-                <td align='center'><span style='font-size:.8em'>$obj2->qty</span></td>
+                <td align='center'><span style='font-size:.8em'>".number_format($obj2->qty,$format_num)."</span></td>
                 <td align='center'><span style='font-size:.8em'>$obj2->expire_date</span></td>
                 <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj2->strike_price)."</span></td>
                 <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj2->executed_price)."</span></td>
