@@ -12,7 +12,7 @@ require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
 
 function viewByPlatform($platform, $trades_table, $profits_table){
-  $has_crypto = False;
+  $has_crypto = false;
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1> ".$platform." Profits</h1>";
@@ -27,16 +27,16 @@ function viewByPlatform($platform, $trades_table, $profits_table){
     $total_used = 0;
     while($obj_2 = $results_2->fetch_object()){
       if ($obj_2->trade_strategy == 'Crypto') {
-          $has_crypto = True;
+          $has_crypto = true;
       }
       $total_used = $total_used + abs($obj_2->total);
     }
     $percent = ($total_balance/$total_used);
     $platform_percent = sprintf("%.2f%%", $percent * 100);
-    if ( $has_crytpo != True ){
-      $format = '%(#10n';
-    } else {
+    if ($has_crypto){
       $format = '%(#10.11n';
+    } else {
+      $format = '%(#10n';
     }
 
     
