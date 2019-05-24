@@ -34,9 +34,9 @@ function viewByPlatform($platform, $trades_table, $profits_table){
     $percent = ($total_balance/$total_used);
     $platform_percent = sprintf("%.2f%%", $percent * 100);
     if ( $has_crytpo != True ){
-      $format = '%(#10.11n';
-    } else {
       $format = '%(#10n';
+    } else {
+      $format = '%(#10.11n';
     }
 
     
