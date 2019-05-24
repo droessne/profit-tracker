@@ -29,6 +29,13 @@ function viewByPlatform($platform, $trades_table){
     while($obj = $results->fetch_object()){
       $trade_total = $obj->total;
       $trade_com = $obj->com_fee;
+      if ($obj->trade_strategy == 'Crypto') {
+            $format_line = '%(#10.11n';
+            $has_crypto = True;
+        } else {
+            $format_line = '%(#10n';
+        }
+
       echo "<table border=1>";
       echo "<tr>
             <th><span style='font-size:.8em'>Executed Date</span></th>
@@ -54,12 +61,12 @@ function viewByPlatform($platform, $trades_table){
             <td align='center'><span style='font-size:.8em'>$obj->order_type</span></td>
             <td align='center'><span style='font-size:.8em'>$obj->qty</span></td>
             <td align='center'><span style='font-size:.8em'>$obj->expire_date</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->strike_price)."</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->executed_price)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->strike_price)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->executed_price)."</span></td>
             <td align='center'><span style='font-size:.8em'>$obj->order_type2</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->strike_price2)."</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->com_fee)."</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->total)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->strike_price2)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->com_fee)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->total)."</span></td>
             <td align='center'><table><tr>
                 <td><form method='POST' action='edit_trade.php'>
                 <input type='hidden' name='ID' value='$obj->ID'>
@@ -81,12 +88,12 @@ function viewByPlatform($platform, $trades_table){
                 <td align='center'><span style='font-size:.8em'>$obj2->order_type</span></td>
                 <td align='center'><span style='font-size:.8em'>$obj2->qty</span></td>
                 <td align='center'><span style='font-size:.8em'>$obj2->expire_date</span></td>
-                <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj2->strike_price)."</span></td>
-                <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj2->executed_price)."</span></td>
+                <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj2->strike_price)."</span></td>
+                <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj2->executed_price)."</span></td>
                 <td align='center'><span style='font-size:.8em'>$obj2->order_type2</span></td>
-                <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj2->strike_price2)."</span></td>
-                <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj2->com_fee)."</span></td>
-                <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj2->total)."</span></td>
+                <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj2->strike_price2)."</span></td>
+                <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj2->com_fee)."</span></td>
+                <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj2->total)."</span></td>
                 <td align='center'><table><tr>
                   <td><form method='POST' action='edit_trade.php'>
                   <input type='hidden' name='ID' value='$obj2->ID'>
@@ -98,7 +105,7 @@ function viewByPlatform($platform, $trades_table){
        }
        #$per = ($trade_total/$obj->total);
        $percent = number_format( (abs($trade_total)/abs($obj->total)) * 100, 2).'%';
-       echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $trade_com)."</span></td><td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $trade_total)."</span></td><td><span style='font-size:.8em'>".$percent."</span></td></tr>";
+       echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_com)."</span></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_total)."</span></td><td><span style='font-size:.8em'>".$percent."</span></td></tr>";
        echo "</table>";
      }
      $results->close();
