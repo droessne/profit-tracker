@@ -47,7 +47,7 @@ if ($dbconnection->connect_error) {
           </tr><tr>';
     echo '<td><input type="text" name="date" value="'.$obj->date.'" size="10"></td>';
     echo '<td><input type="text" name="description" value="'.$obj->description.'" size="50"></td>';
-    echo '<td><input type="text" name="amount" value="'.$obj->amount.'" size="3"></td>';
+    echo '<td><input type="text" name="amount" value="'.$obj->amount.'" size="20"></td>';
     echo '<td><input type="text" name="entry_id" value="'.$obj->entry_id.'" size="10"></td>';
     echo '<td><input type="text" name="exit_id" value="'.$obj->exit_id.'" size="10"></td></tr></tr></table>';
     echo '<input type="hidden" name="ID" value="'.$id.'">';
