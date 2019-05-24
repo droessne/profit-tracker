@@ -34,9 +34,9 @@ $sql_5 = "SELECT COUNT(*) as count FROM ".$trades_table." WHERE trade_strategy='
 $results_5 = $dbconnection->query($sql_5);
 while($obj_5 = $results_5->fetch_object()){
   if  ( $obj_5->count == 0 ){
-    $has_crypto = False;
+    $has_crypto = false;
   } else {
-    $has_crypto = True;
+    $has_crypto = true;
   }
 }
 for ($i = 1; $i <= $cur_month; $i++) {
@@ -71,10 +71,10 @@ for ($i = 1; $i <= $cur_month; $i++) {
     $tar_percent = $monthly_profit_percent_target;
     $tar_profit_amt = ($new_base_amt * $tar_percent);
     $tar_percent = sprintf("%.2f%%", $tar_percent * 100);
-    if ( $has_crytpo != True ){
-      $format = '%(#10n';
-    } else {
+    if ($has_crytpo){
       $format = '%(#10.11n';
+    } else {
+      $format = '%(#10n';
     }
     echo "<tr>
           <td align='center'><span style='font-size:.8em'>".$monthName."</span></td>
