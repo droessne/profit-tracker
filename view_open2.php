@@ -188,7 +188,7 @@ echo "<h1>Open Trades</h1>";
         echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
               <td align='center'><span style='font-size:.9em'>$obj->executed_date</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
-              <td align='center'><span style='font-size:.8em'>$obj->qty</span></td>
+              <td align='center'><span style='font-size:.8em'>".number_format($obj->qty,$format_num)."</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->executed_price)."</span></td>
               <td align='center'><strong><span style='font-size:1em'>".money_format($format_line, $cur_data['mark'])."</span></strong></td>
