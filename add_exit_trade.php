@@ -116,11 +116,11 @@ echo '>Sell Close</option>
 echo '>Buy Close</option>
   </select></td>';
 echo '
-<td><input type="text" name="qty" value="'.$qty.'" size="3"></td>
-<td><input type="text" name="expire_date" value="'.$expire_date.'" size="10" ></td>
-<td><input type="text" name="strike_price" value="'.$strike_price.'" size="10" ></td>
-<td><input type="text" name="executed_price" value="" size="10"></td>
-<td><input type="text" name="com_fee" value="" size="12"></td>
+<td><input type="text" name="qty" value="'.$qty.'" size="15"></td>
+<td><input type="text" name="expire_date" value="'.$expire_date.'" size="15" ></td>
+<td><input type="text" name="strike_price" value="'.$strike_price.'" size="15" ></td>
+<td><input type="text" name="executed_price" value="" size="15"></td>
+<td><input type="text" name="com_fee" value="" size="15"></td>
 </tr>
 <tr>
 <td></td>
@@ -146,7 +146,7 @@ echo '>Buy Close</option>
 </select></td>
 <td></td>
 <td></td>
-<td><input type="text" name="strike_price2" value="'.$strike_price2.'" size="10" ></td>
+<td><input type="text" name="strike_price2" value="'.$strike_price2.'" size="15" ></td>
 <td></td><td><input type="hidden" name="ID" value="'.$id.'">
 <input type="hidden" name="referer" value="'.$_SERVER['HTTP_REFERER'].'">
 </td></tr></table>
