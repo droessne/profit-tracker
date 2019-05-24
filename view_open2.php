@@ -7,7 +7,7 @@ require_once("include/get_stock.php");
 require_once("include/get_put.php");
 require_once("include/get_call_spread.php");
 require_once("include/get_put_spread.php");
-require_once("install/binance.php");
+#require_once("install/binance.php");
 require_once("include/defaults.cfg.php");
 get_auth();
 $num_green = 0;
@@ -137,6 +137,7 @@ echo "<h1>Open Trades</h1>";
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
         } elseif ('Crypto' == $obj->trade_strategy) {
+            require_once("install/binance.php");
             $cur_data['mark'] = $api->price($symbol."BTC");
             #echo "Price of BNB: {$price} BTC.".PHP_EOL;
         }
