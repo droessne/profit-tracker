@@ -15,7 +15,7 @@ $num_trades = 0;
 $invested_total = 0;
 $current_total = 0;
 $max_total = 0;
-$has_crypto = False;
+$has_crypto = false;
 
 setlocale(LC_MONETARY, 'en_US');
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -179,7 +179,7 @@ echo "<h1>Open Trades</h1>";
         if ($obj->trade_strategy == 'Crypto') {
             $format_line = '%(#10.11n';
             $format_num = 11;
-            $has_crypto = True;
+            $has_crypto = true;
         } else {
             $format_line = '%(#10n';
             $format_num = 2;
@@ -222,12 +222,12 @@ echo "<h1>Open Trades</h1>";
   $gain_loss = ($current_total - $invested_total);
   $away_amt = ($max_total - $current_total);
   $percent_away = number_format(((($current_total/$invested_total) - 1)*100), 2);
-  if ( $has_crytpo != True ){
-    $format = '%(#10n';
-    $format_num = 2;
-  } else {
+  if ($has_crypto){
     $format = '%(#10.11n';
     $format_num = 11;
+  } else {
+    $format = '%(#10n';
+    $format_num = 2;
   }
   echo "<tr>
               <td align='center'><span style='font-size:.8em'> - </span></td>
