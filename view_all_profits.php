@@ -39,9 +39,9 @@ require_once("include/defaults.cfg.php");
     $results_5 = $dbconnection->query($sql_5);
     while($obj_5 = $results_5->fetch_object()){
       if  ( $obj_5->count == 0 ){
-          $has_crypto = False;
+          $has_crypto = false;
       } else {
-          $has_crypto = True;
+          $has_crypto = true;
       }
     }
     $available_amt = ($base_balance + $trade_balance + $total_balance + $used_balance);
@@ -50,10 +50,10 @@ require_once("include/defaults.cfg.php");
     $left_over = ($total_balance * .65);
     $prof_left = ($total_balance + $used_balance);
     $account_total = ($base_balance + $prof_left);
-    if ( $has_crytpo != True ){
-      $format = '%(#10n';
-    } else {
+    if ( $has_crypto ){
       $format = '%(#10.11n';
+    } else {
+      $format = '%(#10n';
     }
 
     echo "<center><table border=1><tr><th>Total Profits</th>";
