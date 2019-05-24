@@ -35,26 +35,41 @@ require_once("include/defaults.cfg.php");
     while($obj_3 = $results_3->fetch_object()){
       $trade_balance = $obj_3->balance;
     }
+    $sql_5 = "SELECT COUNT(*) as count FROM ".$trades_table." WHERE trade_strategy='Crypto';";
+    $results_5 = $dbconnection->query($sql_5);
+    while($obj_5 = $results_5->fetch_object()){
+      if  ( $obj_5->count == 0 ){
+          $has_crypto = False;
+      } else {
+          $has_crypto = True;
+      }
+    }
     $available_amt = ($base_balance + $trade_balance + $total_balance + $used_balance);
     $taxes = ($total_balance * .25);
     $donate = ($total_balance * .10);
     $left_over = ($total_balance * .65);
     $prof_left = ($total_balance + $used_balance);
     $account_total = ($base_balance + $prof_left);
+    if ( $has_crytpo != True ){
+      $format = '%(#10.11n';
+    } else {
+      $format = '%(#10n';
+    }
+
     echo "<center><table border=1><tr><th>Total Profits</th>";
-    echo "<th>".money_format('%(#10n', $total_balance)."</th></tr>";
+    echo "<th>".money_format($format, $total_balance)."</th></tr>";
     echo "<tr><td>Base Amount</td>";
-    echo "<td>".money_format('%(#10n', $base_balance)."</td></tr>";
+    echo "<td>".money_format($format, $base_balance)."</td></tr>";
     echo "<tr><td>Trade Amount</td>";
-    echo "<td>".money_format('%(#10n', $trade_balance)."</td></tr>";
+    echo "<td>".money_format($format, $trade_balance)."</td></tr>";
     echo "<tr><td>Available Amount</td>";
-    echo "<td>".money_format('%(#10n', $available_amt)."</td></tr>";
+    echo "<td>".money_format($format, $available_amt)."</td></tr>";
     echo "<tr><td>Used Amount</td>";
-    echo "<td>".money_format('%(#10n', $used_balance)."</td></tr>";
+    echo "<td>".money_format($format, $used_balance)."</td></tr>";
     echo "<tr><td>Profit Left</td>";
-    echo "<td>".money_format('%(#10n', $prof_left)."</td></tr>";
+    echo "<td>".money_format($format, $prof_left)."</td></tr>";
     echo "<tr><td>Account Total</td>";
-    echo "<td>".money_format('%(#10n', $account_total)."</td></tr>";
+    echo "<td>".money_format($format, $account_total)."</td></tr>";
     echo "<tr><td><span style='font-size:.8em'>Amount for Taxes</span></td>";
     echo "<td><span style='font-size:.8em'>".money_format('%(#10n', $taxes)."</span></td></tr>";
     echo "<tr><td><span style='font-size:.8em'>Amount to Doante</span></td>";
@@ -84,8 +99,8 @@ require_once("include/defaults.cfg.php");
       echo "<tr>
             <td align='center'><span style='font-size:.8em'>$obj->date</span></td>
             <td align='center'><span style='font-size:.8em'>$obj->description</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->amount)."</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $balance)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format, $obj->amount)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format, $balance)."</span></td>
             <td align='center'><table><tr>
                 <td><form method='POST' action='edit_profit.php'>
                 <input type='hidden' name='ID' value='$obj->ID'>
@@ -121,8 +136,8 @@ require_once("include/defaults.cfg.php");
       echo "<tr>
             <td align='center'><span style='font-size:.8em'>$obj->date</span></td>
             <td align='center'><span style='font-size:.8em'>$obj->description</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->amount)."</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $balance)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format, $obj->amount)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format, $balance)."</span></td>
             <td align='center'><table><tr>
                 <td><form method='POST' action='edit_profit.php'>
                 <input type='hidden' name='ID' value='$obj->ID'>
@@ -158,8 +173,8 @@ require_once("include/defaults.cfg.php");
       echo "<tr>
             <td align='center'><span style='font-size:.8em'>$obj->date</span></td>
             <td align='center'><span style='font-size:.8em'>$obj->description</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->amount)."</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $balance)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format, $obj->amount)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format, $balance)."</span></td>
             <td align='center'><table><tr>
                 <td><form method='POST' action='edit_profit.php'>
                 <input type='hidden' name='ID' value='$obj->ID'>
