@@ -182,7 +182,7 @@ echo "<h1>Open Trades</h1>";
             $has_crypto = true;
         } else {
             $format_line = '%(#10n';
-            $format_num = 2;
+            $format_num = 0;
         }
         
         echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
