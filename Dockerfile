@@ -7,7 +7,7 @@ RUN echo 'proxy=http://192.168.1.73:3128' >> /etc/yum.conf \
  && yum -y update
 RUN yum -y install git wget \
  && wget http://getcomposer.org/installer -O /tmp/composer-installer.php \
- && php71 composer-install.php --install-dir="/tmp"
+ && php71 composer-install.php --install-dir="/tmp" \
  && php71 /tmp/composer.phar require "jaggedsoft/php-binance-api @dev" -d /var/www/html \
  && yum -y history undo last
 EXPOSE 80
