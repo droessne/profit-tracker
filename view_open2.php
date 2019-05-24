@@ -135,6 +135,9 @@ echo "<h1>Open Trades</h1>";
           $gain_loss = ($cur_data['mark'] - $obj->executed_price);
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
+        } elseif ('Crypto' == $obj->trade_strategy) {
+            $cur_data['mark'] = $api->price($symbol."BTC");
+            #echo "Price of BNB: {$price} BTC.".PHP_EOL;
         }
         $num_trades = ($num_trades + 1);
         #color section
