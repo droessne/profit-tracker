@@ -4,6 +4,7 @@ require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
 
 function viewByPlatform($platform, $trades_table){
+  $has_crypto = False;
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1> ".$platform." Open Trades</h1>";
@@ -89,6 +90,12 @@ function viewByPlatform($platform, $trades_table){
           # 100% Profit Target
           $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 2) / 100);
         }
+        if ($obj->trade_strategy == 'Crypto') {
+            $format_line = '%(#10.11n';
+            $has_crypto = True;
+        } else {
+            $format_line = '%(#10n';
+        }
         
         $tar_total = abs($sell);
         date_default_timezone_set("America/New_York");
@@ -107,12 +114,12 @@ function viewByPlatform($platform, $trades_table){
               <td align='center'><span style='font-size:.8em'>$obj->order_type</span></td>
               <td align='center'><span style='font-size:.8em'>$new_qty</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->expire_date</span></td>
-              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->strike_price)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->strike_price)."</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->order_type2</span></td>
-              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->strike_price2)."</span></td>
-              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->executed_price)."</span></td>
-              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->com_fee)."</span></td>
-              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $obj->total)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->strike_price2)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->executed_price)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->com_fee)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->total)."</span></td>
               <td align='center'><table><tr>
                   <td><form method='POST' action='add_exit_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
@@ -123,16 +130,21 @@ function viewByPlatform($platform, $trades_table){
                   <td valign='bottom'><form method='POST' action='delete_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
                   <button type='submit'>Del</button></form></td></tr></table></td>
-              <td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $tar_total)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".money_format($format_line, $tar_total)."</span></td>
               </tr>";
       }
     }
     $results->close();
     unset($obj);
   }
+  if ( $has_crytpo != True ){
+    $format = '%(#10.11n';
+  } else {
+    $format = '%(#10n';
+  }
   echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
-  echo "<td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $plat_com)."</span></td>";
-  echo "<td align='center'><span style='font-size:.8em'>".money_format('%(#10n', $plat_total)."</span></td>";
+  echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_com)."</span></td>";
+  echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_total)."</span></td>";
   echo "<td></td></tr>";
   echo "</table>";
 }
