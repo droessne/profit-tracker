@@ -31,7 +31,6 @@ function viewByPlatform($platform, $trades_table){
       $trade_com = $obj->com_fee;
       if ($obj->trade_strategy == 'Crypto') {
             $format_line = '%(#10.11n';
-            $has_crypto = True;
         } else {
             $format_line = '%(#10n';
         }
