@@ -28,7 +28,7 @@
 </tr><tr>
 <td><input type="text" name="date" value="<?php date_default_timezone_set("America/New_York"); echo date("Y-m-d"); ?>" size="10"></td>
 <td><input type="text" name="description" value="" size="50"></td>
-<td><input type="text" name="amount" value="" size="11"></td>
+<td><input type="text" name="amount" value="" size="20"></td>
 <td><input type="text" name="entry_id" value="0" size="11"></td>
 <td><input type="text" name="exit_id" value="0" size="11"></td>
 </tr>
