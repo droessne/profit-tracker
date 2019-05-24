@@ -113,11 +113,11 @@ if ($dbconnection->connect_error) {
           }
                               echo '>Buy Close</option>
           </select></td>';
-    echo '<td><input type="text" name="qty" value="'.$obj->qty.'" size="3"></td>';
-    echo '<td><input type="text" name="expire_date" value="'.$obj->expire_date.'" size="10"></td>';
-    echo '<td><input type="text" name="strike_price" value="'.$obj->strike_price.'" size="10"></td>';
-    echo '<td><input type="text" name="executed_price" value="'.$obj->executed_price.'" size="10"></td>';
-    echo '<td><input type="text" name="com_fee" value="'.$obj->com_fee.'" size="12"></td></tr>';
+    echo '<td><input type="text" name="qty" value="'.$obj->qty.'" size="15"></td>';
+    echo '<td><input type="text" name="expire_date" value="'.$obj->expire_date.'" size="15"></td>';
+    echo '<td><input type="text" name="strike_price" value="'.$obj->strike_price.'" size="15"></td>';
+    echo '<td><input type="text" name="executed_price" value="'.$obj->executed_price.'" size="15"></td>';
+    echo '<td><input type="text" name="com_fee" value="'.$obj->com_fee.'" size="15"></td></tr>';
     echo '<tr><td></td><td></td>';
     echo '<td><select id="order_type2" name="order_type2">
             <option value=""';
@@ -147,7 +147,7 @@ if ($dbconnection->connect_error) {
                                 echo '>Buy Close</option>
           </select></td>';
     echo '<td></td><td></td>';
-    echo '<td><input type="text" name="strike_price2" value="'.$obj->strike_price2.'" size="10"></td>';
+    echo '<td><input type="text" name="strike_price2" value="'.$obj->strike_price2.'" size="15"></td>';
     echo '<td><input type="hidden" name="ID" value="'.$id.'"></td></tr></table>';
     echo '<input type="hidden" name="referer" value="'.$_SERVER['HTTP_REFERER'].'">';
     echo '<input type="submit" /></form>';
