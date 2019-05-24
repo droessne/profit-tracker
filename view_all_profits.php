@@ -71,9 +71,9 @@ require_once("install/binance.php");
       echo "<tr><td>Account Total</td>";
       $btc_price = $api->price("BTCUSDT");
       $usd = $account_total * $btc_price;
-      echo "<td>".money_format('%(#10n', $usd)."</td></tr>";
+      echo "<td> $".money_format('%(#10n', $usd)."</td></tr>";
       echo "<tr><td>BTC Price</td>";
-      echo "<td>".money_format('%(#10n', $btc_price)." BTC</td></tr>";
+      echo "<td> $".money_format('%(#10n', $btc_price)." BTC</td></tr>";
       echo "</table><BR>";
     } else {
       $format = '%(#10n';
