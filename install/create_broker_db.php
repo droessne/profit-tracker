@@ -49,7 +49,7 @@ if ($dbconnection->connect_error) {
                 `ID` int(11) NOT NULL AUTO_INCREMENT,
                 `date` date NOT NULL,
                 `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-                `amount` float,
+                `amount` decimal(22,11),
                 `platform` varchar(250),
                 `entry_id` int(11),
                 `exit_id` varchar(50),
