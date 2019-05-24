@@ -72,9 +72,9 @@ for ($i = 1; $i <= $cur_month; $i++) {
     $tar_profit_amt = ($new_base_amt * $tar_percent);
     $tar_percent = sprintf("%.2f%%", $tar_percent * 100);
     if ( $has_crytpo != True ){
-      $format = '%(#10.11n';
-    } else {
       $format = '%(#10n';
+    } else {
+      $format = '%(#10.11n';
     }
     echo "<tr>
           <td align='center'><span style='font-size:.8em'>".$monthName."</span></td>
