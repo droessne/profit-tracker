@@ -129,7 +129,7 @@ if ($dbconnection->connect_error) {
       $results = $dbconnection->query($sql);
       if ($results) {
         echo "Profit updated.";
-        if (strpos($_POST['referer'], 'Closed') !== false) {
+        if (strpos($_POST['referer'], 'closed') !== false) {
             header("Location: view_closed_form.php");
         } else {
             header("Location: {$_POST['referer']}");
@@ -139,7 +139,7 @@ if ($dbconnection->connect_error) {
         echo "Sorry, editing this profit failed. Please try again";
       }
     } else {
-        if (strpos($_POST['referer'], 'Closed') !== false) {
+        if (strpos($_POST['referer'], 'closed') !== false) {
             header("Location: view_closed_form.php");
         } else {
             header("Location: {$_POST['referer']}");
