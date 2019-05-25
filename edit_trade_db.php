@@ -136,12 +136,12 @@ if ($dbconnection->connect_error) {
       }
     } else {
         echo $_POST['referer'];
-        if (strpos($_POST['referer'], 'Closed') !== false) {
-            header("Location: view_closed_form.php");
-        } else {
-            header("Location: {$_POST['referer']}");
-        }
-        die();
+        #if (strpos($_POST['referer'], 'Closed') !== false) {
+         #   header("Location: view_closed_form.php");
+        #} else {
+        #    header("Location: {$_POST['referer']}");
+       # }
+        #die();
     }
   } else {
     echo "Sorry, editing this trade failed. Please try again";
