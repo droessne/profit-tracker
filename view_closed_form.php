@@ -24,7 +24,7 @@
 </select></td>
 </tr>
 </table>
-
+<?php echo '<input type="hidden" name="referer" value="view_closed_form.php">'; ?>
 <input type="submit" />
 </form>
 
