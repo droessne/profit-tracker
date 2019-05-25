@@ -135,7 +135,11 @@ if ($dbconnection->connect_error) {
         echo "Sorry, editing this profit failed. Please try again";
       }
     } else {
-        header("Location: {$_POST['referer']}");
+        if (strpos($_POST['referer'], 'Closed') !== false) {
+            header("Location: view_closed_form.php");
+        } else {
+            header("Location: {$_POST['referer']}");
+        }
         die();
     }
   } else {
