@@ -13,7 +13,11 @@ if (!$dbconnection->connect_errno) {
   #$results->close();
   #unset($obj);
   echo "Deleted entry!";
-  header("Location: {$_SERVER['HTTP_REFERER']}");
+  if (strpos($_POST['referer'], 'closed') !== false) {
+            header("Location: view_closed_form.php");
+        } else {
+            header("Location: {$_SERVER['HTTP_REFERER']}");
+        }
   die();
 } else {
   echo "Failed to Delete entry!";
