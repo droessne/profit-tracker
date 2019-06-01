@@ -164,7 +164,11 @@ echo "<h1>Open Trades</h1>";
           $color = 'DarkRed';
           $font_color = 'White';
         }
-        if ($cur_data['d_2_ex'] <= 7){
+        $current = strtotime(date("Y-m-d"));
+        $date    = strtotime($obj->expire_date);
+        $datediff = $date - $current;
+        $difference = floor($datediff/(60*60*24));
+        if($difference <= 7){
           $ex_color = 'Orange';
         } else {
           $ex_color = 'White';
@@ -212,7 +216,7 @@ echo "<h1>Open Trades</h1>";
               <td align='center' bgcolor='".$sb_color."' style='color: Black;'><span style='font-size:.9em'>$obj->sell_by_date</span></td>
               </tr>";
           if ($has_crypto){
-            $format = '%(#10.5n';
+            $format_line = '%(#10.5n';
             $format_num = 5;
             $ex_price = ( $obj->executed_price * $btc_price );
             $cur_price = ( $cur_data['mark'] * $btc_price );
@@ -278,10 +282,11 @@ echo "<h1>Open Trades</h1>";
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
               </tr>";
   if ($has_crypto){
-    $format = '%(#10.5n';
-    $format_num = 5;
+    $format = '%(#10n';
+    $format_num = 2;
     $invested_total = ($invested_total * $btc_price);
     $current_total = ($current_total * $btc_price);
     $max_total = ($max_total * $btc_price);
@@ -298,6 +303,7 @@ echo "<h1>Open Trades</h1>";
               <td align='center'><span style='font-size:.8em'>$".number_format($gain_loss,$format_num)."</span></td>
               <td align='center'><span style='font-size:.8em'>$".number_format($away_amt,$format_num)."</span></td>
               <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
