@@ -184,6 +184,7 @@ echo "<h1>Open Trades</h1>";
         $datediff = $now - $your_date;
         $trade_length = round($datediff / (60 * 60 * 24));
         if ($obj->trade_strategy == 'Crypto') {
+            $btc_price = $api->price("BTCUSDT");
             $format_line = '%(#10.11n';
             $format_num = 11;
             $format_qty = 11;
@@ -210,6 +211,31 @@ echo "<h1>Open Trades</h1>";
               <td align='center' bgcolor='".$ex_color."' style='color: Black;'><span style='font-size:.9em'>$obj->expire_date</span></td>
               <td align='center' bgcolor='".$sb_color."' style='color: Black;'><span style='font-size:.9em'>$obj->sell_by_date</span></td>
               </tr>";
+          if ($has_crypto){
+            $format = '%(#10.5n';
+            $format_num = 5;
+            $ex_price = ( $obj->executed_price * $btc_price );
+            $cur_price = ( $cur_data['mark'] * $btc_price );
+            $sell_price = ( $sell * $btc_price );
+            $gain_loss = ( $gain_loss * $btc_price );
+            $away_amt = ( $away_amt * $btc_price );
+            echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'>$".money_format($format_line, $ex_price)."</span></td>
+              <td align='center'><strong><span style='font-size:1em'>$".money_format($format_line, $cur_price)."</span></strong></td>
+              <td align='center'><span style='font-size:.8em'>$".money_format($format_line, $sell_price)."</span></td>
+              <td align='center'><span style='font-size:.8em'>$".number_format($gain_loss,$format_num)."</span></td>
+              <td align='center'><span style='font-size:.8em'>$".number_format($away_amt,$format_num)."</span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              </tr>";
+          }
           if ('Stock' == $obj->trade_strategy) {
             $invested_total = (($obj->qty * $obj->executed_price)) + $invested_total;
             $current_total = (($obj->qty * $cur_data['mark'])) + $current_total;
@@ -253,6 +279,30 @@ echo "<h1>Open Trades</h1>";
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               </tr>";
+  if ($has_crypto){
+    $format = '%(#10.5n';
+    $format_num = 5;
+    $invested_total = ($invested_total * $btc_price);
+    $current_total = ($current_total * $btc_price);
+    $max_total = ($max_total * $btc_price);
+    $gain_loss = ($gain_loss * $btc_price);
+    $away_amt = ($away_amt * $btc_price);
+    echo "<tr>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'>$".money_format($format, $invested_total)."</span></td>
+              <td align='center'><strong><span style='font-size:1em'>$".money_format($format, $current_total)."</span></strong></td>
+              <td align='center'><span style='font-size:.8em'>$".money_format($format, $max_total)."</span></td>
+              <td align='center'><span style='font-size:.8em'>$".number_format($gain_loss,$format_num)."</span></td>
+              <td align='center'><span style='font-size:.8em'>$".number_format($away_amt,$format_num)."</span></td>
+              <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              </tr>";
+  }
   echo "</table>";
   echo "<table border='1'>
         <tr><td align='center'>Winners</td><td align='center'>".$num_green."</td></tr>
