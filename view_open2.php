@@ -216,8 +216,8 @@ echo "<h1>Open Trades</h1>";
               <td align='center' bgcolor='".$sb_color."' style='color: Black;'><span style='font-size:.9em'>$obj->sell_by_date</span></td>
               </tr>";
           if ($has_crypto){
-            $format_line = '%(#10.5n';
-            $format_num = 5;
+            $format_line = '%(#10.6n';
+            $format_num = 6;
             $ex_price = ( $obj->executed_price * $btc_price );
             $cur_price = ( $cur_data['mark'] * $btc_price );
             $sell_price = ( $sell * $btc_price );
