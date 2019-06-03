@@ -223,6 +223,8 @@ echo "<h1>Open Trades</h1>";
             $sell_price = ( $sell * $btc_price );
             $gain_loss = ( $gain_loss * $btc_price );
             $away_amt = ( $away_amt * $btc_price );
+            $buy_total = ( $ex_price * $obj->qty );
+            $cur_total = ( $cur_price * $obj->qty );
             echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
@@ -236,8 +238,8 @@ echo "<h1>Open Trades</h1>";
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
-              <td align='center'><span style='font-size:.8em'> - </span></td>
-              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'>$".money_format($format_line, $buy_total)."</span></td>
+              <td align='center'><strong><span style='font-size:1em'>$".money_format($format_line, $cur_total)."</span></strong></td>
               </tr>";
           }
           if ('Stock' == $obj->trade_strategy) {
