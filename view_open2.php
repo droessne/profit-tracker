@@ -238,8 +238,8 @@ echo "<h1>Open Trades</h1>";
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
-              <td align='center'><span style='font-size:.8em'>$".money_format($format_line, $buy_total)."</span></td>
-              <td align='center'><strong><span style='font-size:1em'>$".money_format($format_line, $cur_total)."</span></strong></td>
+              <td align='center'><span style='font-size:.8em'>$".money_format('%(#10n', $buy_total)."</span></td>
+              <td align='center'><strong><span style='font-size:1em'>$".money_format('%(#10n', $cur_total)."</span></strong></td>
               </tr>";
           }
           if ('Stock' == $obj->trade_strategy) {
