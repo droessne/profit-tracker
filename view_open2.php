@@ -320,5 +320,5 @@ echo "<h1>Open Trades</h1>";
         </table>";
   echo "<BR> <BR> <BR> <BR> Auth Results: ".$auth_results;
   echo "<BR> <BR> <a href='https://auth.tdameritrade.com/oauth?client_id=MONEY_DERS@AMER.OAUTHAP&response_type=code&redirect_uri=https://api.dersllc.com:8743'>Re-Request Auth</a>";
-  echo "<BR> <BR> <a href='https://money.dersllc.com/first_auth.php'>Re-Import URL</a>";
+  echo "<BR> <BR> <a href='https://money.dersllc.com/first_auth.php'>Re-Import Auth</a>";
 ?>
