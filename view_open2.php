@@ -10,7 +10,7 @@ require_once("include/get_put_spread.php");
 require 'vendor/autoload.php';
 require_once("install/binance.php");
 require_once("include/defaults.cfg.php");
-get_auth();
+$auth_results = get_auth();
 $num_green = 0;
 $num_red = 0;
 $num_trades = 0;
@@ -318,5 +318,7 @@ echo "<h1>Open Trades</h1>";
         <tr><td align='center'>Neutral</td><td align='center'>".($num_trades - $num_red - $num_green)."</td></tr>
         <tr><td align='center'>Total</td><td align='center'>".$num_trades."</td></tr>
         </table>";
-
+  echo "<BR> <BR> <BR> <BR> Auth Results: ".$auth_results;
+  echo "<BR> <BR> Re-Request URL: https://auth.tdameritrade.com/oauth?client_id=MONEY_DERS@AMER.OAUTHAP&response_type=code&redirect_uri=https://api.dersllc.com:8743";
+  echo "<BR> <BR> Re-Import URL: https://money.dersllc.com/first_auth.php";
 ?>
