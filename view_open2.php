@@ -1,6 +1,5 @@
-
 <?php
-require_once("include/html_head.php");
+require_once("include/html_open.php");
 require_once("include/database.cfg.php");
 require_once("include/get_auth.php");
 require_once("include/get_call.php");
@@ -11,6 +10,9 @@ require_once("include/get_put_spread.php");
 require 'vendor/autoload.php';
 require_once("install/binance.php");
 require_once("include/defaults.cfg.php");
+echo "
+
+";
 $auth_results = get_auth();
 $num_green = 0;
 $num_red = 0;
@@ -23,8 +25,9 @@ $has_crypto = false;
 setlocale(LC_MONETARY, 'en_US');
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 echo "<h1>Open Trades</h1>";
-  echo "<table border=1>";
-  echo "<tr>
+echo '<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a symbol">';
+  echo "<table border=1 id='myTable'>";
+  echo "<tr class='header'>
         <th><span style='font-size:.8em'>Entry Date</span></th>
         <th><span style='font-size:.8em'>Symbol</span></th>
         <th><span style='font-size:.8em'>Qty</span></th>
@@ -324,3 +327,28 @@ echo "<h1>Open Trades</h1>";
   echo "<BR> <BR> <a href='https://money.dersllc.com/first_auth.php'>Re-Import Auth</a>";
 require_once("include/html_close.php");
 ?>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+
+
+
