@@ -26,7 +26,7 @@ setlocale(LC_MONETARY, 'en_US');
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 echo "<h1>Open Trades</h1>";
 echo '<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for symbols.." title="Type in a symbol">';
-echo '<input type="text" id="myInput" onkeyup="myFunction1()" placeholder="Search for platforms.." title="Type in a platform">';
+echo '<input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="Search for platforms.." title="Type in a platform">';
   echo "<table border=1 id='myTable'>";
   echo "<tr class='header'>
         <th><span style='font-size:.8em'>Entry Date</span></th>
@@ -350,7 +350,7 @@ function myFunction() {
 }
 function myFunction1() {
   var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
+  input = document.getElementById("myInput1");
   filter = input.value.toUpperCase();
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
