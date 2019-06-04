@@ -22,6 +22,17 @@ echo "<style>
   margin-bottom: 12px;
 }
 
+#myInput1 {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
 #myTable {
   border-collapse: collapse;
   width: 100%;
