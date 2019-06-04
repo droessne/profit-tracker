@@ -25,7 +25,7 @@ $has_crypto = false;
 setlocale(LC_MONETARY, 'en_US');
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 echo "<h1>Open Trades</h1>";
-echo '<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a symbol">';
+echo '<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for symbols.." title="Type in a symbol">';
   echo "<table border=1 id='myTable'>";
   echo "<tr class='header'>
         <th><span style='font-size:.8em'>Entry Date</span></th>
@@ -336,7 +336,7 @@ function myFunction() {
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].getElementsByTagName("td")[1];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
