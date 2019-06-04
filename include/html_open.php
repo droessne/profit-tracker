@@ -52,6 +52,26 @@ echo "<style>
 #myTable tr.header, #myTable tr:hover {
   background-color: #f1f1f1;
 }
+
+#myTable1 {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable1 th, #myTable1 td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable1 tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable1 tr.header, #myTable1 tr:hover {
+  background-color: #f1f1f1;
+}
 </style>";
 echo '</head>';
 echo '<body>';
