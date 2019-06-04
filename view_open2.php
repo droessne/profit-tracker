@@ -25,7 +25,7 @@ $has_crypto = false;
 setlocale(LC_MONETARY, 'en_US');
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 echo "<h1>Open Trades</h1>";
-echo '<table><tr><td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for symbols.." title="Type in a symbol"></td>';
+echo '<table id="myTable1"><tr><td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for symbols.." title="Type in a symbol"></td>';
 echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="Search for platforms.." title="Type in a platform"></td></tr></table>';
   echo "<table border=1 id='myTable'>";
   echo "<tr class='header'>
@@ -317,7 +317,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               </tr>";
   }
   echo "</table>";
-  echo "<table border='1'>
+  echo "<table border='1' id='myTable1'>
         <tr><td align='center'>Winners</td><td align='center'>".$num_green."</td></tr>
         <tr><td align='center'>Losers</td><td align='center'>".$num_red."</td></tr>
         <tr><td align='center'>Neutral</td><td align='center'>".($num_trades - $num_red - $num_green)."</td></tr>
