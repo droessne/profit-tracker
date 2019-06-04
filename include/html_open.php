@@ -55,7 +55,6 @@ echo "<style>
 
 #myTable1 {
   border-collapse: collapse;
-  width: 100%;
   border: 1px solid #ddd;
   font-size: 18px;
 }
