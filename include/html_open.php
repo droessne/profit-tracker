@@ -17,7 +17,6 @@ echo "<style>
   background-repeat: no-repeat;
   width: 100%;
   font-size: 12px;
-  padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
   margin-bottom: 12px;
 }
@@ -28,7 +27,6 @@ echo "<style>
   background-repeat: no-repeat;
   width: 100%;
   font-size: 12px;
-  padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
   margin-bottom: 12px;
 }
@@ -42,7 +40,7 @@ echo "<style>
 
 #myTable th, #myTable td {
   text-align: left;
-  padding: 12px;
+  padding: 1px;
 }
 
 #myTable tr {
@@ -61,7 +59,7 @@ echo "<style>
 
 #myTable1 th, #myTable1 td {
   text-align: left;
-  padding: 12px;
+  padding: 1px;
 }
 
 #myTable1 tr {
