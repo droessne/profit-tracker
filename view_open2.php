@@ -43,7 +43,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
         <th><span style='font-size:.8em'>Trade Length</span></th>
         <th><span style='font-size:.8em'>Exiration Date</span></th>
         <th><span style='font-size:.8em'>Sell By Date</span></th>
-        <th><span style='font-size:.8em'>Acions</span></th>
+        <th><span style='font-size:.8em' colspan='3'>Acions</span></th>
         </tr>";
   if (!$dbconnection->connect_errno) {
     $sql = "SELECT * FROM ".$trades_table." WHERE type='Entry' ORDER BY ID DESC;";
@@ -223,14 +223,12 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center' bgcolor='white' style='color: Black;'><form method='POST' action='add_exit_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
                   <button type='submit'>Exit</button></form></td>
-                  <td><table id='nochange' border=0><tr id='header'>
-                  <td></td>
-                  <td><form method='POST' action='edit_trade.php'>
+              <td align='center' bgcolor='white' style='color: Black;'><form method='POST' action='edit_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
                   <button type='submit'>Edit</button></form></td>
-                  <td valign='bottom'><form method='POST' action='delete_trade.php'>
+              <td align='center' bgcolor='white' style='color: Black;'><form method='POST' action='delete_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
-                  <button type='submit'>Del</button></form></td></tr></table></td>
+                  <button type='submit'>Del</button></form></td>
               </tr>";
           if ($has_crypto){
             $format_line = '%(#10.6n';
@@ -257,6 +255,8 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'>$".money_format('%(#10n', $buy_total)."</span></td>
               <td align='center'><strong><span style='font-size:1em'>$".money_format('%(#10n', $cur_total)."</span></strong></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               </tr>";
           }
@@ -304,6 +304,8 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
               </tr>";
   if ($has_crypto){
     $format = '%(#10n';
@@ -324,6 +326,8 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'>$".number_format($gain_loss,$format_num)."</span></td>
               <td align='center'><span style='font-size:.8em'>$".number_format($away_amt,$format_num)."</span></td>
               <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
