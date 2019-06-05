@@ -24,6 +24,7 @@ require_once("include/html_open.php");
 <td><input type="text" name="sell_by_date" size="10"></td>
 </tr>
 </table>
+<br>
 <table border=1 id='myTable1'>
 <tr id='header'>
 <th>Symbol</th>
