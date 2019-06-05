@@ -220,15 +220,15 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'>$trade_length</span></td>
               <td align='center' bgcolor='".$ex_color."' style='color: Black;'><span style='font-size:.9em'>$obj->expire_date</span></td>
               <td align='center' bgcolor='".$sb_color."' style='color: Black;'><span style='font-size:.9em'>$obj->sell_by_date</span></td>
-              <td align='center' bgcolor='white' style='color: Black;'><form method='POST' action='add_exit_trade.php'>
+              <td align='center' bgcolor='white' style='color: Black;'><center><form method='POST' action='add_exit_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
-                  <button align='center' type='submit'>Exit</button></form></td>
-              <td align='center' bgcolor='white' style='color: Black;'><form method='POST' action='edit_trade.php'>
+                  <button align='center' type='submit'>Exit</button></form></center></td>
+              <td align='center' bgcolor='white' style='color: Black;'><center><form method='POST' action='edit_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
-                  <button align='center' type='submit'>Edit</button></form></td>
-              <td align='center' bgcolor='white' style='color: Black;'><form method='POST' action='delete_trade.php'>
+                  <button align='center' type='submit'>Edit</button></form></center></td>
+              <td align='center' bgcolor='white' style='color: Black;'><center><form method='POST' action='delete_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
-                  <button align='center' type='submit'>Del</button></form></td>
+                  <button align='center' type='submit'>Del</button></form></center></td>
               </tr>";
           if ($has_crypto){
             $format_line = '%(#10.6n';
