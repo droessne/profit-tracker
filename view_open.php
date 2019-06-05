@@ -1,5 +1,5 @@
 <?php
-
+require_once("include/html_open.php");
 require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
 
@@ -8,8 +8,8 @@ function viewByPlatform($platform, $trades_table){
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1> ".$platform." Open Trades</h1>";
-  echo "<table border=1>";
-  echo "<tr>
+  echo "<table id='myTable1' border=1>";
+  echo "<tr id='header'>
         <th><span style='font-size:.8em'>Executed Date</span></th>
         <th><span style='font-size:.8em'>Type</span></th>
         <th><span style='font-size:.8em'>Symbol</span></th>
@@ -154,6 +154,7 @@ require_once("include/defaults.cfg.php");
 foreach ($platforms as &$p) {
     viewByPlatform($p, $trades_table);
 }
+require_once("include/html_close.php");
 
 ?>
 
