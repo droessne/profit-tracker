@@ -120,7 +120,7 @@ function viewByPlatform($platform, $trades_table){
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->strike_price2)."</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->executed_price)."</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->com_fee)."</span></td>
-              <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->total)."</span></td>
+              <td align='center'><span style='font-size:.8em' size=10>".money_format($format_line, $obj->total)."</span></td>
               <td align='center'><table><tr>
                   <td><form method='POST' action='add_exit_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
