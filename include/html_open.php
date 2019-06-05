@@ -48,7 +48,7 @@ echo "<style>
 }
 
 #myTable tr.header, #myTable tr:hover {
-  -webkit-filter:  grayscale(100%) brightness(51%);
+  -webkit-filter:  grayscale(100%) brightness(25%);
 }
 
 #myTable1 {
