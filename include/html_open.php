@@ -16,7 +16,7 @@ echo "<style>
   background-position: 10px 10px;
   background-repeat: no-repeat;
   width: 100%;
-  font-size: 16px;
+  font-size: 12px;
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
   margin-bottom: 12px;
@@ -27,7 +27,7 @@ echo "<style>
   background-position: 10px 10px;
   background-repeat: no-repeat;
   width: 100%;
-  font-size: 16px;
+  font-size: 12px;
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
   margin-bottom: 12px;
@@ -37,7 +37,7 @@ echo "<style>
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 #myTable th, #myTable td {
@@ -56,7 +56,7 @@ echo "<style>
 #myTable1 {
   border-collapse: collapse;
   border: 1px solid #ddd;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 #myTable1 th, #myTable1 td {
