@@ -220,7 +220,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'>$trade_length</span></td>
               <td align='center' bgcolor='".$ex_color."' style='color: Black;'><span style='font-size:.9em'>$obj->expire_date</span></td>
               <td align='center' bgcolor='".$sb_color."' style='color: Black;'><span style='font-size:.9em'>$obj->sell_by_date</span></td>
-              <td align='center' bgcolor='white' style='color: Black;'><table><tr>
+              <td align='center' bgcolor='white' style='color: Black;'><table id='nochange' border=0><tr>
                   <td><form method='POST' action='add_exit_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
                   <button type='submit'>Exit</button></form></td>
