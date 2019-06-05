@@ -2,6 +2,7 @@
 require_once("include/html_open.php");
 ?>
 <H1> Add Entry Trade </H1>
+<br>
 <form action="add_entry_trade_db.php" method="post">
 <table id='myTable1'>
 <tr>
