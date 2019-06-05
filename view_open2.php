@@ -25,7 +25,7 @@ $has_crypto = false;
 setlocale(LC_MONETARY, 'en_US');
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 echo "<h1>Open Trades</h1>";
-echo '<table id="myTable1"><tr><td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for symbols.." title="Type in a symbol"></td>';
+echo '<table border=0 align=center><tr><td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for symbols.." title="Type in a symbol"></td>';
 echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="Search for platforms.." title="Type in a platform"></td></tr></table>';
   echo "<table border=1 id='myTable'>";
   echo "<tr class='header'>
