@@ -43,7 +43,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
         <th><span style='font-size:.8em'>Trade Length</span></th>
         <th><span style='font-size:.8em'>Exiration Date</span></th>
         <th><span style='font-size:.8em'>Sell By Date</span></th>
-        <th><span style='font-size:.8em' colspan='3'>Acions</span></th>
+        <th colspan='3'><span style='font-size:.8em'>Acions</span></th>
         </tr>";
   if (!$dbconnection->connect_errno) {
     $sql = "SELECT * FROM ".$trades_table." WHERE type='Entry' ORDER BY ID DESC;";
