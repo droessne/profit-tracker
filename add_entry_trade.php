@@ -1,9 +1,9 @@
-<html>
-<title> Profit Tracker </title>
-<body>
+<?php
+require_once("include/html_open.php");
+?>
 <H1> Add Entry Trade </H1>
 <form action="add_entry_trade_db.php" method="post">
-<table>
+<table id='myTable1'>
 <tr>
 <td><label for="platform">Platform:</label></td>
 <td><select id="platform" name="platform">
@@ -24,8 +24,8 @@
 <td><input type="text" name="sell_by_date" size="10"></td>
 </tr>
 </table>
-<table border=1>
-<tr>
+<table border=1 id='myTable1'>
+<tr id='header'>
 <th>Symbol</th>
 <th>Strategy</th>
 <th>Order Type</th>
@@ -76,6 +76,6 @@
 <?php echo '<input type="hidden" name="referer" value="'.$_SERVER['HTTP_REFERER'].'">'; ?>
 <input type="submit" />
 </form>
-
-</body>
-</html>
+<?php
+require_once("include/html_close.php");
+?>
