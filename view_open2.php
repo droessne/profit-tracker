@@ -324,9 +324,9 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
         <tr><td align='center'>Total</td><td align='center'>".$num_trades."</td></tr>
         </table>";
 
-
+echo '<br><br><br>';
 echo '<div class="container">
-  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Auth Information</button>
+  <button type="button" data-toggle="collapse" data-target="#demo">Auth Information</button>
   <div id="demo" class="collapse">';
   echo "<BR> <BR> <BR> <BR> Auth Results: ".$auth_results;
   echo "<BR> <BR> <a href='https://auth.tdameritrade.com/oauth?client_id=MONEY_DERS@AMER.OAUTHAP&response_type=code&redirect_uri=https://api.dersllc.com:8743'>Re-Request Auth</a>";
