@@ -135,7 +135,7 @@ require_once("include/defaults.cfg.php");
 echo "<h1> Open Trades</h1>";
 echo '<table border=0 align=center><tr><td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for symbols.." title="Type in a symbol"></td>';
 echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="Search for platforms.." title="Type in a platform"></td></tr></table>';
-echo "<table id='myTable1' border=1>";
+echo "<table id='myTable' border=1>";
 echo "<tr id='header'>
         <th><span style='font-size:.8em'>Executed Date</span></th>
         <th><span style='font-size:.8em'>Platform</span></th>
