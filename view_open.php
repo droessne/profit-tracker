@@ -17,7 +17,7 @@ function viewByPlatform($platform, $trades_table){
     $results1 = $dbconnection->query($sql1);
     while($obj1 = $results1->fetch_object()){
       if ($obj1->count != 0){
-        echo "<tr><td colspan=16><span style='font-size:1em'><center><strong>".$p."</strong></center></span></td></tr>";
+        echo "<tr><td colspan=16><span style='font-size:1em'><center><strong>".$platform."</strong></center></span></td></tr>";
       }
     }
     while($obj = $results->fetch_object()){
