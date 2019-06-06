@@ -103,15 +103,15 @@ function viewByPlatform($platform, $trades_table){
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->executed_price)."</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->com_fee)."</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->total)."</span></td>
-              <td align='center'><form method='POST' action='add_exit_trade.php'>
+              <td align='center'><center><form method='POST' action='add_exit_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
-                  <button type='submit'>Exit</button></form></td>
-              <td align='center'><form method='POST' action='edit_trade.php'>
+                  <button type='submit'>Exit</button></form></center></td>
+              <td align='center'><center><form method='POST' action='edit_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
-                  <button type='submit'>Edit</button></form></td>
-              <td align='center'><form method='POST' action='delete_trade.php'>
+                  <button type='submit'>Edit</button></form></center></td>
+              <td align='center'><center><form method='POST' action='delete_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
-                  <button type='submit'>Del</button></form></td>
+                  <button type='submit'>Del</button></form></center></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $tar_total)."</span></td>
               </tr>";
       }
