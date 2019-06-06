@@ -103,16 +103,15 @@ function viewByPlatform($platform, $trades_table){
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->executed_price)."</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->com_fee)."</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->total)."</span></td>
-              <td align='center'><table><tr>
-                  <td><form method='POST' action='add_exit_trade.php'>
+              <td align='center'><form method='POST' action='add_exit_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
                   <button type='submit'>Exit</button></form></td>
-                  <td><form method='POST' action='edit_trade.php'>
+              <td align='center'><form method='POST' action='edit_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
                   <button type='submit'>Edit</button></form></td>
-                  <td valign='bottom'><form method='POST' action='delete_trade.php'>
+              <td align='center'><form method='POST' action='delete_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
-                  <button type='submit'>Del</button></form></td></tr></table></td>
+                  <button type='submit'>Del</button></form></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $tar_total)."</span></td>
               </tr>";
       }
@@ -150,7 +149,7 @@ echo "<tr id='header'>
         <th><span style='font-size:.8em'>Executed Price</span></th>
         <th><span style='font-size:.8em'>Commission Fee</span></th>
         <th><span style='font-size:.8em'>Total</span></th>
-        <th><span style='font-size:.8em'>Action</span></th>
+        <th colspan=3><span style='font-size:.8em'>Action</span></th>
         <th><span style='font-size:.8em'>Sell Target</span></th>
         </tr>";
 foreach ($platforms as &$p) {
