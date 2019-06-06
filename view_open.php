@@ -13,6 +13,13 @@ function viewByPlatform($platform, $trades_table){
     $results = $dbconnection->query($sql);
     $plat_total = 0;
     $plat_com = 0;
+    $sql1 = "SELECT COUNT(*) as count FROM ".$trades_table." WHERE type='Entry' AND platform='".$platform."' AND mate_id IS NULL;";
+    $results1 = $dbconnection->query($sql1);
+    while($obj1 = $results1->fetch_object()){
+      if ($obj1->count != 0){
+        echo "<tr><td colspan=16><span style='font-size:1em'><center><strong>".$p."</strong></center></span></td></tr>";
+      }
+    }
     while($obj = $results->fetch_object()){
       $new_qty = $obj->qty;
       $skip = False;
@@ -154,7 +161,6 @@ echo "<tr id='header'>
         <th><span style='font-size:.8em'>Sell Target</span></th>
         </tr>";
 foreach ($platforms as &$p) {
-    echo "<tr><td colspan=16><span style='font-size:1em'><center><strong>".$p."</strong></center></span></td></tr>";
     viewByPlatform($p, $trades_table);
 }
 echo "</table>";
