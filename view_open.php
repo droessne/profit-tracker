@@ -135,7 +135,7 @@ function viewByPlatform($platform, $trades_table){
 require_once("include/defaults.cfg.php");
 echo "<h1> Open Trades</h1>";
 echo '<table border=0 align=center><tr><td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for symbols.." title="Type in a symbol"></td>';
-echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="Search for platforms.." title="Type in a platform"></td></tr></table>';
+echo '</tr></table>';
 echo "<table id='myTable' border=1>";
 echo "<tr id='header'>
         <th><span style='font-size:.8em'>Executed Date</span></th>
@@ -170,24 +170,6 @@ function myFunction() {
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[2];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
-}
-function myFunction1() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput1");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
