@@ -7,25 +7,7 @@ function viewByPlatform($platform, $trades_table){
   $has_crypto = false;
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-  echo "<h1> ".$platform." Open Trades</h1>";
-  echo "<table id='myTable1' border=1>";
-  echo "<tr id='header'>
-        <th><span style='font-size:.8em'>Executed Date</span></th>
-        <th><span style='font-size:.8em'>Type</span></th>
-        <th><span style='font-size:.8em'>Symbol</span></th>
-        <th><span style='font-size:.8em'>Trade Strategy</span></th>
-        <th><span style='font-size:.8em'>Order Type</span></th>
-        <th><span style='font-size:.8em'>Qty</span></th>
-        <th><span style='font-size:.8em'>Expiration Date</span></th>
-        <th><span style='font-size:.8em'>Strike Price</span></th>
-        <th><span style='font-size:.8em'>Order Type 2</span></th>
-        <th><span style='font-size:.8em'>Strike price 2</span></th>
-        <th><span style='font-size:.8em'>Executed Price</span></th>
-        <th><span style='font-size:.8em'>Commission Fee</span></th>
-        <th><span style='font-size:.8em'>Total</span></th>
-        <th><span style='font-size:.8em'>Action</span></th>
-        <th><span style='font-size:.8em'>Sell Target</span></th>
-        </tr>";
+  
   if (!$dbconnection->connect_errno) {
     $sql = "SELECT * FROM ".$trades_table." WHERE type='Entry' AND platform='".$platform."' ORDER BY executed_date;";
     $results = $dbconnection->query($sql);
@@ -109,6 +91,7 @@ function viewByPlatform($platform, $trades_table){
             echo '<tr>';
         }
         echo "<td align='center'><span style='font-size:.8em'>$obj->executed_date</span></td>
+              <td align='center'><span style='font-size:.8em'>$obj->platform</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->type</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
@@ -147,13 +130,33 @@ function viewByPlatform($platform, $trades_table){
   echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_com)."</span></td>";
   echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_total)."</span></td>";
   echo "<td></td><td></td></tr>";
-  echo "</table>";
 }
 
 require_once("include/defaults.cfg.php");
+echo "<h1> ".$platform." Open Trades</h1>";
+echo "<table id='myTable1' border=1>";
+echo "<tr id='header'>
+        <th><span style='font-size:.8em'>Executed Date</span></th>
+        <th><span style='font-size:.8em'>Platform</span></th>
+        <th><span style='font-size:.8em'>Type</span></th>
+        <th><span style='font-size:.8em'>Symbol</span></th>
+        <th><span style='font-size:.8em'>Trade Strategy</span></th>
+        <th><span style='font-size:.8em'>Order Type</span></th>
+        <th><span style='font-size:.8em'>Qty</span></th>
+        <th><span style='font-size:.8em'>Expiration Date</span></th>
+        <th><span style='font-size:.8em'>Strike Price</span></th>
+        <th><span style='font-size:.8em'>Order Type 2</span></th>
+        <th><span style='font-size:.8em'>Strike price 2</span></th>
+        <th><span style='font-size:.8em'>Executed Price</span></th>
+        <th><span style='font-size:.8em'>Commission Fee</span></th>
+        <th><span style='font-size:.8em'>Total</span></th>
+        <th><span style='font-size:.8em'>Action</span></th>
+        <th><span style='font-size:.8em'>Sell Target</span></th>
+        </tr>";
 foreach ($platforms as &$p) {
     viewByPlatform($p, $trades_table);
 }
+echo "</table>";
 require_once("include/html_close.php");
 
 ?>
