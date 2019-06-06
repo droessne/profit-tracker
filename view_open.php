@@ -92,7 +92,6 @@ function viewByPlatform($platform, $trades_table){
         }
         echo "<td align='center'><span style='font-size:.8em'>$obj->executed_date</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->platform</span></td>
-              <td align='center'><span style='font-size:.8em'>$obj->type</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->order_type</span></td>
@@ -140,7 +139,6 @@ echo "<table id='myTable1' border=1>";
 echo "<tr id='header'>
         <th><span style='font-size:.8em'>Executed Date</span></th>
         <th><span style='font-size:.8em'>Platform</span></th>
-        <th><span style='font-size:.8em'>Type</span></th>
         <th><span style='font-size:.8em'>Symbol</span></th>
         <th><span style='font-size:.8em'>Trade Strategy</span></th>
         <th><span style='font-size:.8em'>Order Type</span></th>
@@ -170,7 +168,7 @@ function myFunction() {
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[3];
+    td = tr[i].getElementsByTagName("td")[2];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
