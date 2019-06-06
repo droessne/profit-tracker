@@ -86,7 +86,6 @@ function viewByPlatform($platform, $trades_table){
         $today = date("Y-m-d");
         $new_expire = strtotime($obj->expire_date.' -7 days');
         $test_date = date("Y-m-d", $new_expire);
-        echo "<tr><td colspan=15><span style='font-size:1em'><center><strong>".$obj->platform."</strong></center></span></td></tr>";
         if ($today >= $test_date) {
             echo "<tr bgcolor='Orange'>";
         } else {
@@ -155,6 +154,7 @@ echo "<tr id='header'>
         <th><span style='font-size:.8em'>Sell Target</span></th>
         </tr>";
 foreach ($platforms as &$p) {
+    echo "<tr><td colspan=15><span style='font-size:1em'><center><strong>".$p."</strong></center></span></td></tr>";
     viewByPlatform($p, $trades_table);
 }
 echo "</table>";
