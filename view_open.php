@@ -86,7 +86,7 @@ function viewByPlatform($platform, $trades_table){
         $today = date("Y-m-d");
         $new_expire = strtotime($obj->expire_date.' -7 days');
         $test_date = date("Y-m-d", $new_expire);
-        echo "<tr><td colspan=15><span style='font-size:.12em'><center><strong>".$obj->platform."</strong></center></span></td>";
+        echo "<tr><td colspan=15><span style='font-size:.12em'><center><strong>".$obj->platform."</strong></center></span></td></tr>";
         if ($today >= $test_date) {
             echo "<tr bgcolor='Orange'>";
         } else {
@@ -126,7 +126,7 @@ function viewByPlatform($platform, $trades_table){
     $format = '%(#10n';
   }
   if ($count != 0){
-    echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
+    echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
     echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_com)."</span></td>";
     echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_total)."</span></td>";
     echo "<td></td><td></td><td></td><td></td></tr>";
