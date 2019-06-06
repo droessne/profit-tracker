@@ -159,6 +159,9 @@ foreach ($platforms as &$p) {
     viewByPlatform($p, $trades_table);
 }
 echo "</table>";
+require_once("include/html_close.php");
+
+?>
 <script>
 function myFunction() {
   var input, filter, table, tr, td, i, txtValue;
@@ -197,9 +200,5 @@ function myFunction1() {
   }
 }
 </script>
-require_once("include/html_close.php");
-
-?>
-
 
 
