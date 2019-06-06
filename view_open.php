@@ -7,7 +7,7 @@ function viewByPlatform($platform, $trades_table){
   $has_crypto = false;
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-  
+  $count = 0;
   if (!$dbconnection->connect_errno) {
     $sql = "SELECT * FROM ".$trades_table." WHERE type='Entry' AND platform='".$platform."' ORDER BY executed_date;";
     $results = $dbconnection->query($sql);
@@ -54,6 +54,7 @@ function viewByPlatform($platform, $trades_table){
         }
       } 
       if ( $skip != True ){
+        $count = $count + 1;
         $plat_total = ($plat_total + $obj->total);
         $plat_com = ($plat_com + $obj->com_fee);
         if (strpos($obj->symbol, '*') !== false) {
@@ -85,13 +86,13 @@ function viewByPlatform($platform, $trades_table){
         $today = date("Y-m-d");
         $new_expire = strtotime($obj->expire_date.' -7 days');
         $test_date = date("Y-m-d", $new_expire);
+        echo "<tr><td colspan=15><span style='font-size:.12em'><center><strong>".$obj->platform."</strong></center></span></td>";
         if ($today >= $test_date) {
             echo "<tr bgcolor='Orange'>";
         } else {
             echo '<tr>';
         }
         echo "<td align='center'><span style='font-size:.8em'>$obj->executed_date</span></td>
-              <td align='center'><span style='font-size:.8em'>$obj->platform</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->order_type</span></td>
@@ -124,10 +125,12 @@ function viewByPlatform($platform, $trades_table){
   } else {
     $format = '%(#10n';
   }
-  echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
-  echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_com)."</span></td>";
-  echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_total)."</span></td>";
-  echo "<td></td><td></td></tr>";
+  if ($count != 0){
+    echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
+    echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_com)."</span></td>";
+    echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_total)."</span></td>";
+    echo "<td></td><td></td><td></td><td></td></tr>";
+  }
 }
 
 require_once("include/defaults.cfg.php");
@@ -137,7 +140,6 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
 echo "<table id='myTable' border=1>";
 echo "<tr id='header'>
         <th><span style='font-size:.8em'>Executed Date</span></th>
-        <th><span style='font-size:.8em'>Platform</span></th>
         <th><span style='font-size:.8em'>Symbol</span></th>
         <th><span style='font-size:.8em'>Trade Strategy</span></th>
         <th><span style='font-size:.8em'>Order Type</span></th>
