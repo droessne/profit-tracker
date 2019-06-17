@@ -66,8 +66,8 @@ function get_call($symbol, $strike, $expire_date){
   }
 }
 
-$results = get_call('BABA','220', '2019-07-19');
-print_r($results);
-echo $results['mark'];
+#$results = get_call('BABA','220', '2019-07-19');
+#print_r($results);
+#echo $results['mark'];
 
 ?>
