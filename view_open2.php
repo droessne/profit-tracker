@@ -8,7 +8,7 @@ require_once("include/get_put.php");
 require_once("include/get_call_spread.php");
 require_once("include/get_put_spread.php");
 require 'vendor/autoload.php';
-require_once("install/binance.php");
+#require_once("install/binance.php");
 require_once("include/defaults.cfg.php");
 echo "
 
