@@ -10,8 +10,8 @@ $sec = "5";
 <?php
 require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
-require 'vendor/autoload.php';
-require_once("install/binance.php");
+#require 'vendor/autoload.php';
+#require_once("install/binance.php");
 
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
