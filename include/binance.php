@@ -4,24 +4,21 @@ function get_crypto($symbol){
   $api_key = "rLtHblSweXAQ3mIhM8KV6L6B4ufxjphb6coBUWvqo53cl89RAIOehpzjvMh9ORcW";
   $secret = "DzueI1FK56MjVFZV0G7vK7EpCtuy4YHdtDYrJquaR8dCT10YYWUgIK5t32hKPKp9";
   $signature = hash_hmac('sha256', $params, $secret);
+  $url = "https://api.binance.com/api/v3/ticker/price?".$params."&signature=".$signature;
 
-
-  print_r($params);
-  print_r($api_key);
-  print_r($secret);
-  print_r($signature);
+  print_r($url);
 
   $curl = curl_init();
 
   curl_setopt_array($curl, array(
-      CURLOPT_URL => "https://api.binance.com/api/v3/ticker/price",
+      CURLOPT_URL => $url,
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => "",
       CURLOPT_MAXREDIRS => 10,
       CURLOPT_TIMEOUT => 30,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => "GET",
-      CURLOPT_POSTFIELDS => $params."&signature=".$signature,
+      CURLOPT_POSTFIELDS => '',
       CURLOPT_HTTPHEADER => array(
         "X-MBX-APIKEY: ".$api_key
       ),
