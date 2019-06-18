@@ -3,11 +3,10 @@ function get_crypto($symbol){
   $params = "symbol=".$symbol;
   $api_key = "rLtHblSweXAQ3mIhM8KV6L6B4ufxjphb6coBUWvqo53cl89RAIOehpzjvMh9ORcW";
   $secret = "DzueI1FK56MjVFZV0G7vK7EpCtuy4YHdtDYrJquaR8dCT10YYWUgIK5t32hKPKp9";
-  $signature = hash_hmac('sha256', $params, $secret);
-  $url = "https://api.binance.com/api/v3/ticker/price?".$params."&signature=".$signature;
-
-  print_r($url);
-
+  #$signature = hash_hmac('sha256', $params, $secret);
+  #$url = "https://api.binance.com/api/v3/ticker/price?".$params."&signature=".$signature;
+  $url = "https://api.binance.com/api/v3/ticker/price?".$params
+  
   $curl = curl_init();
 
   curl_setopt_array($curl, array(
