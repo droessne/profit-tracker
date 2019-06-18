@@ -5,7 +5,7 @@ function get_crypto($symbol){
   $secret = "DzueI1FK56MjVFZV0G7vK7EpCtuy4YHdtDYrJquaR8dCT10YYWUgIK5t32hKPKp9";
   #$signature = hash_hmac('sha256', $params, $secret);
   #$url = "https://api.binance.com/api/v3/ticker/price?".$params."&signature=".$signature;
-  $url = "https://api.binance.com/api/v3/ticker/price?".$params
+  $url = "https://api.binance.com/api/v3/ticker/price?".$params;
   
   $curl = curl_init();
 
@@ -32,20 +32,15 @@ function get_crypto($symbol){
     echo "cURL Error #:" . $err;
   } else {
     print_r($response);
-    #$data = json_decode($response);
-    #$mark = $data->$symbol->mark;
-    #$results = [
-    #  "last" => $last,
-    #  "mark" => $mark,
-    #  "volatility" => $volatility,
-    #  "div_yield" => $div_yield,
-    #  "tot_vol" => $tot_vol,
-    #  "d_2_ex" => 999
-    #];
+    $data = json_decode($response);
+    $mark = $data->price;
+    $results = [
+      "mark" => $mark
+    ];
     return $results;
   }
 }
-get_crypto('IOTXBTC');
-#print_r($results);
+$results = get_crypto('IOTXBTC');
+print_r($results);
 #echo $results['mark'];
 ?>
