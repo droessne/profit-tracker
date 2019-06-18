@@ -35,9 +35,9 @@ function get_crypto($symbol){
   if ($err) {
     echo "cURL Error #:" . $err;
   } else {
-    echo $response;
+    $results = $response;
     #$data = json_decode($response);
-    $mark = $data->$symbol->mark;
+    #$mark = $data->$symbol->mark;
     #$results = [
     #  "last" => $last,
     #  "mark" => $mark,
