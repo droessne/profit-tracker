@@ -10,8 +10,7 @@ $sec = "5";
 <?php
 require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
-#require 'vendor/autoload.php';
-#require_once("install/binance.php");
+require_once("include/binance.php");
 
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -54,7 +53,7 @@ require_once("include/defaults.cfg.php");
     $account_total = ($base_balance + $prof_left);
     if ( $has_crypto ){
       $format = '%(#10.11n';
-      $btc_price = $api->price("BTCUSDT");
+      $btc_price = get_crypto("BTCUSDT")['mark'];
       echo "<center><table border=1><tr><th>Total Profits</th>";
       echo "<th>".money_format($format, $total_balance)." BTC</th></tr>";
       echo "<tr><td>Total Profits</td>";
