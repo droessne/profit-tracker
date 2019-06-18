@@ -31,7 +31,7 @@ function get_crypto($symbol){
   if ($err) {
     echo "cURL Error #:" . $err;
   } else {
-    print_r($response);
+    #print_r($response);
     $data = json_decode($response);
     $mark = $data->price;
     $results = [
@@ -40,7 +40,7 @@ function get_crypto($symbol){
     return $results;
   }
 }
-$results = get_crypto('IOTXBTC');
-print_r($results);
+#$results = get_crypto('IOTXBTC');
+#print_r($results);
 #echo $results['mark'];
 ?>
