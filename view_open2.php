@@ -7,8 +7,7 @@ require_once("include/get_stock.php");
 require_once("include/get_put.php");
 require_once("include/get_call_spread.php");
 require_once("include/get_put_spread.php");
-#require 'vendor/autoload.php';
-#require_once("install/binance.php");
+require_once("include/binance.php");
 require_once("include/defaults.cfg.php");
 echo "
 
@@ -144,7 +143,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
         } elseif ('Crypto' == $obj->trade_strategy) {
-          $cur_data['mark'] = $api->price($symbol."BTC");
+          $cur_data = get_crypto($symbol."BTC");
           $gain_loss = ($cur_data['mark'] - $obj->executed_price);
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
@@ -194,7 +193,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
         $datediff = $now - $your_date;
         $trade_length = round($datediff / (60 * 60 * 24));
         if ($obj->trade_strategy == 'Crypto') {
-            $btc_price = $api->price("BTCUSDT");
+            $btc_price = get_crypto("BTCUSDT")['mark'];
             $format_line = '%(#10.11n';
             $format_num = 11;
             $format_qty = 11;
