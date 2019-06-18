@@ -1,19 +1,13 @@
 <?php
-#require '../vendor/autoload.php';
-#$api = new Binance\API("rLtHblSweXAQ3mIhM8KV6L6B4ufxjphb6coBUWvqo53cl89RAIOehpzjvMh9ORcW","DzueI1FK56MjVFZV0G7vK7EpCtuy4YHdtDYrJquaR8dCT10YYWUgIK5t32hKPKp9");
-#$price = $api->price("IOTXBTC");
-#echo "Price of IOTX: {$price} BTC.".PHP_EOL;
-?>
-<?php
 function get_crypto($symbol){
   $params = "symbol=".$symbol;
   $api_key = "rLtHblSweXAQ3mIhM8KV6L6B4ufxjphb6coBUWvqo53cl89RAIOehpzjvMh9ORcW";
   $secret = "DzueI1FK56MjVFZV0G7vK7EpCtuy4YHdtDYrJquaR8dCT10YYWUgIK5t32hKPKp9";
   $signature = hash_hmac('sha256', $params, $secret);
       
-    $curl = curl_init();
+  $curl = curl_init();
 
-    curl_setopt_array($curl, array(
+  curl_setopt_array($curl, array(
       CURLOPT_URL => "https://api.binance.com/api/v3/ticker/price",
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => "",
