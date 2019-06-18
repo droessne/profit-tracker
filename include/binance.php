@@ -5,6 +5,12 @@ function get_crypto($symbol){
   $secret = "DzueI1FK56MjVFZV0G7vK7EpCtuy4YHdtDYrJquaR8dCT10YYWUgIK5t32hKPKp9";
   $signature = hash_hmac('sha256', $params, $secret);
 
+
+  print_r($params);
+  print_r($api_key);
+  print_r($secret);
+  print_r($signature);
+
   $curl = curl_init();
 
   curl_setopt_array($curl, array(
