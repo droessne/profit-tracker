@@ -211,9 +211,11 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->executed_price)."</span></td>
               <td align='center'><strong><span style='font-size:1em'>".money_format($format_line, $cur_data['mark'])."</span></strong></td>
+              <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $sell)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,$format_num)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($away_amt,$format_num)."</span></td>
+              <td align='center'><strong><span style='font-size:1em'>".money_format($format_line, $cur_data['mark'])."</span></strong></td>
               <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
               <td align='center'><span style='font-size:.8em'>$obj->platform</span></td>
               <td align='center'><span style='font-size:.8em'>$trade_length</span></td>
@@ -249,6 +251,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $sell_price)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,$format_num)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($away_amt,$format_num)."</span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
@@ -294,10 +297,12 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format, $invested_total)."</span></td>
               <td align='center'><strong><span style='font-size:1em'>".money_format($format, $current_total)."</span></strong></td>
+              <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format, $max_total)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,$format_num)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($away_amt,$format_num)."</span></td>
-              <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
@@ -321,10 +326,11 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format, $invested_total)."</span></td>
               <td align='center'><strong><span style='font-size:1em'>".money_format($format, $current_total)."</span></strong></td>
+              <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format, $max_total)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,$format_num)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($away_amt,$format_num)."</span></td>
-              <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
