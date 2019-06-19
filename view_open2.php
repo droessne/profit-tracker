@@ -20,6 +20,8 @@ $invested_total = 0;
 $current_total = 0;
 $max_total = 0;
 $has_crypto = false;
+$stop_loss_percent = .25;
+$trail_stop_percent = .10;
 
 setlocale(LC_MONETARY, 'en_US');
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -36,6 +38,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
         <th><span style='font-size:.8em'>Current Price</span></th>
         <th><span style='font-size:.8em'>Percent</span></th>
         <th><span style='font-size:.8em'>Stop Loss</span></th>
+        <th><span style='font-size:.8em'>Trailing Stop</span></th>
         <th><span style='font-size:.8em'>Sell Price</span></th>
         <th><span style='font-size:.8em'>Gain/Loss</span></th>
         <th><span style='font-size:.8em'>Away</span></th>
@@ -119,7 +122,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
           $gain_loss = ($cur_data['mark'] - $obj->executed_price);
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
-          $stop_loss = ($obj->executed_price - ($obj->executed_price * .25));
+          $stop_loss = ($obj->executed_price - ($obj->executed_price * $stop_loss_percent));
           if ($cur_data['mark'] > $obj->max_price ){
             $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
             $results_max = $dbconnection->query($sql_max);
@@ -133,7 +136,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
           $gain_loss = ($cur_data['mark'] - $obj->executed_price);
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
-          $stop_loss = ($obj->executed_price - ($obj->executed_price * .25));
+          $stop_loss = ($obj->executed_price - ($obj->executed_price * $stop_loss_percent));
           if ($cur_data['mark'] > $obj->max_price ){
             $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
             $results_max = $dbconnection->query($sql_max);
@@ -147,7 +150,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
           $gain_loss = ($cur_data['mark'] - $obj->executed_price);
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
-          $stop_loss = ($obj->executed_price - ($obj->executed_price * .25));
+          $stop_loss = ($obj->executed_price - ($obj->executed_price * $stop_loss_percent));
           if ($cur_data['mark'] > $obj->max_price ){
             $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
             $results_max = $dbconnection->query($sql_max);
@@ -164,7 +167,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
           if ($interval < 0){
             $cur_data['mark'] = ($cur_data['mark'] * -1);
             $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
-            $stop_loss = ($obj->executed_price - ($obj->executed_price * .25));
+            $stop_loss = ($obj->executed_price - ($obj->executed_price * $stop_loss_percent));
             if ($cur_data['mark'] > $obj->max_price ){
               $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
               $results_max = $dbconnection->query($sql_max);
@@ -175,7 +178,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
             $max_percent = number_format(((($max_price/$obj->executed_price) - 1)*100), 2);
           } else {
             $percent_away = number_format((((($cur_data['mark']/$obj->executed_price) - 1)*100)*-1), 2);
-            $stop_loss = ($obj->executed_price + ($obj->executed_price * .25));
+            $stop_loss = ($obj->executed_price + ($obj->executed_price * $stop_loss_percent));
             if ($cur_data['mark'] > $obj->max_price ){
               $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
               $results_max = $dbconnection->query($sql_max);
@@ -190,7 +193,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
           $gain_loss = ($cur_data['mark'] - $obj->executed_price);
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
-          $stop_loss = ($obj->executed_price - ($obj->executed_price * .25));
+          $stop_loss = ($obj->executed_price - ($obj->executed_price * $stop_loss_percent));
           if ($cur_data['mark'] > $obj->max_price ){
             $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
             $results_max = $dbconnection->query($sql_max);
@@ -204,7 +207,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
           $gain_loss = ($cur_data['mark'] - $obj->executed_price);
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
-          $stop_loss = ($obj->executed_price - ($obj->executed_price * .25));
+          $stop_loss = ($obj->executed_price - ($obj->executed_price * $stop_loss_percent));
           if ($cur_data['mark'] > $obj->max_price ){
             $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
             $results_max = $dbconnection->query($sql_max);
@@ -214,6 +217,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
           }
           $max_percent = number_format(((($max_price/$obj->executed_price) - 1)*100), 2);
         }
+        $trail_stop = ($cur_data['mark'] * $trail_stop_percent);
         $num_trades = ($num_trades + 1);
         #color section
         $color = 'White';
@@ -279,6 +283,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><strong><span style='font-size:1em'>".money_format($format_line, $cur_data['mark'])."</span></strong></td>
               <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $stop_loss)."</span></td>
+              <td align='center'><span style='font-size:.8em'>".money_format($format_line, $trail_stop)."</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $sell)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,$format_num)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($away_amt,$format_num)."</span></td>
@@ -318,6 +323,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $sell_price)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,$format_num)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($away_amt,$format_num)."</span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
@@ -379,6 +385,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
               </tr>";
   if ($has_crypto){
     $format = '%(#10n';
@@ -399,6 +406,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'>".money_format($format, $max_total)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,$format_num)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($away_amt,$format_num)."</span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
