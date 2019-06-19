@@ -34,10 +34,12 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
         <th><span style='font-size:.8em'>Trade Strategy</span></th>
         <th><span style='font-size:.8em'>Purchase Price</span></th>
         <th><span style='font-size:.8em'>Current Price</span></th>
+        <th><span style='font-size:.8em'>Percent</span></th>
         <th><span style='font-size:.8em'>Sell Price</span></th>
         <th><span style='font-size:.8em'>Gain/Loss</span></th>
         <th><span style='font-size:.8em'>Away</span></th>
-        <th><span style='font-size:.8em'>Percent</span></th>
+        <th><span style='font-size:.8em'>Max Price</span></th>
+        <th><span style='font-size:.8em'>Max Percent</span></th>
         <th><span style='font-size:.8em'>Platform</span></th>
         <th><span style='font-size:.8em'>Trade Length</span></th>
         <th><span style='font-size:.8em'>Exiration Date</span></th>
