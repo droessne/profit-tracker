@@ -41,6 +41,7 @@ if ($dbconnection->connect_error) {
             `total` float,
             `platform` varchar(250),
             `mate_id` varchar(50),
+            `max_price` float,
             PRIMARY KEY (`ID`)
             ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12;";
     if ($dbconnection->query($sql2) === TRUE) {
