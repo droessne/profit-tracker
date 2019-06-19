@@ -205,7 +205,13 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
             $format_num = 2;
             $format_qty = 0;
         }
-        
+        if ($cur_data['mark'] > $obj->max_price ){
+            $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
+            $results_max = $dbconnection->query($sql_max);
+            $max_price = $cur_data['mark'];
+        } else {
+            $max_price = $obj->max_price;
+        }
         echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
               <td align='center'><span style='font-size:.9em'>$obj->executed_date</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
