@@ -9,6 +9,7 @@ require_once("include/html_open.php");
 <tr><td><center>*</center></td><td><center>50%</center></td></tr>
 <tr><td><center>?</center></td><td><center>N/A</center></td></tr>
 </table>
+<br>
 <form action="add_entry_trade_db.php" method="post">
 <table id='myTable1'>
 <tr>
