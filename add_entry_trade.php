@@ -3,6 +3,12 @@ require_once("include/html_open.php");
 ?>
 <H1> Add Entry Trade </H1>
 <br>
+<table><tr><th>Symbol Sign</th><th>Percent</th></tr>
+<tr><td>~</td><td>100%</td></tr>
+<tr><td>`</td><td>75%</td></tr>
+<tr><td>*</td><td>50%</td></tr>
+<tr><td>?</td><td>N/A</td></tr>
+</table>
 <form action="add_entry_trade_db.php" method="post">
 <table id='myTable1'>
 <tr>
