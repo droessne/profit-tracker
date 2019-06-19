@@ -3,7 +3,7 @@ require_once("include/html_open.php");
 ?>
 <H1> Add Entry Trade </H1>
 <br>
-<table border=1><tr><th>Symbol Sign</th><th>Percent</th></tr>
+<table id='myTable1' border=1><tr><th>Symbol Sign</th><th>Percent</th></tr>
 <tr><td><center>~</center></td><td><center>100%</center></td></tr>
 <tr><td><center>`</center></td><td><center>75%</center></td></tr>
 <tr><td><center>*</center></td><td><center>50%</center></td></tr>
