@@ -118,16 +118,40 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
           $gain_loss = ($cur_data['mark'] - $obj->executed_price);
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
+          if ($cur_data['mark'] > $obj->max_price ){
+            $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
+            $results_max = $dbconnection->query($sql_max);
+            $max_price = $cur_data['mark'];
+          } else {
+            $max_price = $obj->max_price;
+          }
+          $max_percent = number_format(((($max_price/$obj->executed_price) - 1)*100), 2);
         } elseif ('Put' == $obj->trade_strategy) {
           $cur_data = get_put($symbol, $obj->strike_price, $obj->expire_date);
           $gain_loss = ($cur_data['mark'] - $obj->executed_price);
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
+          if ($cur_data['mark'] > $obj->max_price ){
+            $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
+            $results_max = $dbconnection->query($sql_max);
+            $max_price = $cur_data['mark'];
+          } else {
+            $max_price = $obj->max_price;
+          }
+          $max_percent = number_format(((($max_price/$obj->executed_price) - 1)*100), 2);
         } elseif ('Call Spread' == $obj->trade_strategy) {
           $cur_data = get_call_spread($symbol, $obj->strike_price, $obj->strike_price2, $obj->expire_date);
           $gain_loss = ($cur_data['mark'] - $obj->executed_price);
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
+          if ($cur_data['mark'] > $obj->max_price ){
+            $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
+            $results_max = $dbconnection->query($sql_max);
+            $max_price = $cur_data['mark'];
+          } else {
+            $max_price = $obj->max_price;
+          }
+          $max_percent = number_format(((($max_price/$obj->executed_price) - 1)*100), 2);
         } elseif ('Put Spread' == $obj->trade_strategy) {
           $cur_data = get_put_spread($symbol, $obj->strike_price, $obj->strike_price2, $obj->expire_date);
           $gain_loss = ($obj->executed_price - $cur_data['mark']);
@@ -136,19 +160,51 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
           if ($interval < 0){
             $cur_data['mark'] = ($cur_data['mark'] * -1);
             $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
+            if ($cur_data['mark'] > $obj->max_price ){
+              $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
+              $results_max = $dbconnection->query($sql_max);
+              $max_price = $cur_data['mark'];
+            } else {
+              $max_price = $obj->max_price;
+            }
+            $max_percent = number_format(((($max_price/$obj->executed_price) - 1)*100), 2);
           } else {
             $percent_away = number_format((((($cur_data['mark']/$obj->executed_price) - 1)*100)*-1), 2);
+            if ($cur_data['mark'] > $obj->max_price ){
+              $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
+              $results_max = $dbconnection->query($sql_max);
+              $max_price = $cur_data['mark'];
+            } else {
+              $max_price = $obj->max_price;
+            }
+            $max_percent = number_format((((($max_price/$obj->executed_price) - 1)*100)*-1), 2);
           }
         } elseif ('Stock' == $obj->trade_strategy) {
           $cur_data = get_stock($symbol);
           $gain_loss = ($cur_data['mark'] - $obj->executed_price);
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
+          if ($cur_data['mark'] > $obj->max_price ){
+            $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
+            $results_max = $dbconnection->query($sql_max);
+            $max_price = $cur_data['mark'];
+          } else {
+            $max_price = $obj->max_price;
+          }
+          $max_percent = number_format(((($max_price/$obj->executed_price) - 1)*100), 2);
         } elseif ('Crypto' == $obj->trade_strategy) {
           $cur_data = get_crypto($symbol."BTC");
           $gain_loss = ($cur_data['mark'] - $obj->executed_price);
           $away_amt = ($sell - $cur_data['mark']);
           $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
+          if ($cur_data['mark'] > $obj->max_price ){
+            $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
+            $results_max = $dbconnection->query($sql_max);
+            $max_price = $cur_data['mark'];
+          } else {
+            $max_price = $obj->max_price;
+          }
+          $max_percent = number_format(((($max_price/$obj->executed_price) - 1)*100), 2);
         }
         $num_trades = ($num_trades + 1);
         #color section
@@ -205,13 +261,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
             $format_num = 2;
             $format_qty = 0;
         }
-        if ($cur_data['mark'] > $obj->max_price ){
-            $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
-            $results_max = $dbconnection->query($sql_max);
-            $max_price = $cur_data['mark'];
-        } else {
-            $max_price = $obj->max_price;
-        }
+        
         echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
               <td align='center'><span style='font-size:.9em'>$obj->executed_date</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
@@ -223,8 +273,8 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $sell)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,$format_num)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($away_amt,$format_num)."</span></td>
-              <td align='center'><strong><span style='font-size:1em'>".money_format($format_line, $cur_data['mark'])."</span></strong></td>
-              <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
+              <td align='center'><strong><span style='font-size:1em'>".money_format($format_line, $max_price)."</span></strong></td>
+              <td align='center'><strong><span style='font-size:1em'>$max_percent%</span></strong></td>
               <td align='center'><span style='font-size:.8em'>$obj->platform</span></td>
               <td align='center'><span style='font-size:.8em'>$trade_length</span></td>
               <td align='center' bgcolor='".$ex_color."' style='color: Black;'><span style='font-size:.9em'>$obj->expire_date</span></td>
