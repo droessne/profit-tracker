@@ -80,6 +80,10 @@ if ($dbconnection->connect_error) {
 echo '</select></td></tr>';
 echo '</table>';
 echo '<input type="submit" /></form>';
+
+echo '<h2>Rearrange Platforms:</h2>';
+
+
 ?>
 
 </body>
