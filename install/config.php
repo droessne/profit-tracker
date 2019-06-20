@@ -82,10 +82,29 @@ echo '</table>';
 echo '<input type="submit" /></form>';
 
 echo '<h2>Rearrange Platforms:</h2>';
-
+echo '<ul id="image-list1" class="sortable-list">';
+echo '  <li id="a">A</li>';
+echo '  <li id="b">B</li>';
+echo '  <li id="c">C</li>';
+echo '</ul>';
 
 ?>
+<script>
+    $('.sortable-list').sortable({
+    connectWith: '.sortable-list',
+    update: function(event, ui) {
+        var changedList = this.id;
+        var order = $(this).sortable('toArray');
+        var positions = order.join(';');
 
+    console.log({
+        id: changedList,
+        positions: positions
+    });
+  }
+});
+    
+</script>
 </body>
 </html>
 
