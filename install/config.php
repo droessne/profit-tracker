@@ -1,5 +1,8 @@
 <html>
 <title> Profit Tracker </title>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</head>
 <body>
 <H1> Settings </H1>
 <h2> Default Settings:</h2>
