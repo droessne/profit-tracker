@@ -25,6 +25,7 @@ function viewByPlatform($platform, $trades_table){
   echo "<h1> ".$platform." Closed Trades</h1>";
   if (!$dbconnection->connect_errno) {
     $sql = "SELECT * FROM ".$trades_table." WHERE type='Entry' AND mate_id IS NOT NULL AND platform='".$platform."'".$sql_add.";";
+    echo $sql;
     $results = $dbconnection->query($sql);
     while($obj = $results->fetch_object()){
       $trade_total = $obj->total;
