@@ -24,7 +24,7 @@ function viewByPlatform($platform, $trades_table){
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1> ".$platform." Closed Trades</h1>";
   if (!$dbconnection->connect_errno) {
-    $sql = "SELECT * FROM ".$trades_table." WHERE type='Entry' AND mate_id IS NOT NULL AND platform='".$platform."'".$sql_add.";";
+    $sql = "SELECT * FROM ".$trades_table." WHERE type='Exit' AND mate_id IS NOT NULL AND platform='".$platform."'".$sql_add.";";
     echo $sql;
     $results = $dbconnection->query($sql);
     while($obj = $results->fetch_object()){
@@ -55,34 +55,12 @@ function viewByPlatform($platform, $trades_table){
             <th><span style='font-size:.8em'>Total</span></th>
             <th><span style='font-size:.8em'>Action</span></th>
         </tr>";
-      echo "<tr>
-            <td align='center'><span style='font-size:.8em'>$obj->executed_date</span></td>
-            <td align='center'><span style='font-size:.8em'>$obj->type</span></td>
-            <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
-            <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
-            <td align='center'><span style='font-size:.8em'>$obj->order_type</span></td>
-            <td align='center'><span style='font-size:.8em'>$obj->qty</span></td>
-            <td align='center'><span style='font-size:.8em'>$obj->expire_date</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->strike_price)."</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->executed_price)."</span></td>
-            <td align='center'><span style='font-size:.8em'>$obj->order_type2</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->strike_price2)."</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->com_fee)."</span></td>
-            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->total)."</span></td>
-            <td align='center'><table><tr>
-                <td><form method='POST' action='edit_trade.php'>
-                <input type='hidden' name='ID' value='$obj->ID'>
-                <button type='submit'>Edit</button></form></td>
-                <td valign='bottom'><form method='POST' action='delete_trade.php'>
-                <input type='hidden' name='ID' value='$obj->ID'>
-                <button type='submit'>Del</button></form></td></tr></table></td>
-            </tr>";
-       $sql_2 = "SELECT * FROM ".$trades_table." WHERE type='Exit' AND mate_id='$obj->ID';";
-       $results_2 = $dbconnection->query($sql_2);
-       while($obj2 = $results_2->fetch_object()){
-          $trade_total = $trade_total + $obj2->total;
-          $trade_com = $trade_com + $obj2->com_fee;
-          echo "<tr>
+        $sql_2 = "SELECT * FROM ".$trades_table." WHERE type='Entry' AND mate_id='$obj->ID';";
+        $results_2 = $dbconnection->query($sql_2);
+        while($obj2 = $results_2->fetch_object()){
+            $trade_total = $trade_total + $obj2->total;
+            $trade_com = $trade_com + $obj2->com_fee;
+            echo "<tr>
                 <td align='center'><span style='font-size:.8em'>$obj2->executed_date</span></td>
                 <td align='center'><span style='font-size:.8em'>$obj2->type</span></td>
                 <td align='center'><span style='font-size:.8em'>$obj2->symbol</span></td>
@@ -104,7 +82,29 @@ function viewByPlatform($platform, $trades_table){
                   <input type='hidden' name='ID' value='$obj2->ID'>
                   <button type='submit'>Del</button></form></td></tr></table></td>
                 </tr>";
-       }
+        }
+        echo "<tr>
+            <td align='center'><span style='font-size:.8em'>$obj->executed_date</span></td>
+            <td align='center'><span style='font-size:.8em'>$obj->type</span></td>
+            <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
+            <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
+            <td align='center'><span style='font-size:.8em'>$obj->order_type</span></td>
+            <td align='center'><span style='font-size:.8em'>$obj->qty</span></td>
+            <td align='center'><span style='font-size:.8em'>$obj->expire_date</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->strike_price)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->executed_price)."</span></td>
+            <td align='center'><span style='font-size:.8em'>$obj->order_type2</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->strike_price2)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->com_fee)."</span></td>
+            <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->total)."</span></td>
+            <td align='center'><table><tr>
+                <td><form method='POST' action='edit_trade.php'>
+                <input type='hidden' name='ID' value='$obj->ID'>
+                <button type='submit'>Edit</button></form></td>
+                <td valign='bottom'><form method='POST' action='delete_trade.php'>
+                <input type='hidden' name='ID' value='$obj->ID'>
+                <button type='submit'>Del</button></form></td></tr></table></td>
+            </tr>";
        #$per = ($trade_total/$obj->total);
        $percent = number_format( (abs($trade_total)/abs($obj->total)) * 100, 2).'%';
        echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_com)."</span></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_total)."</span></td><td><span style='font-size:.8em'>".$percent."</span></td></tr>";
