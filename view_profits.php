@@ -48,7 +48,7 @@ function viewByPlatform($platform, $trades_table, $profits_table){
     } else {
         echo "<strong><td>Total ".$platform." Profits</td>";
         echo "<td>".money_format($format, $total_balance)."</td>";
-        echo "<td>$platform_percent</td></strong></tr>";
+        echo "<td>$platform_percent</td>";
         echo "<td>".$total_count." Trades</td></strong></tr>";
     }
     #echo "<table border=1 width=80%>";
