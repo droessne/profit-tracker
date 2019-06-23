@@ -28,7 +28,7 @@ function viewByPlatform($platform, $trades_table, $profits_table){
       $total_count = ($obj_3->tot_cnt);
       $win = ($obj_3->pos_amt);
       $loss = ($obj_3->neg_amt);
-      $ratio = ($win / $loss);
+      $win_rate = ($win / $total_count);
     }
     $sql_2 = "SELECT * FROM ".$trades_table." WHERE type='Entry' AND platform='".$platform."' AND mate_id IS NOT NULL ORDER BY executed_date;";
     $results_2 = $dbconnection->query($sql_2);
@@ -41,7 +41,7 @@ function viewByPlatform($platform, $trades_table, $profits_table){
     }
     $percent = ($total_balance/$total_used);
     $platform_percent = sprintf("%.2f%%", $percent * 100);
-    $ratio_percent = sprintf("%.2f%%", $ratio * 100);
+    $win_percent = sprintf("%.2f%%", $win_rate * 100);
     if ($has_crypto){
       $format = '%(#10.11n';
     } else {
@@ -54,10 +54,10 @@ function viewByPlatform($platform, $trades_table, $profits_table){
         echo "<td>".$platform."</td>";
         echo "<td>".money_format($format, $total_balance)."</td>";
         echo "<td>$platform_percent</td>";
-        echo "<td>".$win." Trades</td>";
-        echo "<td>".$loss." Trades</td>";
-        echo "<td>".$total_count." Trades</td>";
-        echo "<td>$ratio_percent</td>";
+        echo "<td>".$win."</td>";
+        echo "<td>".$loss."</td>";
+        echo "<td>".$total_count."</td>";
+        echo "<td>$win_percent</td>";
         echo "</tr>";
     }
     #echo "<table border=1 width=80%>";
