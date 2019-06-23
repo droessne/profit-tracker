@@ -38,11 +38,13 @@ function viewByPlatform($platform, $trades_table, $profits_table){
     } else {
       $format = '%(#10n';
     }
-
-    echo "<strong><td>Total ".$platform." Profits</td>";
-    echo "<td>".money_format($format, $total_balance)."</td>";
-    echo "<td>$platform_percent</td></strong></tr>";
-
+    if ($total_balance = 0){
+        echo "";
+    } else {
+        echo "<strong><td>Total ".$platform." Profits</td>";
+        echo "<td>".money_format($format, $total_balance)."</td>";
+        echo "<td>$platform_percent</td></strong></tr>";
+    }
     #echo "<table border=1 width=80%>";
     #echo "<tr>
     #      <th><span style='font-size:.8em'>Date</span></th>
