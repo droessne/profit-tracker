@@ -39,11 +39,10 @@ function viewByPlatform($platform, $trades_table, $profits_table){
       $format = '%(#10n';
     }
 
-    
-    echo "<center><table border=1><tr><th>Total ".$platform." Profits</th>";
-    echo "<th>".money_format($format, $total_balance)."</th>";
-    echo "<th>$platform_percent</th></tr>";
-    echo "</table><BR>";
+    echo "<strong><td>Total ".$platform." Profits</td>";
+    echo "<td>".money_format($format, $total_balance)."</td>";
+    echo "<td>$platform_percent</td></strong></tr>";
+
     #echo "<table border=1 width=80%>";
     #echo "<tr>
     #      <th><span style='font-size:.8em'>Date</span></th>
@@ -82,13 +81,15 @@ function viewByPlatform($platform, $trades_table, $profits_table){
     #$results->close();
     #unset($obj);
   }
-  echo "</table></center>";
+  #echo "</table></center>";
 }
 
 require_once("include/defaults.cfg.php");
+echo "<center><table border=1><tr>";
 foreach ($platforms as &$p) {
     viewByPlatform($p, $trades_table, $profits_table);
 }
+echo "</table></center><BR>";
 
 ?>
 
