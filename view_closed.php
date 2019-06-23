@@ -4,15 +4,15 @@ require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
 
 function viewByPlatform($platform, $trades_table){
-  if ($_POST['time_frame'] = 'ytd'){
+  if ($_POST['time_frame'] == 'ytd'){
     $year = date("Y");
     $sql_add = " AND executed_date BETWEEN '".$year."-01-01' AND '".$year."-12-31'";
-  } elseif ($_POST['time_frame'] = 'last_month') {
+  } elseif ($_POST['time_frame'] == 'last_month') {
     $previous_month = strtotime("-1 month +1 day");
     $start_date = date("Y-m-d",$previous_month);
     $end_date = date("Y-m-d");
     $sql_add = " AND executed_date BETWEEN '".$start_date."' AND '".$end_date."'";
-  } elseif ($_POST['time_frame'] = 'last_week') {
+  } elseif ($_POST['time_frame'] == 'last_week') {
     $previous_week = strtotime("-1 week +1 day");
     $start_date = date("Y-m-d",$previous_week);
     $end_date = date("Y-m-d");
