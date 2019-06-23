@@ -25,7 +25,7 @@ function viewByPlatform($platform, $trades_table, $profits_table){
     $sql_3 = "SELECT COUNT(*) AS count FROM ".$profits_table." WHERE platform='".$platform."'";
     $results_3 = $dbconnection->query($sql_3);
     while($obj_3 = $results_3->fetch_object()){
-      $total_count = ($obj_3->count / 2);
+      $total_count = ($obj_3->count);
     }
     $sql_2 = "SELECT * FROM ".$trades_table." WHERE type='Entry' AND platform='".$platform."' AND mate_id IS NOT NULL ORDER BY executed_date;";
     $results_2 = $dbconnection->query($sql_2);
