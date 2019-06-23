@@ -38,7 +38,7 @@ function viewByPlatform($platform, $trades_table, $profits_table){
     } else {
       $format = '%(#10n';
     }
-    if ($total_balance = 0){
+    if ($total_balance == 0){
         echo "";
     } else {
         echo "<strong><td>Total ".$platform." Profits</td>";
