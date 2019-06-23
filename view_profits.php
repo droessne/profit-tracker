@@ -22,10 +22,13 @@ function viewByPlatform($platform, $trades_table, $profits_table){
     while($obj_1 = $results_1->fetch_object()){
       $total_balance = $obj_1->balance;
     }
-    $sql_3 = "SELECT COUNT(*) AS count FROM ".$profits_table." WHERE platform='".$platform."'";
+    $sql_3 = "select sum(case when amount >=0 then 1 else 0 end) as pos_amt, sum(case when amount < 0 then 1 else 0 end) as neg_amt, count(*) as tot_cnt from ".$profits_table." WHERE platform='".$platform."'";
     $results_3 = $dbconnection->query($sql_3);
     while($obj_3 = $results_3->fetch_object()){
-      $total_count = ($obj_3->count);
+      $total_count = ($obj_3->tot_cnt);
+      $win = ($obj_3->pos_amt);
+      $loss = ($obj_3->neg_amt);
+      $ratio = ($win / $loss);
     }
     $sql_2 = "SELECT * FROM ".$trades_table." WHERE type='Entry' AND platform='".$platform."' AND mate_id IS NOT NULL ORDER BY executed_date;";
     $results_2 = $dbconnection->query($sql_2);
@@ -38,6 +41,7 @@ function viewByPlatform($platform, $trades_table, $profits_table){
     }
     $percent = ($total_balance/$total_used);
     $platform_percent = sprintf("%.2f%%", $percent * 100);
+    $ratio_percent = sprintf("%.2f%%", $ratio * 100);
     if ($has_crypto){
       $format = '%(#10.11n';
     } else {
@@ -46,10 +50,15 @@ function viewByPlatform($platform, $trades_table, $profits_table){
     if ($total_balance == 0){
         echo "";
     } else {
-        echo "<strong><td>Total ".$platform." Profits</td>";
+        echo "<tr>";
+        echo "<td>".$platform."</td>";
         echo "<td>".money_format($format, $total_balance)."</td>";
         echo "<td>$platform_percent</td>";
-        echo "<td>".$total_count." Trades</td></strong></tr>";
+        echo "<td>".$win." Trades</td>";
+        echo "<td>".$loss." Trades</td>";
+        echo "<td>".$total_count." Trades</td>";
+        echo "<td>$ratio_percent</td>";
+        echo "</tr>";
     }
     #echo "<table border=1 width=80%>";
     #echo "<tr>
@@ -93,7 +102,16 @@ function viewByPlatform($platform, $trades_table, $profits_table){
 }
 
 require_once("include/defaults.cfg.php");
-echo "<center><table border=1><tr>";
+echo "<center><table border=1>";
+echo "<tr>";
+        echo "<th>Platform</th>";
+        echo "<th>Total Profits</th>";
+        echo "<th>Profit Percent</th>";
+        echo "<th>Wins</th>";
+        echo "<th>Losses</th>";
+        echo "<th>Total Trades</th>";
+        echo "<th>Win Rate</th>";
+        echo "</tr>";
 foreach ($platforms as &$p) {
     viewByPlatform($p, $trades_table, $profits_table);
 }
