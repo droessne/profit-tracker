@@ -51,13 +51,13 @@ function viewByPlatform($platform, $trades_table, $profits_table){
         echo "";
     } else {
         echo "<tr>";
-        echo "<td>".$platform."</td>";
-        echo "<td>".money_format($format, $total_balance)."</td>";
-        echo "<td>$platform_percent</td>";
-        echo "<td>".$win."</td>";
-        echo "<td>".$loss."</td>";
-        echo "<td>".$total_count."</td>";
-        echo "<td>$win_percent</td>";
+        echo "<td align='center'>".$platform."</td>";
+        echo "<td align='center'>".money_format($format, $total_balance)."</td>";
+        echo "<td align='center'>$platform_percent</td>";
+        echo "<td align='center'>".$win."</td>";
+        echo "<td align='center'>".$loss."</td>";
+        echo "<td align='center'>".$total_count."</td>";
+        echo "<td align='center'>$win_percent</td>";
         echo "</tr>";
     }
     #echo "<table border=1 width=80%>";
@@ -104,13 +104,13 @@ function viewByPlatform($platform, $trades_table, $profits_table){
 require_once("include/defaults.cfg.php");
 echo "<center><table border=1>";
 echo "<tr>";
-        echo "<th>Platform</th>";
-        echo "<th>Total Profits</th>";
-        echo "<th>Profit Percent</th>";
-        echo "<th>Wins</th>";
-        echo "<th>Losses</th>";
-        echo "<th>Total Trades</th>";
-        echo "<th>Win Rate</th>";
+        echo "<th align='center'>Platform</th>";
+        echo "<th align='center'>Total Profits</th>";
+        echo "<th align='center'>Profit Percent</th>";
+        echo "<th align='center'>Wins</th>";
+        echo "<th align='center'>Losses</th>";
+        echo "<th align='center'>Total Trades</th>";
+        echo "<th align='center'>Win Rate</th>";
         echo "</tr>";
 foreach ($platforms as &$p) {
     viewByPlatform($p, $trades_table, $profits_table);
