@@ -23,6 +23,7 @@ function viewByPlatform($platform, $trades_table){
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1> ".$platform." Closed Trades</h1>";
+  echo "<table border=1>";
   if (!$dbconnection->connect_errno) {
     $sql = "SELECT * FROM ".$trades_table." WHERE type='Exit' AND mate_id IS NOT NULL AND platform='".$platform."'".$sql_add.";";
     $results = $dbconnection->query($sql);
@@ -37,28 +38,27 @@ function viewByPlatform($platform, $trades_table){
             $format_num = 0;
         }
 
-      echo "<table border=1>";
       echo "<tr>
-            <th><span style='font-size:.8em'>Executed Date</span></th>
-            <th><span style='font-size:.8em'>Type</span></th>
-            <th><span style='font-size:.8em'>Symbol</span></th>
-            <th><span style='font-size:.8em'>Trade Strategy</span></th>
-            <th><span style='font-size:.8em'>Order Type</span></th>
-            <th><span style='font-size:.8em'>Qty</span></th>
-            <th><span style='font-size:.8em'>Expiration Date</span></th>
-            <th><span style='font-size:.8em'>Strike Price</span></th>
-            <th><span style='font-size:.8em'>Executed Price</span></th>
-            <th><span style='font-size:.8em'>Order Type 2</span></th>
-            <th><span style='font-size:.8em'>Strike price 2</span></th>
-            <th><span style='font-size:.8em'>Commission Fee</span></th>
-            <th><span style='font-size:.8em'>Total</span></th>
-            <th><span style='font-size:.8em'>Action</span></th>
+            <td><span style='font-size:.8em'><strong>Executed Date</strong></span></td>
+            <td><span style='font-size:.8em'><strong>Type</strong></span></td>
+            <td><span style='font-size:.8em'><strong>Symbol</strong></span></td>
+            <td><span style='font-size:.8em'><strong>Trade Strategy</strong></span></td>
+            <td><span style='font-size:.8em'><strong>Order Type</strong></span></td>
+            <td><span style='font-size:.8em'><strong>Qty</strong></span></td>
+            <td><span style='font-size:.8em'><strong>Expiration Date</strong></span></td>
+            <td><span style='font-size:.8em'><strong>Strike Price</strong></span></td>
+            <td><span style='font-size:.8em'><strong>Executed Price</strong></span></td>
+            <td><span style='font-size:.8em'><strong>Order Type 2</strong></span></td>
+            <td><span style='font-size:.8em'><strong>Strike price 2</strong></span></td>
+            <td><span style='font-size:.8em'><strong>Commission Fee</span></td>
+            <td><span style='font-size:.8em'><strong>Total</strong></span></td>
+            <td><span style='font-size:.8em'><strong>Action</strong></span></td>
         </tr>";
         $sql_2 = "SELECT * FROM ".$trades_table." WHERE type='Entry' AND mate_id='$obj->ID';";
         $results_2 = $dbconnection->query($sql_2);
         while($obj2 = $results_2->fetch_object()){
-            $exit_total =  $obj2->total;
-            $trade_total = $trade_total + $exit_total;
+            $entry_total =  $obj2->total;
+            $trade_total = $trade_total + $entry_total;
             $trade_com = $trade_com + $obj2->com_fee;
             
             echo "<tr>
@@ -74,9 +74,9 @@ function viewByPlatform($platform, $trades_table){
                 <td align='center'><span style='font-size:.8em'>$obj2->order_type2</span></td>
                 <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj2->strike_price2)."</span></td>
                 <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj2->com_fee)."</span></td>
-                <td align='center'><span style='font-size:.8em'>".money_format($format_line, $exit_total)."</span></td>
+                <td align='center'><span style='font-size:.8em'>".money_format($format_line, $entry_total)."</span></td>
                 <td align='center'><table><tr>
-                  <td><form method='POST' action='edit_trade.php'>
+                  <td><form metdod='POST' action='edit_trade.php'>
                   <input type='hidden' name='ID' value='$obj2->ID'>
                   <button type='submit'>Edit</button></form></td>
                   <td valign='bottom'><form method='POST' action='delete_trade.php'>
@@ -107,14 +107,14 @@ function viewByPlatform($platform, $trades_table){
                 <button type='submit'>Del</button></form></td></tr></table></td>
             </tr>";
        #$per = ($trade_total/$obj->total);
-       #$percent = number_format( ( abs($trade_total) / abs($exit_total) ) * 100, 2).'%';
-       $percent = number_format( ($trade_total / $exit_total ) * 100, 2).'%';
+       #$percent = number_format( ( abs($trade_total) / abs($entry_total) ) * 100, 2).'%';
+       $percent = number_format( ($trade_total / abs($entry_total) ) * 100, 2).'%';
        echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_com)."</span></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_total)."</span></td><td><span style='font-size:.8em'>".$percent."</span></td></tr>";
-       echo "</table>";
      }
      $results->close();
      unset($obj);
   }
+  echo "</table>";
 }
 
 #require_once("include/defaults.cfg.php");
