@@ -107,7 +107,6 @@ function viewByPlatform($platform, $trades_table){
                 <button type='submit'>Del</button></form></td></tr></table></td>
             </tr>";
        #$per = ($trade_total/$obj->total);
-       echo  abs($exit_total);
        $percent = number_format( ( abs($trade_total) / abs($exit_total) ) * 100, 2).'%';
        echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_com)."</span></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_total)."</span></td><td><span style='font-size:.8em'>".$percent."</span></td></tr>";
        echo "</table>";
