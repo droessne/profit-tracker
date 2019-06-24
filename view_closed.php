@@ -111,7 +111,7 @@ function viewByPlatform($platform, $trades_table){
        #$per = ($trade_total/$obj->total);
        #$percent = number_format( ( abs($trade_total) / abs($entry_total) ) * 100, 2).'%';
        $percent = number_format( ($trade_total / abs($entry_total) ) * 100, 2).'%';
-       echo "<tr><td></td><td></td><td>$obj->symbol</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_com)."</span></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_total)."</span></td><td><span style='font-size:.8em'>".$percent."</span></td></tr>";
+       echo "<tr><td></td><td></td><td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_com)."</span></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_total)."</span></td><td><span style='font-size:.8em'>".$percent."</span></td></tr>";
      }
      $results->close();
      unset($obj);
