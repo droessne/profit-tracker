@@ -1,5 +1,5 @@
 <?php
-
+require_once("include/html_open.php");
 require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
 
@@ -23,7 +23,9 @@ function viewByPlatform($platform, $trades_table){
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1> ".$platform." Closed Trades</h1>";
-  echo "<table border=1>";
+  echo '<table border=0 align=center><tr><td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for symbols.." title="Type in a symbol"></td>';
+  echo '</tr></table>';
+  echo "<table id='myTable' border=1>";
   if (!$dbconnection->connect_errno) {
     $sql = "SELECT * FROM ".$trades_table." WHERE type='Exit' AND mate_id IS NOT NULL AND platform='".$platform."'".$sql_add.";";
     $results = $dbconnection->query($sql);
@@ -124,6 +126,25 @@ function viewByPlatform($platform, $trades_table){
 viewByPlatform($_POST['platform'], $trades_table);
 
 ?>
-
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
 
 
