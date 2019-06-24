@@ -57,8 +57,10 @@ function viewByPlatform($platform, $trades_table){
         $sql_2 = "SELECT * FROM ".$trades_table." WHERE type='Entry' AND mate_id='$obj->ID';";
         $results_2 = $dbconnection->query($sql_2);
         while($obj2 = $results_2->fetch_object()){
-            $trade_total = $trade_total + $obj2->total;
+            $exit_total =  $obj2->total;
+            $trade_total = $trade_total + $exit_total;
             $trade_com = $trade_com + $obj2->com_fee;
+            
             echo "<tr>
                 <td align='center'><span style='font-size:.8em'>$obj2->executed_date</span></td>
                 <td align='center'><span style='font-size:.8em'>$obj2->type</span></td>
@@ -72,7 +74,7 @@ function viewByPlatform($platform, $trades_table){
                 <td align='center'><span style='font-size:.8em'>$obj2->order_type2</span></td>
                 <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj2->strike_price2)."</span></td>
                 <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj2->com_fee)."</span></td>
-                <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj2->total)."</span></td>
+                <td align='center'><span style='font-size:.8em'>".money_format($format_line, $exit_total)."</span></td>
                 <td align='center'><table><tr>
                   <td><form method='POST' action='edit_trade.php'>
                   <input type='hidden' name='ID' value='$obj2->ID'>
@@ -106,7 +108,7 @@ function viewByPlatform($platform, $trades_table){
             </tr>";
        #$per = ($trade_total/$obj->total);
        echo  abs($obj2->total);
-       $percent = number_format( ( abs($trade_total) / abs($obj2->total) ) * 100, 2).'%';
+       $percent = number_format( ( abs($trade_total) / abs($exit_total) ) * 100, 2).'%';
        echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_com)."</span></td><td align='center'><span style='font-size:.8em'>".money_format($format_line, $trade_total)."</span></td><td><span style='font-size:.8em'>".$percent."</span></td></tr>";
        echo "</table>";
      }
