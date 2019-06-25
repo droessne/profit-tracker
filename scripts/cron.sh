@@ -6,6 +6,7 @@ user="dersllcc_money"
 psw="DERS4me"
 database="dersllcc_profit_tracker"
 query="select broker_id from brokers"
+active_broker=$(echo "SELECT active_broker_id FROM defaults" | mysql -h ${host} -u${user} -p${psw} ${database} | tail -1)
 
 cd /tmp/profit-tracker/
 sed -i 's/127.0.0.1/gn400.whpservers.com/' include/database.cfg.php
@@ -25,5 +26,5 @@ do
   php71 view_open2.php
 done
 
-query2="UPDATE defaults SET active_broker_id = '1' WHERE id = 1"
+query2="UPDATE defaults SET active_broker_id = '$active_broker' WHERE id = 1"
 mysql -h ${host} -u${user} -p${psw} ${database} -e "${query2}"
