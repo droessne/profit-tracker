@@ -140,9 +140,9 @@ if ($dbconnection->connect_error) {
       }
     } else {
         if (strpos($_POST['referer'], 'closed') !== false) {
-            header("Location: view_closed_form.php");
+            header( "refresh:1;url=view_closed_form.php" );
         } else {
-            header("Location: {$_POST['referer']}");
+            header( "refresh:1;url=".$_POST['referer'] );
         }
         die();
     }
