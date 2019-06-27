@@ -1,12 +1,4 @@
-<?php
-
-$page = $_SERVER['PHP_SELF'];
-$sec = "5";
-?>
 <html>
-<head>
-<meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
-</head>
 <?php
 header( "refresh:15;url=view_all_profits.php" );
 require_once("include/database.cfg.php");
