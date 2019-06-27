@@ -103,7 +103,7 @@ if ($dbconnection->connect_error) {
       $results = $dbconnection->query($sql);
       if ($results) {
         echo "Profit added.";
-        header("Location: {$_POST['referer']}");
+        header( "refresh:1;url=".$_POST['referer'] );
         die();
       } else {
         echo "Sorry, adding this profit failed. Please try again";
