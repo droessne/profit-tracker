@@ -1,13 +1,6 @@
-<?php
-
-$page = $_SERVER['PHP_SELF'];
-$sec = "5";
-?>
 <html>
-<head>
-<meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
-</head>
 <?php
+header( "refresh:5;url=".$_SERVER['PHP_SELF'] );
 require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
 setlocale(LC_MONETARY, 'en_US');
