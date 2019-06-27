@@ -17,7 +17,7 @@ if ($dbconnection->connect_error) {
   $results = $dbconnection->query($sql);
   if ($results) {
     echo "Profit added.";
-    header("Location: {$_SERVER['HTTP_REFERER']}");
+    header( "refresh:1;url=".$_SERVER['HTTP_REFERER'] );
     die();
   } else {
     echo "Sorry, adding this profit failed. Please try again";
