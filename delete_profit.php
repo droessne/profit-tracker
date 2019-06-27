@@ -13,7 +13,7 @@ if (!$dbconnection->connect_errno) {
   #$results->close();
   #unset($obj);
   echo "Deleted entry!";
-  header("Location: {$_SERVER['HTTP_REFERER']}");
+  header( "refresh:1;url=".$_SERVER['HTTP_REFERER'] );
   die();
 } else {
   echo "Failed to Delete entry!";
