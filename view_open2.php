@@ -1,4 +1,5 @@
 <?php
+header( "refresh:20;url=view_open2.php" );
 require_once("include/html_open.php");
 require_once("include/database.cfg.php");
 require_once("include/get_auth.php");
