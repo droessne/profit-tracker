@@ -37,6 +37,7 @@ echo "<style>
 }
 
 #myTable th, #myTable td {
+  background-color: #4CAF50;
   text-align: left;
   padding: 1px;
 }
@@ -56,6 +57,7 @@ echo "<style>
 }
 
 #myTable1 th, #myTable1 td {
+  background-color: #4CAF50;
   text-align: left;
   padding: 1px;
 }
