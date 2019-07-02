@@ -1,5 +1,5 @@
 <?php
-header( "refresh:20;url=cms.dersllc.com" );
+header( "refresh:20;url=." );
 require_once("include/html_open.php");
 require_once("include/database.cfg.php");
 require_once("include/get_auth.php");
