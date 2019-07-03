@@ -9,7 +9,6 @@ function viewByPlatform($platform, $trades_table, $profits_table){
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   #echo "<h1> ".$platform." Profits</h1>";
-  echo '<a href="money/config.php" style="float: right;">&#9881;</a>';
   if (!$dbconnection->connect_errno) {
     $sql_1 = "SELECT SUM(amount) AS balance FROM ".$profits_table." WHERE platform='".$platform."'";
     $results_1 = $dbconnection->query($sql_1);
@@ -96,6 +95,7 @@ function viewByPlatform($platform, $trades_table, $profits_table){
 }
 
 require_once("include/defaults.cfg.php");
+echo '<a href="money/config.php" style="float: right;">&#9881;</a>';
 echo "<center><table border=1>";
 echo "<tr>";
         echo "<th align='center'>Platform</th>";
