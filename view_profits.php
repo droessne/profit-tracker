@@ -1,6 +1,6 @@
 <html>
 <?php
-header( "refresh:10;url=".$_SERVER['PHP_SELF'] );
+header( "refresh:10;url=." );
 require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
 
