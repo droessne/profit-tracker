@@ -2,6 +2,7 @@
 <title> Profit Tracker </title>
 <body>
 <H1> View Closed Trades </H1>
+<a href="money/config.php" style="float: right;">&#9881;</a>
 <form action="view_closed.php" method="post">
 <table>
 <tr>
