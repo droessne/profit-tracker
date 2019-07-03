@@ -95,7 +95,7 @@ function viewByPlatform($platform, $trades_table, $profits_table){
 }
 
 require_once("include/defaults.cfg.php");
-echo '<a href="money/config.php" style="float: right;">&#9881;</a>';
+echo '<a href="config.php" style="float: right;">&#9881;</a>';
 echo "<center><table border=1>";
 echo "<tr>";
         echo "<th align='center'>Platform</th>";
