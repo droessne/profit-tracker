@@ -10,7 +10,7 @@ $cur_month = date("n");
 $cur_year = date("Y");
 
 echo "<h1> ".$cur_year." Monthly Profits</h1>";
-echo '<a href="money/config.php" style="float: right;">&#9881;</a>';
+echo '<a href="config.php" style="float: right;">&#9881;</a>';
 
 echo "<table border=1><tr>
       <th>Month</th>
