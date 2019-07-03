@@ -1,6 +1,6 @@
 <html>
 <?php
-header( "refresh:15;url=view_all_profits.php" );
+header( "refresh:15;url=." );
 require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
 require_once("include/binance.php");
@@ -8,6 +8,7 @@ require_once("include/binance.php");
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1>All Profits</h1>";
+  echo '<a href="money/config.php" style="float: right;">&#9881;</a>';
   if (!$dbconnection->connect_errno) {
     $sql_1 = "SELECT SUM(amount) AS balance FROM ".$profits_table." WHERE platform != 'Deposit' AND platform != 'Withdrawal';";
     $results_1 = $dbconnection->query($sql_1);
