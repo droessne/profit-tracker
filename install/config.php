@@ -10,6 +10,7 @@ require_once("../include/defaults.cfg.php");
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 if ($dbconnection->connect_error) {
+  echo "FILED CONNECTION";
   die("Connection failed: " . $conn->connect_error);
 } else {
   $sql = "SELECT * FROM defaults WHERE id='1';";
