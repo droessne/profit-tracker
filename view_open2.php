@@ -297,7 +297,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center' bgcolor='".$sb_color."' style='color: Black;'><span style='font-size:.9em'>$obj->sell_by_date</span></td>
               <td align='center' bgcolor='white' style='color: Black;'><center><form method='POST' action='add_exit_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
-                  <button align='center' type='submit' class='btn'><i class='fa fa-sign-out-alt'></i></button>
+                  <button align='center' type='submit'><i class='fa fa-home'></i></button>
                   <!--<button align='center' type='submit'>Exit</button>--></form></center></td>
               <td align='center' bgcolor='white' style='color: Black;'><center><form method='POST' action='edit_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
