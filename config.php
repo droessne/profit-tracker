@@ -4,11 +4,8 @@
 <H1> Settings </H1>
 <h2> Default Settings:</h2>
 <?php
-echo 'hello';
 require_once("include/database-cfg.php");
-echo 'datab good';
 require_once("include/defaults.cfg.php");
-echo 'default good';
 
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
