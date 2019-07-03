@@ -8,7 +8,7 @@ require_once("include/binance.php");
   setlocale(LC_MONETARY, 'en_US');
   $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
   echo "<h1>All Profits</h1>";
-  echo '<a href="money/config.php" style="float: right;">&#9881;</a>';
+  echo '<a href="config.php" style="float: right;">&#9881;</a>';
   if (!$dbconnection->connect_errno) {
     $sql_1 = "SELECT SUM(amount) AS balance FROM ".$profits_table." WHERE platform != 'Deposit' AND platform != 'Withdrawal';";
     $results_1 = $dbconnection->query($sql_1);
