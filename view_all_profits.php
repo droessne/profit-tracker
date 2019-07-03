@@ -177,10 +177,10 @@ require_once("include/binance.php");
             <td align='center'><table><tr>
                 <td><form method='POST' action='edit_profit.php'>
                 <input type='hidden' name='ID' value='$obj->ID'>
-                <button type='submit'>Edit</button></form></td>
+                <button type='submit'><i class='fa fa-edit'></i></button></form></td>
                 <td valign='bottom'><form method='POST' action='delete_profit.php'>
                 <input type='hidden' name='ID' value='$obj->ID'>
-                <button type='submit'>Del</button></form></td></tr></table></td>
+                <button type='submit'><i class='fa fa-trash'></i></button></form></td></tr></table></td>
             </tr>";
       $last_amount = $obj->amount;
       $count++;
@@ -214,10 +214,10 @@ require_once("include/binance.php");
             <td align='center'><table><tr>
                 <td><form method='POST' action='edit_profit.php'>
                 <input type='hidden' name='ID' value='$obj->ID'>
-                <button type='submit'>Edit</button></form></td>
+                <button type='submit'><i class='fa fa-edit'></i></button></form></td>
                 <td valign='bottom'><form method='POST' action='delete_profit.php'>
                 <input type='hidden' name='ID' value='$obj->ID'>
-                <button type='submit'>Del</button></form></td></tr></table></td>
+                <button type='submit'><i class='fa fa-trash'></i></button></form></td></tr></table></td>
             </tr>";
       $last_amount = $obj->amount;
       $count++;
