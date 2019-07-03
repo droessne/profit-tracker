@@ -1,14 +1,8 @@
 <html>
 <title> Profit Tracker </title>
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
-</head>
 <body>
 <H1> Settings </H1>
 <h2> Default Settings:</h2>
-
 <?php
 require_once("../include/database.cfg.php");
 require_once("../include/defaults.cfg.php");
@@ -86,28 +80,8 @@ echo '</select></td></tr>';
 echo '</table>';
 echo '<input type="submit" /></form>';
 
-echo '<h2>Rearrange Platforms:</h2>';
-echo '<ul id="image-list1" class="sortable-list">';
-echo '  <li id="a">A</li>';
-echo '  <li id="b">B</li>';
-echo '  <li id="c">C</li>';
-echo '</ul>';
-
 ?>
-<script>
-$('.sortable-list').sortable({
-    connectWith: '.sortable-list',
-    update: function(event, ui) {
-        var changedList = this.id;
-        var order = $(this).sortable('toArray');
-        var positions = order.join(';');
-        console.log({
-            id: changedList,
-            positions: positions
-        });
-    }
-});
-    </script>
+
 </body>
 </html>
 
