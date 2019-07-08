@@ -130,7 +130,7 @@ if ($dbconnection->connect_error) {
       if ($results) {
         echo "Profit updated.";
         if (strpos($_POST['referer'], 'closed') !== false) {
-            header("Location: view_closed_form.php");
+            header("Location: money/closed_trades/");
         } else {
             header("Location: {$_POST['referer']}");
         }
@@ -140,7 +140,7 @@ if ($dbconnection->connect_error) {
       }
     } else {
         if (strpos($_POST['referer'], 'closed') !== false) {
-            header( "refresh:1;url=view_closed_form.php" );
+            header( "refresh:1;url=money/closed_trades/" );
         } else {
             header( "refresh:1;url=".$_POST['referer'] );
         }
