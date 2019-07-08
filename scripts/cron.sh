@@ -1,7 +1,8 @@
 #!/bin/bash
 
 unset brokers
-host="gn400.whpservers.com"
+#host="gn400.whpservers.com"
+host="127.0.0.1"
 user="dersllcc_money"
 psw="DERS4me"
 database="dersllcc_profit_tracker"
@@ -9,7 +10,7 @@ query="select broker_id from brokers"
 active_broker=$(echo "SELECT active_broker_id FROM defaults" | mysql -h ${host} -u${user} -p${psw} ${database} | tail -1)
 
 cd /tmp/profit-tracker/
-sed -i 's/127.0.0.1/gn400.whpservers.com/' include/database.cfg.php
+#sed -i 's/127.0.0.1/gn400.whpservers.com/' include/database.cfg.php
 
 while read line
 do 
