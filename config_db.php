@@ -1,6 +1,6 @@
 <?php
 require_once("include/database.cfg.php");
-header( "refresh:1;url=money/" );
+header( "Location: money/" );
 
 $dbconnection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
