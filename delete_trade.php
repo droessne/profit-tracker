@@ -14,9 +14,9 @@ if (!$dbconnection->connect_errno) {
   #unset($obj);
   echo "Deleted entry!";
   if (strpos($_SERVER['HTTP_REFERER'], 'closed') !== false) {
-            header( "refresh:1;url=view_closed_form.php" );
+            header( "Location: money/closed/" );
         } else {
-            header( "refresh:1;url=".$_SERVER['HTTP_REFERER'] );
+            header( "Location: ".$_SERVER['HTTP_REFERER'] );
         }
   die();
 } else {
