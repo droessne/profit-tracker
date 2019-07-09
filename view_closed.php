@@ -79,10 +79,10 @@ function viewByPlatform($platform, $trades_table){
                 <td align='center'><span style='font-size:.8em'>".money_format($format_line, $entry_total)."</span></td>
                 <td align='center'><table><tr>
                   <td><form method='POST' action='edit_trade.php'>
-                <input type='hidden' name='ID' value='$obj->ID'>
+                <input type='hidden' name='ID' value='$obj2->ID'>
                 <button type='submit'><i class='fa fa-edit'></i></button></form></td>
                 <td valign='bottom'><form method='POST' action='delete_trade.php'>
-                <input type='hidden' name='ID' value='$obj->ID'>
+                <input type='hidden' name='ID' value='$obj2->ID'>
                 <button type='submit'><i class='fa fa-trash'></i></button></form></td></tr></table></td>
                 </tr>";
         }
