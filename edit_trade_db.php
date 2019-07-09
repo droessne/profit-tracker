@@ -140,9 +140,9 @@ if ($dbconnection->connect_error) {
       }
     } else {
         if (strpos($_POST['referer'], 'closed') !== false) {
-            header( "refresh:1;url=money/closed_trades/" );
+            header( "Location: money/closed_trades/" );
         } else {
-            header( "refresh:1;url=".$_POST['referer'] );
+            header( "Location: {$_POST['referer']}" );
         }
         die();
     }
