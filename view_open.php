@@ -141,6 +141,7 @@ function viewByPlatform($platform, $trades_table){
 
 require_once("include/defaults.cfg.php");
 echo "<h1> Open Trades</h1>";
+echo '<a href="add_entry_trade.php" style="float: left;"><i class="fa fa-plus"></i></a>';
 echo '<a href="config.php" style="float: right;">&#9881;</a>';
 echo '<table border=0 align=center><tr><td><input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for symbols.." title="Type in a symbol"></td>';
 echo '</tr></table>';
