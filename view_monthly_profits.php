@@ -1,6 +1,6 @@
 <html>
 <?php
-header( "refresh:5;url=." );
+#header( "refresh:5;url=." );
 require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
 setlocale(LC_MONETARY, 'en_US');
