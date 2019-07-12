@@ -1,12 +1,7 @@
-<?php
-
-$page = ".";
-$sec = "5";
-?>
 <html>
-<head>
-<meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
-</head>
+<!--<head>
+<meta http-equiv="refresh" content="5;URL=.">
+</head>-->
 <?php
 require_once("include/database.cfg.php");
 require_once("include/defaults.cfg.php");
