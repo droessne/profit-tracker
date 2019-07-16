@@ -48,8 +48,10 @@ require_once("include/html_open.php");
 <td><select id="trade_strategy" name="trade_strategy">
   <option value="Call">Call</option>
   <option value="Call Spread">Call Spread</option>
+  <option value="Bear Call Spread">Bear Call Spread</option>
   <option value="Put">Put</option>
   <option value="Put Spread">Put Spread</option>
+  <option value="Bull Put Spread">Bull Put Spread</option>
   <option value="Stock">Stock</option>
   <option value="Crypto">Crypto</option>
 </select></td>
