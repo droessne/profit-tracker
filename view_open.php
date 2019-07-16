@@ -64,6 +64,7 @@ function viewByPlatform($platform, $trades_table){
         $count = $count + 1;
         $plat_total = ($plat_total + $obj->total);
         $plat_com = ($plat_com + $obj->com_fee);
+        /*
         if (strpos($obj->symbol, '*') !== false) {
           # Force 50% Profit Target
           $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 1.5) / 100);
@@ -80,6 +81,7 @@ function viewByPlatform($platform, $trades_table){
           # 100% Profit Target
           $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 2) / 100);
         }
+        */
         if ($obj->trade_strategy == 'Crypto') {
             $format_line = '%(#10.11n';
             $format_num = 11;
@@ -119,7 +121,7 @@ function viewByPlatform($platform, $trades_table){
               <td align='center'><center><form method='POST' action='delete_trade.php'>
                   <input type='hidden' name='ID' value='$obj->ID'>
                   <button type='submit'><i class='fa fa-trash'></i></button></form></center></td>
-              <td align='center'><span style='font-size:.8em'>".money_format($format_line, $tar_total)."</span></td>
+              <!--<td align='center'><span style='font-size:.8em'>".money_format($format_line, $tar_total)."</span></td>-->
               </tr>";
       }
     }
@@ -135,7 +137,7 @@ function viewByPlatform($platform, $trades_table){
     echo "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>";
     echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_com)."</span></td>";
     echo "<td align='center'><span style='font-size:.8em'>".money_format($format, $plat_total)."</span></td>";
-    echo "<td></td><td></td><td></td><td></td></tr>";
+    echo "<td></td><td></td><td></td><!--<td></td>--></tr>";
   }
 }
 
@@ -160,7 +162,7 @@ echo "<tr id='header'>
         <th><span style='font-size:.8em'>Commission Fee</span></th>
         <th><span style='font-size:.8em'>Total</span></th>
         <th colspan=3><span style='font-size:.8em'>Action</span></th>
-        <th><span style='font-size:.8em'>Sell Target</span></th>
+        <!--<th><span style='font-size:.8em'>Sell Target</span></th>-->
         </tr>";
 foreach ($platforms as &$p) {
     viewByPlatform($p, $trades_table);
