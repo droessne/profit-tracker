@@ -115,10 +115,10 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
           $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 2) / 100);
         } elseif ($obj->trade_strategy == 'Put Spread'){
           # Put Spread 80% Profit target
-          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * .2) / 100);
+          $sell = ((((($obj->executed_price * 100)) - (abs($obj->com_fee) / $obj->qty)) * .2) / 100);
         } elseif ($obj->trade_strategy == 'Bear Call Spread'){
-          # Put Spread 80% Profit target
-          $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * .2) / 100);
+          # Bear Call Spread 80% Profit target
+          $sell = ((((($obj->executed_price * 100)) - (abs($obj->com_fee) / $obj->qty)) * .2) / 100);
         } else {
           # 100% Profit Target
           $sell = ((((($obj->executed_price * 100)) + (abs($obj->com_fee) / $obj->qty)) * 2) / 100);
