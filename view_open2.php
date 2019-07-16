@@ -175,6 +175,10 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
             $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
             $results_max = $dbconnection->query($sql_max);
             $max_price = $cur_data['mark'];
+          } elseif ($cur_data['mark'] == 0 ){
+            $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
+            $results_max = $dbconnection->query($sql_max);
+            $max_price = $cur_data['mark'];
           } else {
             $max_price = $obj->max_price;
           }
@@ -200,6 +204,10 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
           $percent_away = number_format((((($cur_data['mark']/$obj->executed_price) - 1)*100)*-1), 2);
           $stop_loss = ($obj->executed_price + ($obj->executed_price * $stop_loss_percent));
           if ($cur_data['mark'] < $obj->max_price ){
+            $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
+            $results_max = $dbconnection->query($sql_max);
+            $max_price = $cur_data['mark'];
+          } elseif ($cur_data['mark'] == 0 ){
             $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
             $results_max = $dbconnection->query($sql_max);
             $max_price = $cur_data['mark'];
