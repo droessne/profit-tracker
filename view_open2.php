@@ -175,7 +175,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
             $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
             $results_max = $dbconnection->query($sql_max);
             $max_price = $cur_data['mark'];
-          } elseif ($cur_data['mark'] == 0 ){
+          } elseif ($obj->max_price == NULL ){
             $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
             $results_max = $dbconnection->query($sql_max);
             $max_price = $cur_data['mark'];
@@ -207,7 +207,7 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
             $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
             $results_max = $dbconnection->query($sql_max);
             $max_price = $cur_data['mark'];
-          } elseif ($cur_data['mark'] == 0 ){
+          } elseif ($obj->max_price == NULL ){
             $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
             $results_max = $dbconnection->query($sql_max);
             $max_price = $cur_data['mark'];
