@@ -72,23 +72,33 @@ echo '
     if ($trade_strategy == 'Call'){
       echo ' selected';
     }
-  echo '>Call</option>
-    <option value="Call Spread"';
+  echo '>Call</option>';
+  echo '<option value="Call Spread"';
     if ($trade_strategy == 'Call Spread'){
       echo ' selected';
     }
-  echo '>Call Spread</option>
-    <option value="Put"';
+  echo '>Call Spread</option>';
+  echo '<option value="Bear Call Spread"';
+    if ($trade_strategy == 'Bear Call Spread'){
+      echo ' selected';
+    }
+  echo '>Bear Call Spread</option>';
+  echo '<option value="Put"';
     if ($trade_strategy == 'Put'){
       echo ' selected';
     }
-  echo '>Put</option>
-    <option value="Put Spread"';
+  echo '>Put</option>';
+  echo '<option value="Put Spread"';
     if ($trade_strategy == 'Put Spread'){
       echo ' selected';
     }
-  echo '>Put Spread</option>
-  <option value="Stock"';
+  echo '>Put Spread</option>';
+  echo '<option value="Bull Put Spread"';
+    if ($trade_strategy == 'Bull Put Spread'){
+      echo ' selected';
+    }
+  echo '>Bull Put Spread</option>';
+  echo '<option value="Stock"';
     if ($trade_strategy == 'Stock'){
       echo ' selected';
     }
