@@ -210,18 +210,18 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
           }
         } elseif ('Bull Put Spread' == $obj->trade_strategy) {
           $cur_data = get_put_spread($symbol, $obj->strike_price2, $obj->strike_price, $obj->expire_date);
-          $gain_loss = ($cur_data['mark'] - $obj->executed_price);
-          $away_amt = ($sell - $cur_data['mark']);
-          $percent_away = number_format(((($cur_data['mark']/$obj->executed_price) - 1)*100), 2);
-          $stop_loss = ($obj->executed_price - ($obj->executed_price * $stop_loss_percent));
-          if ($cur_data['mark'] > $obj->max_price ){
+          $gain_loss = ($obj->executed_price - $cur_data['mark']);
+          $away_amt = ($cur_data['mark'] - $sell);
+          $percent_away = number_format((((($cur_data['mark']/$obj->executed_price) - 1)*100)*-1), 2);
+          $stop_loss = ($obj->executed_price + ($obj->executed_price * $stop_loss_percent));
+          if ($cur_data['mark'] < $obj->max_price ){
             $sql_max = "UPDATE ".$trades_table." SET max_price = '".$cur_data['mark']."' WHERE ID='".$obj->ID."';";
             $results_max = $dbconnection->query($sql_max);
             $max_price = $cur_data['mark'];
           } else {
             $max_price = $obj->max_price;
           }
-          $max_percent = number_format(((($max_price/$obj->executed_price) - 1)*100), 2);
+          $max_percent = number_format((((($max_price/$obj->executed_price) - 1)*100)*-1), 2);
         } elseif ('Stock' == $obj->trade_strategy) {
           $cur_data = get_stock($symbol);
           $gain_loss = ($cur_data['mark'] - $obj->executed_price);
