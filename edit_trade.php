@@ -64,23 +64,33 @@ if ($dbconnection->connect_error) {
           if ($obj->trade_strategy == 'Call'){
             echo ' selected="selected"';
           }
-                         echo '>Call</option>
-          <option value="Call Spread"';
+                         echo '>Call</option>';
+          echo '<option value="Call Spread"';
           if ($obj->trade_strategy == 'Call Spread'){
             echo ' selected="selected"';
           }
-                                echo '>Call Spread</option>
-          <option value="Put"';
+          echo '>Call Spread</option>';
+          echo '<option value="Bear Call Spread"';
+          if ($obj->trade_strategy == 'Bear Call Spread'){
+            echo ' selected="selected"';
+          }
+          echo '>Bear Call Spread</option>';
+          echo '<option value="Put"';
           if ($obj->trade_strategy == 'Put'){
             echo ' selected="selected"';
           }
-                        echo '>Put</option>
-          <option value="Put Spread"';
+                        echo '>Put</option>';
+          echo '<option value="Put Spread"';
           if ($obj->trade_strategy == 'Put Spread'){
             echo ' selected="selected"';
           }
-                               echo '>Put Spread</option>
-          <option value="Stock"';
+          echo '>Put Spread</option>';
+          echo '<option value="Bull Put Spread"';
+          if ($obj->trade_strategy == 'Bull Put Spread'){
+            echo ' selected="selected"';
+          }
+          echo '>Bull Put Spread</option>';
+          echo '<option value="Stock"';
           if ($obj->trade_strategy == 'Stock'){
             echo ' selected="selected"';
           }
