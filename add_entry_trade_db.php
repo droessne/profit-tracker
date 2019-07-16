@@ -43,9 +43,9 @@ if ($dbconnection->connect_error) {
   } elseif ('Bear Call Spread' == $trade_strategy) {
     $total = ((((floatval($qty) * 100) * floatval($executed_price))) + $com_fee);
   } elseif ('Put Spread' == $trade_strategy) {
-    $total = (((floatval($qty) * 100) * floatval($executed_price)) + $com_fee);
-  } elseif ('Bull Put Spread' == $trade_strategy) {
     $total = ((((floatval($qty) * 100) * floatval($executed_price)) * -1) + $com_fee);
+  } elseif ('Bull Put Spread' == $trade_strategy) {
+    $total = (((floatval($qty) * 100) * floatval($executed_price)) + $com_fee);
   } elseif ('Stock' == $trade_strategy) {
     $total = ((((floatval($qty)) * floatval($executed_price)) * -1) + $com_fee);
   } elseif ('Crypto' == $trade_strategy) {
