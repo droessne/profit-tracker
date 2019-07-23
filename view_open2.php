@@ -430,11 +430,11 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
               <td align='center'><span style='font-size:.8em'>".money_format($format, $invested_total)."</span></td>
               <td align='center'><strong><span style='font-size:1em'>".money_format($format, $current_total)."</span></strong></td>
               <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
+              <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format, $max_total)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($gain_loss,$format_num)."</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($away_amt,$format_num)."</span></td>
-              <td align='center'><span style='font-size:.8em'> - </span></td>
-              <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
               <td align='center'><span style='font-size:.8em'> - </span></td>
