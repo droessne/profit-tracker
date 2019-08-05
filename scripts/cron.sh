@@ -29,4 +29,5 @@ do
 done
 
 query2="UPDATE defaults SET active_broker_id = '$active_broker' WHERE id = 1"
-/usr/local/bin/mysql -h ${host} -u${user} -p${psw} ${database} -e "${query2}"
+#/usr/local/bin/mysql -h ${host} -u${user} -p${psw} ${database} -e "${query2}"
+/usr/bin/mysql -h ${host} -u${user} -p${psw} ${database} -e "${query2}"
