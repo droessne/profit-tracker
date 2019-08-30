@@ -52,6 +52,12 @@ function get_call($symbol, $strike, $expire_date){
           $volatility = $v->volatility;
           $d_2_ex = $v->daysToExpiration;
           $tot_vol = $v->totalVolume;
+          $open = $v->openPrice;
+          $close = $v->closePrice;
+          $delta = $v->delta;
+          $theta = $v->theta;
+          $bid = $v->bidPrice;
+          $ask = $v->askPrice;
         }
       }
     }
@@ -60,7 +66,13 @@ function get_call($symbol, $strike, $expire_date){
       "mark" => $mark,
       "volatility" => $volatility,
       "d_2_ex" => $d_2_ex,
-      "tot_vol" => $tot_vol
+      "tot_vol" => $tot_vol,
+      "open" => $open,
+      "close" => $close,
+      "delta" => $delta,
+      "theta" => $theta,
+      "bid" => $bid,
+      "ask" => $ask
     ];
     return $results;
   }
