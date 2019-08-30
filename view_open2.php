@@ -304,6 +304,8 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
             $cd_color = "GreenYellow";
         } elseif ($cur_data['mark'] < $cur_data['open']){
             $cd_color = "OrangeRed";
+        } else {
+            $cd_color = "White";
         }
         echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
               <td align='center'><span style='font-size:.9em'>$obj->executed_date</span></td>
