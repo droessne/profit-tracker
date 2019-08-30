@@ -56,6 +56,9 @@ function get_call_spread($symbol, $strike, $strike2, $expire_date){
           $tot_vol = "N/A";
           foreach($row->optionStrategyList as $row1) {
                 $mark = (($row1->strategyAsk + $row1->strategyBid)/2);
+                $bid = $row1->strategyBid;
+                $ask = $row1->strategyAsk;
+
           }
         }
       }
@@ -65,7 +68,10 @@ function get_call_spread($symbol, $strike, $strike2, $expire_date){
       "mark" => $mark,
       "volatility" => $volatility,
       "d_2_ex" => $d_2_ex,
-      "tot_vol" => $tot_vol
+      "tot_vol" => $tot_vol,
+      "bid" => $bid,
+      "ask" => $ask
+
     ];
     return $results;
   }
