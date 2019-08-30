@@ -300,14 +300,18 @@ echo '<td><input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="
             $format_num = 2;
             $format_qty = 0;
         }
-        
+        if ($cur_data['mark'] > $cur_data['open']){
+            $cd_color = "GreenYellow";
+        } elseif ($cur_data['mark'] < $cur_data['open']){
+            $cd_color = "OrangeRed";
+        }
         echo "<tr bgcolor='".$color."' style='color: ".$font_color.";'>
               <td align='center'><span style='font-size:.9em'>$obj->executed_date</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->symbol</span></td>
               <td align='center'><span style='font-size:.8em'>".number_format($obj->qty,$format_qty)."</span></td>
               <td align='center'><span style='font-size:.8em'>$obj->trade_strategy</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $obj->executed_price)."</span></td>
-              <td align='center'><strong><span style='font-size:1em'>".money_format($format_line, $cur_data['mark'])."</span></strong></td>
+              <td align='center'bgcolor='".$cd_color."' style='color: Black;'><strong><span style='font-size:1em'>".money_format($format_line, $cur_data['mark'])."</span></strong></td>
               <td align='center'><strong><span style='font-size:1em'>$percent_away%</span></strong></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $stop_loss)."</span></td>
               <td align='center'><span style='font-size:.8em'>".money_format($format_line, $trail_stop)."</span></td>
