@@ -54,8 +54,16 @@ function get_stock($symbol){
       "mark" => $mark,
       "volatility" => $volatility,
       "div_yield" => $div_yield,
+      "divAmount" => $data->$symbol->divAmount,
       "tot_vol" => $tot_vol,
-      "d_2_ex" => 999
+      "d_2_ex" => 999,
+      "open" => $data->$symbol->openPrice,
+      "close" => $data->$symbol->closePrice,
+      "delta" => "N/A",
+      "theta" => "N/A",
+      "bid" => $data->$symbol->bidPrice,
+      "ask" => $data->$symbol->askPrice
+
     ];
     return $results;
   }
